@@ -49,7 +49,7 @@ html.dark .carousel-wrapper {
 .carousel-container {
   width: 100%;
   max-width: 100%;
-  height: 400px;
+  height: 520px;
   position: relative;
   perspective: 1000px;
   display: flex;
@@ -73,19 +73,19 @@ html.dark .carousel-wrapper {
   align-items: center;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   overflow: visible;
 }
 
 .card {
   position: absolute;
-  width: 400px;
-  height: 225px;
+  width: 520px;
+  height: 292px;
   background: white;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -100,7 +100,7 @@ html.dark .card {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .card.center {
@@ -114,7 +114,7 @@ html.dark .card {
 
 .card.up-2 {
   z-index: 1;
-  transform: translateX(-300px) scale(0.8) translateZ(-300px);
+  transform: translateX(-400px) scale(0.8) translateZ(-300px);
   opacity: 0.7;
 }
 
@@ -124,7 +124,7 @@ html.dark .card {
 
 .card.up-1 {
   z-index: 5;
-  transform: translateX(-150px) scale(0.9) translateZ(-100px);
+  transform: translateX(-200px) scale(0.9) translateZ(-100px);
   opacity: 0.9;
 }
 
@@ -134,7 +134,7 @@ html.dark .card {
 
 .card.down-1 {
   z-index: 5;
-  transform: translateX(150px) scale(0.9) translateZ(-100px);
+  transform: translateX(200px) scale(0.9) translateZ(-100px);
   opacity: 0.9;
 }
 
@@ -144,7 +144,7 @@ html.dark .card {
 
 .card.down-2 {
   z-index: 1;
-  transform: translateX(300px) scale(0.8) translateZ(-300px);
+  transform: translateX(400px) scale(0.8) translateZ(-300px);
   opacity: 0.7;
 }
 
