@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import TeamCarousel from '../components/carousel/TeamCarousel';
 import { BackgroundGradientAnimation } from '../components/background-gradient-animation';
 import SplashCursor from '../components/splash-cursor';
@@ -14,6 +15,11 @@ export default function GalleryPage() {
           </BackgroundGradientAnimation>
         </div>
         <div className="relative z-10">
+          <div className="p-8">
+            <Link href="/" className="underline-magical">
+              ← Return to homepage
+            </Link>
+          </div>
           <TeamCarousel />
         </div>
       </div>
