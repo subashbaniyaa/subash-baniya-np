@@ -1,9 +1,9 @@
-'use client';
-
 import Link from 'next/link';
 import { BackgroundGradientAnimation } from './components/background-gradient-animation';
 import SplashCursor from './components/splash-cursor';
 import { gistesy } from './fonts';
+
+export const dynamic = 'force-dynamic';
 
 export default function FourZeroFour() {
   return (
