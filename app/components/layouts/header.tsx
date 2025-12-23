@@ -8,6 +8,7 @@ import { navigationLinks } from './constants';
 import MobileNav from './mobile-nav';
 import SectionContainer from './section-container';
 import ThemeSwitch from './theme-switch/theme-switch';
+import { ArrowDownIcon } from './icons/arrow-down-icon';
 
 export default function Header() {
   const pathName = usePathname();
@@ -38,10 +39,11 @@ export default function Header() {
                     href={href}
                     aria-label={title}
                   >
-                    <span className={classNames('text-base font-semibold tracking-wide text-gray-900 dark:text-gray-100', {
+                    <span className={classNames('text-base font-semibold tracking-wide text-gray-900 dark:text-gray-100 flex items-center gap-1', {
                       'border-b border-primary-500': active,
                     })}>
                       {title}
+                      <ArrowDownIcon className="h-4 w-4" />
                     </span>
                   </Link>
                 );
