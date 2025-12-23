@@ -7,17 +7,17 @@ import SplashCursor from '../components/splash-cursor';
 
 export default function GalleryPage() {
   return (
-    <SplashCursor containerClassName="min-h-svh w-screen" usePrimaryColors={true}>
-      <div className="relative min-h-svh w-screen flex flex-col">
+    <SplashCursor containerClassName="h-svh w-screen overflow-hidden" usePrimaryColors={true}>
+      <div className="relative h-svh w-screen flex flex-col overflow-hidden">
         <div className="absolute inset-0 z-0">
           <BackgroundGradientAnimation interactive={false}>
             <div />
           </BackgroundGradientAnimation>
         </div>
-        <div className="relative z-10 flex-1">
+        <div className="relative z-10 flex-1 overflow-hidden">
           <TeamCarousel />
         </div>
-        <div className="relative z-10 p-8">
+        <div className="relative z-10 p-8 flex-shrink-0">
           <Link href="/" className="underline-magical">
             Return to homepage
           </Link>
