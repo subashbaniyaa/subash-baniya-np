@@ -48,13 +48,14 @@ html.dark .carousel-wrapper {
 .carousel-container {
   width: 100%;
   max-width: 500px;
-  height: 70vh;
+  height: 80vh;
   position: relative;
   perspective: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: visible;
+  padding-bottom: 40px;
 }
 
 .carousel-container .carousel-nav {
