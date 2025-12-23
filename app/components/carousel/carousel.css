@@ -1,0 +1,378 @@
+.carousel-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 20px 0;
+  transition: background-color 0.3s ease;
+}
+
+:root.dark .carousel-wrapper,
+html.dark .carousel-wrapper {
+  background-color: transparent;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  height: 80vh;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding-left: 40px;
+}
+
+.carousel-container {
+  width: 100%;
+  max-width: 500px;
+  height: 70vh;
+  position: relative;
+  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-container .carousel-nav {
+  display: none;
+}
+
+.carousel-track {
+  width: 450px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card {
+  position: absolute;
+  width: 400px;
+  height: 225px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+:root.dark .card,
+html.dark .card {
+  background: #1a1a1a;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card.center {
+  z-index: 10;
+  transform: scale(1.1) translateZ(0);
+}
+
+.card.center img {
+  filter: none;
+}
+
+.card.up-2 {
+  z-index: 1;
+  transform: translateY(-300px) scale(0.8) translateZ(-300px);
+  opacity: 0.7;
+}
+
+.card.up-2 img {
+  filter: grayscale(100%);
+}
+
+.card.up-1 {
+  z-index: 5;
+  transform: translateY(-150px) scale(0.9) translateZ(-100px);
+  opacity: 0.9;
+}
+
+.card.up-1 img {
+  filter: grayscale(100%);
+}
+
+.card.down-1 {
+  z-index: 5;
+  transform: translateY(150px) scale(0.9) translateZ(-100px);
+  opacity: 0.9;
+}
+
+.card.down-1 img {
+  filter: grayscale(100%);
+}
+
+.card.down-2 {
+  z-index: 1;
+  transform: translateY(300px) scale(0.8) translateZ(-300px);
+  opacity: 0.7;
+}
+
+.card.down-2 img {
+  filter: grayscale(100%);
+}
+
+.card.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.member-info {
+  text-align: center;
+  margin-top: 20px;
+  transition: all 0.5s ease-out;
+}
+
+.member-name {
+  color: rgb(8, 42, 123);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.member-name::before,
+.member-name::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 80px;
+  height: 2px;
+  background: rgb(8, 42, 123);
+  transition: background 0.3s ease;
+}
+
+.member-name::before {
+  left: -100px;
+}
+
+.member-name::after {
+  right: -100px;
+}
+
+.member-quote {
+  color: #6b7280;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 12px;
+  line-height: 1.6;
+  max-width: 500px;
+  font-style: italic;
+  transition: color 0.3s ease;
+}
+
+.member-anime {
+  color: #f59e0b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 12px;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.nav-arrow {
+  position: relative;
+  background: transparent;
+  color: rgb(8, 42, 123);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+
+:root.dark .nav-arrow,
+html.dark .nav-arrow {
+  color: #60a5fa;
+}
+
+.nav-arrow:hover {
+  background: transparent;
+  transform: scale(1.2);
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.nav-arrow svg {
+  width: 60px;
+  height: 60px;
+  transition: all 0.3s ease;
+}
+
+.nav-arrow:hover svg {
+  transform: scale(1.1);
+}
+
+.nav-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    padding: 10px 0;
+  }
+
+  .main-container {
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .carousel-section {
+    flex: none;
+    width: 100%;
+  }
+
+  .controls-section {
+    flex: none;
+    width: 100%;
+    padding-left: 0;
+    gap: 20px;
+  }
+
+  .carousel-container {
+    height: 60vh;
+    max-width: 350px;
+  }
+
+  .carousel-container .carousel-nav {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    margin: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .carousel-container .carousel-nav:hover {
+    transform: translateX(-50%) scale(1.2);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .carousel-container .carousel-nav.up {
+    top: 20px;
+    transform: translateX(-50%);
+  }
+
+  .carousel-container .carousel-nav.down {
+    bottom: 20px;
+    transform: translateX(-50%);
+  }
+
+  .carousel-container .carousel-nav.up svg {
+    transform: rotate(-90deg);
+    width: 50px;
+    height: 50px;
+  }
+
+  .carousel-container .carousel-nav.down svg {
+    transform: rotate(90deg);
+    width: 50px;
+    height: 50px;
+  }
+
+  .nav-controls {
+    display: none;
+  }
+
+  .card {
+    width: 320px;
+    height: 180px;
+  }
+
+  .carousel-track {
+    width: 350px;
+  }
+
+  .card.up-2 {
+    transform: translateY(-160px) scale(0.8) translateZ(-300px);
+  }
+
+  .card.up-1 {
+    transform: translateY(-80px) scale(0.9) translateZ(-100px);
+  }
+
+  .card.down-1 {
+    transform: translateY(80px) scale(0.9) translateZ(-100px);
+  }
+
+  .card.down-2 {
+    transform: translateY(160px) scale(0.8) translateZ(-300px);
+  }
+
+  .member-name {
+    font-size: 1.8rem;
+  }
+
+  .member-quote {
+    font-size: 0.9rem;
+  }
+
+  .member-name::before,
+  .member-name::after {
+    width: 40px;
+  }
+
+  .member-name::before {
+    left: -60px;
+  }
+
+  .member-name::after {
+    right: -60px;
+  }
+}

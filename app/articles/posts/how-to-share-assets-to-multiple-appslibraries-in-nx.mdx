@@ -1,0 +1,182 @@
+---
+title: How to share assets to multiple apps/libraries in Nx
+publishedAt: '2025-08-12'
+summary: 'Guide on sharing assets to multipe libaries in Nx.'
+---
+
+## Sharing assets in your Nx Workspace
+
+### Step I: Create your shared asset libary
+
+```bash
+nx g @nrwl/workspace:lib assets
+```
+
+### Step II: Tell you workspace where your assets will come from
+
+In your `project.json` you can add the following:
+
+```json
+"assets": [
+  "apps/field-app/src/favicon.ico",
+  {
+    "glob": "**/*",
+    "input": "./libs/assets/css",
+    "output": "./"
+  },
+  {
+    "glob": "**/*",
+    "input": "./libs/assets/fonts",
+    "output": "./fonts"
+  },
+  {
+    "glob": "**/*",
+    "input": "./libs/assets/images",
+    "output": "./images"
+  }
+]
+```
+
+### Step III: Organize your assets library structure
+
+Create a well-organized folder structure in your assets library:
+
+```
+libs/assets/
+├── src/
+│   ├── lib/
+│   │   └── assets.ts
+│   └── index.ts
+├── css/
+│   ├── global.css
+│   ├── components/
+│   └── themes/
+├── fonts/
+│   ├── primary/
+│   ├── secondary/
+│   └── icons/
+├── images/
+│   ├── icons/
+│   ├── logos/
+│   ├── backgrounds/
+│   └── illustrations/
+└── project.json
+```
+
+### Step IV: Export assets paths from your library
+
+In your `libs/assets/src/lib/assets.ts` file, create constants for asset paths:
+
+```typescript
+// Asset path constants
+export const ASSET_PATHS = {
+  images: {
+    logo: '/images/logos/logo.svg',
+    iconHome: '/images/icons/home.svg',
+    iconUser: '/images/icons/user.svg',
+    backgroundHero: '/images/backgrounds/hero.jpg',
+  },
+  fonts: {
+    primary: '/fonts/primary/primary.woff2',
+    secondary: '/fonts/secondary/secondary.woff2',
+  },
+  css: {
+    global: '/global.css',
+    components: '/components.css',
+  }
+} as const;
+
+// Type-safe asset helper
+export function getAssetPath(category: keyof typeof ASSET_PATHS, asset: string): string {
+  const categoryPaths = ASSET_PATHS[category];
+  if (asset in categoryPaths) {
+    return categoryPaths[asset as keyof typeof categoryPaths];
+  }
+  throw new Error(`Asset "${asset}" not found in category "${category}"`);
+}
+```
+
+### Step V: Update your apps to use shared assets
+
+In your app's `project.json`, make sure to include the assets configuration:
+
+```json
+{
+  "name": "my-app",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "options": {
+        "assets": [
+          "apps/my-app/src/favicon.ico",
+          {
+            "glob": "**/*",
+            "input": "./libs/assets/css",
+            "output": "./"
+          },
+          {
+            "glob": "**/*",
+            "input": "./libs/assets/fonts",
+            "output": "./fonts"
+          },
+          {
+            "glob": "**/*",
+            "input": "./libs/assets/images",
+            "output": "./images"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+### Step VI: Use assets in your components
+
+Import and use the asset paths in your React components:
+
+```tsx
+import { ASSET_PATHS, getAssetPath } from '@myworkspace/assets';
+
+export function Header() {
+  return (
+    <header>
+      <img 
+        src={ASSET_PATHS.images.logo} 
+        alt="Company Logo" 
+      />
+      <img 
+        src={getAssetPath('images', 'iconUser')} 
+        alt="User Icon" 
+      />
+    </header>
+  );
+}
+```
+
+### Step VII: Configure TypeScript paths (Optional)
+
+Add path mapping in your `tsconfig.base.json` for easier imports:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@myworkspace/assets": ["libs/assets/src/index.ts"],
+      "@assets/*": ["libs/assets/*"]
+    }
+  }
+}
+```
+
+### Troubleshooting
+
+**Assets not found during build:**
+- Ensure the asset paths in `project.json` are correct
+- Verify the output paths match your usage
+
+**TypeScript errors:**
+- Make sure to export asset paths from the main index file
+- Update TypeScript path mappings if using custom import paths
+
+By following these steps, you'll have a centralized, reusable asset management system across your entire Nx workspace that promotes consistency and maintainability.
