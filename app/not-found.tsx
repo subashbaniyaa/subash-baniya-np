@@ -13,7 +13,7 @@ export default function FourZeroFour() {
     >
       <div className="relative min-h-svh w-screen overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <BackgroundGradientAnimation interactive={false}>
+          <BackgroundGradientAnimation interactive={false} opacity={50}>
             <div />
           </BackgroundGradientAnimation>
         </div>
