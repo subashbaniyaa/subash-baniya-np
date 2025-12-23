@@ -85,10 +85,13 @@ input:-webkit-autofill:focus {
 }
 
 .horizontal-underline {
-  display: inline-block;
-  padding-bottom: 4px;
   border-bottom: 3px solid transparent;
-  transition: border-color 0.3s ease-in-out;
+  transition: border-bottom-color 0.3s ease-in-out;
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
 }
 
 .horizontal-underline:hover {
