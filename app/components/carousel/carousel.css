@@ -48,15 +48,16 @@ html.dark .carousel-wrapper {
 
 .carousel-container {
   width: 100%;
-  max-width: 500px;
-  height: 80vh;
+  max-width: 100%;
+  height: 400px;
   position: relative;
   perspective: 1000px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   overflow: visible;
-  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .carousel-container .carousel-nav {
@@ -64,10 +65,10 @@ html.dark .carousel-wrapper {
 }
 
 .carousel-track {
-  width: 450px;
+  width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -113,7 +114,7 @@ html.dark .card {
 
 .card.up-2 {
   z-index: 1;
-  transform: translateY(-300px) scale(0.8) translateZ(-300px);
+  transform: translateX(-300px) scale(0.8) translateZ(-300px);
   opacity: 0.7;
 }
 
@@ -123,7 +124,7 @@ html.dark .card {
 
 .card.up-1 {
   z-index: 5;
-  transform: translateY(-150px) scale(0.9) translateZ(-100px);
+  transform: translateX(-150px) scale(0.9) translateZ(-100px);
   opacity: 0.9;
 }
 
@@ -133,7 +134,7 @@ html.dark .card {
 
 .card.down-1 {
   z-index: 5;
-  transform: translateY(150px) scale(0.9) translateZ(-100px);
+  transform: translateX(150px) scale(0.9) translateZ(-100px);
   opacity: 0.9;
 }
 
@@ -143,7 +144,7 @@ html.dark .card {
 
 .card.down-2 {
   z-index: 1;
-  transform: translateY(300px) scale(0.8) translateZ(-300px);
+  transform: translateX(300px) scale(0.8) translateZ(-300px);
   opacity: 0.7;
 }
 
@@ -268,7 +269,7 @@ html.dark .nav-arrow {
   }
 
   .main-container {
-    flex-direction: row;
+    flex-direction: column;
     height: auto;
     gap: 20px;
     max-width: 100%;
@@ -278,21 +279,21 @@ html.dark .nav-arrow {
 
   .carousel-section {
     flex: none;
-    width: auto;
+    width: 100%;
   }
 
   .controls-section {
     flex: none;
-    width: auto;
+    width: 100%;
     padding-left: 0;
     gap: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .carousel-container {
-    height: 60vh;
-    max-width: 350px;
+    height: 300px;
+    width: 100%;
   }
 
   .carousel-container .carousel-nav {
@@ -314,15 +315,14 @@ html.dark .nav-arrow {
   }
 
   .carousel-container .carousel-nav.up {
-    left: -90px;
+    left: 10px;
   }
 
   .carousel-container .carousel-nav.down {
-    right: -90px;
+    right: 10px;
   }
 
   .carousel-container .carousel-nav.up svg {
-    transform: rotate(180deg);
     width: 50px;
     height: 50px;
   }
