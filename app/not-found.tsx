@@ -1,24 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { BackgroundGradientAnimation } from './components/background-gradient-animation';
 import SplashCursor from './components/splash-cursor';
 import { gistesy } from './fonts';
 
 export default function FourZeroFour() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Eagerly prefetch the homepage when the 404 page loads
-    router.prefetch('/');
-  }, [router]);
-
-  const handleReturn = () => {
-    // Use replace to navigate back smoothly without adding to history
-    router.replace('/');
-  };
-
   return (
     <SplashCursor
       containerClassName="min-h-svh w-screen"
@@ -38,12 +25,9 @@ export default function FourZeroFour() {
             <p className={`text-3xl md:text-4xl leading-7 text-gray-500 dark:text-gray-400 ${gistesy.className}`}>
               The page you&apos;re looking for doesn&apos;t exist.
             </p>
-            <button 
-              onClick={handleReturn}
-              className="underline-magical"
-            >
+            <Link href="/" className="underline-magical">
               Return to homepage
-            </button>
+            </Link>
           </div>
         </div>
       </div>
