@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ArrowDownIcon } from '../layouts/icons/arrow-down-icon';
 import './carousel.css';
 
 interface AnimeQuote {
@@ -22,8 +21,6 @@ export default function TeamCarousel() {
   const dotsRef = useRef<HTMLDivElement[]>([]);
   const touchStartY = useRef(0);
   const usedIndicesRef = useRef<number[]>([]);
-  const upArrowRef = useRef<any>(null);
-  const downArrowRef = useRef<any>(null);
 
   useEffect(() => {
     const fetchQuotes = async () => {
@@ -81,7 +78,6 @@ export default function TeamCarousel() {
   };
 
   const handleUpClick = () => {
-    upArrowRef.current?.startAnimation?.();
     const newQuote = getRandomQuote();
     if (newQuote) {
       const newQuotes = [...displayedQuotes];
@@ -92,7 +88,6 @@ export default function TeamCarousel() {
   };
 
   const handleDownClick = () => {
-    downArrowRef.current?.startAnimation?.();
     const newQuote = getRandomQuote();
     if (newQuote) {
       const newQuotes = [...displayedQuotes];
@@ -174,9 +169,6 @@ export default function TeamCarousel() {
       <div className="main-container">
         <div className="carousel-section">
           <div className="carousel-container">
-            <button className="nav-arrow up carousel-nav" onClick={handleUpClick} aria-label="Previous" style={{ background: 'transparent', border: 'none', padding: 0 }}>
-              <ArrowDownIcon ref={upArrowRef} size={60} style={{ transform: 'rotate(180deg)' }} />
-            </button>
             <div className="carousel-track">
               {Array.from({ length: NUMBER_OF_CARDS }).map((_, i) => (
                 <div
@@ -195,25 +187,9 @@ export default function TeamCarousel() {
                 </div>
               ))}
             </div>
-            <button className="nav-arrow down carousel-nav" onClick={handleDownClick} aria-label="Next" style={{ background: 'transparent', border: 'none', padding: 0 }}>
-              <ArrowDownIcon ref={downArrowRef} size={60} />
-            </button>
           </div>
-        </div>
-
-        <div className="controls-section">
-          <div className="nav-controls">
-            <button className="nav-arrow up" onClick={handleUpClick} aria-label="Previous" style={{ background: 'transparent', border: 'none', padding: 0 }}>
-              <ArrowDownIcon size={60} style={{ transform: 'rotate(180deg)' }} />
-            </button>
-            <button className="nav-arrow down" onClick={handleDownClick} aria-label="Next" style={{ background: 'transparent', border: 'none', padding: 0 }}>
-              <ArrowDownIcon size={60} />
-            </button>
-          </div>
-
         </div>
       </div>
-
     </div>
   );
 }
