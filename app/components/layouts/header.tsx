@@ -38,8 +38,8 @@ export default function Header() {
                     href={href}
                     aria-label={title}
                   >
-                    <span className={classNames('horizontal-underline text-base inline-block font-semibold tracking-wide text-gray-900 dark:text-gray-100', {
-                      'horizontal-underline-active': active,
+                    <span className={classNames('text-base font-semibold tracking-wide text-gray-900 dark:text-gray-100', {
+                      'border-b border-primary-500': active,
                     })}>
                       {title}
                     </span>

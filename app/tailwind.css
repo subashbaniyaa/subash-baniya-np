@@ -84,24 +84,6 @@ input:-webkit-autofill:focus {
   motion-safe:duration-300 dark:from-primary-500 dark:to-primary-500;
 }
 
-.horizontal-underline {
-  border-bottom: 3px solid transparent;
-  transition: border-bottom-color 0.3s ease-in-out;
-  display: inline-flex;
-  align-items: baseline;
-  line-height: 1;
-  margin: 0;
-  padding: 0;
-}
-
-.horizontal-underline:hover {
-  border-bottom-color: #de1d8d;
-}
-
-.horizontal-underline-active {
-  border-bottom-color: #de1d8d;
-}
-
 #nprogress .bar {
   background: #de1d8d !important;
   height: 4px !important;
