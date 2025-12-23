@@ -1,9 +1,12 @@
-'use client';
-
 import Link from 'next/link';
 import TeamCarousel from '../components/carousel/TeamCarousel';
 import { BackgroundGradientAnimation } from '../components/background-gradient-animation';
 import SplashCursor from '../components/splash-cursor';
+
+export const metadata = {
+  title: 'Archive',
+  description: 'Archive - Subash',
+};
 
 export default function ArchivePage() {
   return (
