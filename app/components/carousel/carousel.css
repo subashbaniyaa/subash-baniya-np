@@ -292,8 +292,11 @@ html.dark .nav-arrow {
   }
 
   .carousel-container {
-    height: 300px;
+    height: 60vh;
     width: 100%;
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .carousel-container .carousel-nav {
@@ -315,19 +318,25 @@ html.dark .nav-arrow {
   }
 
   .carousel-container .carousel-nav.up {
-    left: 10px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .carousel-container .carousel-nav.down {
-    right: 10px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .carousel-container .carousel-nav.up svg {
+    transform: rotate(-90deg);
     width: 50px;
     height: 50px;
   }
 
   .carousel-container .carousel-nav.down svg {
+    transform: rotate(90deg);
     width: 50px;
     height: 50px;
   }
@@ -342,7 +351,9 @@ html.dark .nav-arrow {
   }
 
   .carousel-track {
-    width: 350px;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
   }
 
   .card.up-2 {
