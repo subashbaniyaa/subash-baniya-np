@@ -8,7 +8,7 @@ import { navigationLinks } from './constants';
 import MobileNav from './mobile-nav';
 import SectionContainer from './section-container';
 import ThemeSwitch from './theme-switch/theme-switch';
-import { ArrowDownIcon } from './icons/arrow-down-icon';
+import { FiExternalLink } from 'react-icons/fi';
 
 export default function Header() {
   const pathName = usePathname();
@@ -43,7 +43,7 @@ export default function Header() {
                       'border-b border-primary-500': active,
                     })}>
                       {title}
-                      <ArrowDownIcon className="h-4 w-4" />
+                      <FiExternalLink className="h-3.5 w-3.5" />
                     </span>
                   </Link>
                 );
