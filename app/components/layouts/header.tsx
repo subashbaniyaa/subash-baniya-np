@@ -36,7 +36,7 @@ export default function Header() {
                     prefetch
                     key={title}
                     href={href}
-                    className={classNames('horizontal-underline text-base', {
+                    className={classNames('horizontal-underline text-base inline-block', {
                       'horizontal-underline-active': active,
                     })}
                     aria-label={title}
