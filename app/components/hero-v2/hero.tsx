@@ -57,40 +57,35 @@ export default function Hero() {
                   I&apos;m <span className="font-semibold">Subash Baniya</span> ~ Web developer, designer and lifelong learner.
                 </p>
               </section>
-              <section className="relative z-10 flex space-x-4 items-center text-sm">
-                <div>
-                  <div className="flex -ml-2" onMouseEnter={() => { hoveringRef.current = true; }} onMouseLeave={() => { hoveringRef.current = false; }}>
-                    <Link
-                      href="https://www.linkedin.com/in/subashbaniyaa"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="linkedin"
-                    >
-                      <LinkedinIcon ref={linkedinRef} className="h-9 w-9" />
-                    </Link>
-                    <Link
-                      href="https://github.com/subashbaniyaa"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="github"
-                    >
-                      <GithubIcon ref={githubRef} className="h-9 w-9" />
-                    </Link>
-                    <Link
-                      href="https://instagram.com/subashbaniyaa"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="instagram"
-                    >
-                      <InstagramIcon ref={instagramRef} className="h-9 w-9" />
-                    </Link>
-                  </div>
+              <section className="relative z-10 flex items-center text-sm space-x-4">
+                <div className="flex -ml-2" onMouseEnter={() => { hoveringRef.current = true; }} onMouseLeave={() => { hoveringRef.current = false; }}>
+                  <Link
+                    href="https://www.linkedin.com/in/subashbaniyaa"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="linkedin"
+                  >
+                    <LinkedinIcon ref={linkedinRef} className="h-9 w-9" />
+                  </Link>
+                  <Link
+                    href="https://github.com/subashbaniyaa"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="github"
+                  >
+                    <GithubIcon ref={githubRef} className="h-9 w-9" />
+                  </Link>
+                  <Link
+                    href="https://instagram.com/subashbaniyaa"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="instagram"
+                  >
+                    <InstagramIcon ref={instagramRef} className="h-9 w-9" />
+                  </Link>
                 </div>
-                <div className="h-14 border-l border-gray-300" />
-                <div className="flex flex-wrap space-x-3 space-y-1">
-                  <Link href="/articles">/articles</Link>
-                  <Link href="/archive">/archive</Link>
-                </div>
+                <Link href="/articles">/articles</Link>
+                <Link href="/archive">/archive</Link>
               </section>
               <div className="select-none pointer-events-none">
                 <Image 
