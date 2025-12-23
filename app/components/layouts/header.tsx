@@ -36,12 +36,11 @@ export default function Header() {
                     prefetch
                     key={title}
                     href={href}
-                    className={classNames('horizontal-underline text-base inline-block', {
-                      'horizontal-underline-active': active,
-                    })}
                     aria-label={title}
                   >
-                    <span className="font-semibold tracking-wide text-gray-900 dark:text-gray-100">
+                    <span className={classNames('horizontal-underline text-base inline-block font-semibold tracking-wide text-gray-900 dark:text-gray-100', {
+                      'horizontal-underline-active': active,
+                    })}>
                       {title}
                     </span>
                   </Link>
