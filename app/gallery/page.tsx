@@ -9,7 +9,7 @@ export default function GalleryPage() {
     <SplashCursor containerClassName="min-h-svh w-screen" usePrimaryColors={true}>
       <div className="relative min-h-svh w-screen">
         <div className="absolute inset-0 z-0">
-          <BackgroundGradientAnimation interactive={false} opacity={50}>
+          <BackgroundGradientAnimation interactive={false}>
             <div />
           </BackgroundGradientAnimation>
         </div>
