@@ -21,10 +21,11 @@ html.dark .carousel-wrapper {
   display: flex;
   width: 100%;
   max-width: 1200px;
-  height: 80vh;
+  min-height: auto;
   gap: 60px;
   align-items: center;
   justify-content: center;
+  padding: 40px 0;
 }
 
 .carousel-section {
@@ -47,7 +48,8 @@ html.dark .carousel-wrapper {
 .carousel-container {
   width: 100%;
   max-width: 500px;
-  height: 70vh;
+  height: auto;
+  min-height: 600px;
   position: relative;
   perspective: 1000px;
   display: flex;
