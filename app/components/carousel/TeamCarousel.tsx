@@ -20,6 +20,7 @@ export default function TeamCarousel() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const dotsRef = useRef<HTMLDivElement[]>([]);
   const touchStartY = useRef(0);
+  const touchStartX = useRef(0);
   const usedIndicesRef = useRef<number[]>([]);
 
   useEffect(() => {
@@ -106,27 +107,52 @@ export default function TeamCarousel() {
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowUp') {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
       updateCarousel(currentIndex - 1);
-    } else if (e.key === 'ArrowDown') {
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
       updateCarousel(currentIndex + 1);
     }
   };
 
   const handleTouchStart = (e: TouchEvent) => {
-    touchStartY.current = e.changedTouches[0].screenY;
+    const target = e.target as HTMLElement;
+    const card = target.closest('.card');
+    const isCenterCard = card?.classList.contains('center');
+    
+    if (isCenterCard) {
+      touchStartY.current = e.changedTouches[0].screenY;
+      touchStartX.current = e.changedTouches[0].screenX;
+    }
   };
 
   const handleTouchEnd = (e: TouchEvent) => {
+    const target = e.target as HTMLElement;
+    const card = target.closest('.card');
+    const isCenterCard = card?.classList.contains('center');
+    
+    if (!isCenterCard) return;
+    
     const touchEndY = e.changedTouches[0].screenY;
-    const diff = touchStartY.current - touchEndY;
+    const touchEndX = e.changedTouches[0].screenX;
+    const diffY = touchStartY.current - touchEndY;
+    const diffX = touchStartX.current - touchEndX;
     const swipeThreshold = 50;
 
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        updateCarousel(currentIndex + 1);
+    if (Math.abs(diffY) > swipeThreshold || Math.abs(diffX) > swipeThreshold) {
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal swipe
+        if (diffX > 0) {
+          updateCarousel(currentIndex + 1);
+        } else {
+          updateCarousel(currentIndex - 1);
+        }
       } else {
-        updateCarousel(currentIndex - 1);
+        // Vertical swipe
+        if (diffY > 0) {
+          updateCarousel(currentIndex + 1);
+        } else {
+          updateCarousel(currentIndex - 1);
+        }
       }
     }
   };
