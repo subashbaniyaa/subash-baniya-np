@@ -1,4 +1,4 @@
 export const navigationLinks = [
   { href: '/articles', title: 'Articles' },
-  { href: '/gallery', title: 'Gallery' },
+  { href: '/archive', title: 'Archive' },
 ];
