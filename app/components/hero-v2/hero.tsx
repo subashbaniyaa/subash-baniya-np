@@ -2,8 +2,7 @@
 
 import classNames from 'classnames';
 import Link from 'next/link';
-import { useRef, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRef, useEffect } from 'react';
 import { merryWeather, gistesy } from '../../fonts';
 import { BackgroundGradientAnimation } from '../background-gradient-animation';
 import { GithubIcon } from '../layouts/icons/github-icon';
@@ -17,8 +16,6 @@ export default function Hero() {
   const githubRef = useRef<any>(null);
   const instagramRef = useRef<any>(null);
   const hoveringRef = useRef(false);
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Trigger animation on mount
@@ -37,18 +34,6 @@ export default function Hero() {
 
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    const handleStart = () => setIsLoading(true);
-    const handleStop = () => setIsLoading(false);
-
-    router.prefetch('/');
-    window.addEventListener('popstate', handleStop);
-
-    return () => {
-      window.removeEventListener('popstate', handleStop);
-    };
-  }, [router]);
 
   return (
     <SplashCursor

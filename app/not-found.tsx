@@ -1,11 +1,21 @@
 'use client';
 
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 import { BackgroundGradientAnimation } from './components/background-gradient-animation';
 import SplashCursor from './components/splash-cursor';
 import { gistesy } from './fonts';
 
 export default function FourZeroFour() {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  const handleReturn = () => {
+    startTransition(() => {
+      router.push('/');
+    });
+  };
+
   return (
     <SplashCursor
       containerClassName="min-h-svh w-screen"
@@ -25,9 +35,13 @@ export default function FourZeroFour() {
             <p className={`text-3xl md:text-4xl leading-7 text-gray-500 dark:text-gray-400 ${gistesy.className}`}>
               The page you&apos;re looking for doesn&apos;t exist.
             </p>
-            <Link href="/" className="underline-magical">
-              Return to homepage
-            </Link>
+            <button 
+              onClick={handleReturn}
+              disabled={isPending}
+              className="underline-magical disabled:opacity-50"
+            >
+              {isPending ? 'Loading...' : 'Return to homepage'}
+            </button>
           </div>
         </div>
       </div>
