@@ -157,18 +157,6 @@ export default function TeamCarousel() {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('touchstart', handleTouchStart as EventListener);
-    document.addEventListener('touchend', handleTouchEnd as EventListener);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('touchstart', handleTouchStart as EventListener);
-      document.removeEventListener('touchend', handleTouchEnd as EventListener);
-    };
-  }, [currentIndex, isAnimating]);
-
   const getCardClass = (index: number): string => {
     const offset = (index - currentIndex + NUMBER_OF_CARDS) % NUMBER_OF_CARDS;
     let classes = 'card';
@@ -189,6 +177,14 @@ export default function TeamCarousel() {
 
     return classes;
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      updateCarousel(currentIndex + 1);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, isAnimating]);
 
   return (
     <div className="carousel-wrapper">
