@@ -179,12 +179,14 @@ export default function TeamCarousel() {
   };
 
   useEffect(() => {
+    if (quotes.length === 0) return;
+    
     const interval = setInterval(() => {
       updateCarousel(currentIndex + 1);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, isAnimating]);
+  }, [currentIndex, isAnimating, quotes.length]);
 
   return (
     <div className="carousel-wrapper">
