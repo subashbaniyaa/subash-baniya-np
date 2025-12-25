@@ -62,7 +62,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="bg-white text-black antialiased dark:bg-black dark:text-white selection:bg-primary-500 selection:text-white">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
+          enableSystem
           themes={['dark', 'light']}
         >
           <SpotifyPlayerProvider>
