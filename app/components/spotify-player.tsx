@@ -212,181 +212,189 @@ export default function SpotifyPlayer() {
 
   const [isDragging, setIsDragging] = useState(false);
 
+  const playerContainerRef = useRef<HTMLDivElement>(null);
+
   return (
     <div 
-      className="fixed bottom-6 right-6 z-50"
-      ref={playerRef}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="fixed inset-6 pointer-events-none z-50"
+      ref={playerContainerRef}
     >
-      <audio ref={audioRef} />
-      
-      <motion.div 
-        drag
-        dragMomentum={false}
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={() => {
-          // Small timeout to prevent immediate click trigger after drag
-          setTimeout(() => setIsDragging(false), 50);
-        }}
-        onClick={handleExpand}
-        initial={false}
-        animate={{
-          width: isExpanded ? 280 : 'auto',
-          height: isExpanded ? 'auto' : 44,
-          borderRadius: isExpanded ? 40 : 22,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 35,
-          mass: 0.8,
-        }}
-        className={`select-none shadow-2xl overflow-hidden transition-colors duration-300 ${
-          mounted && isDark ? 'bg-white shadow-white/20' : 'bg-black shadow-black/50'
-        } ${
-          isExpanded 
-            ? 'cursor-default' 
-            : 'cursor-grab active:cursor-grabbing'
-        }`}
+      <div 
+        className="absolute bottom-0 right-0 pointer-events-auto"
+        ref={playerRef}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <motion.div
+        <audio ref={audioRef} />
+        
+        <motion.div 
+          drag
+          dragConstraints={playerContainerRef}
+          dragElastic={0}
+          dragMomentum={false}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={() => {
+            setTimeout(() => setIsDragging(false), 50);
+          }}
+          onClick={handleExpand}
           initial={false}
           animate={{
-            opacity: isExpanded ? 1 : 0,
-            scale: isExpanded ? 1 : 0.95,
+            width: isExpanded ? 280 : 'auto',
+            height: isExpanded ? 'auto' : 44,
+            borderRadius: isExpanded ? 40 : 22,
           }}
           transition={{
-            opacity: { duration: 0.2, delay: isExpanded ? 0.1 : 0 },
-            scale: { duration: 0.2, delay: isExpanded ? 0.1 : 0 },
+            type: "spring",
+            stiffness: 500,
+            damping: 35,
+            mass: 0.8,
           }}
-          className="p-4"
-          style={{
-            display: isExpanded ? 'block' : 'none',
-          }}
+          className={`select-none shadow-2xl overflow-hidden transition-colors duration-300 ${
+            mounted && isDark ? 'bg-white shadow-white/20' : 'bg-black shadow-black/50'
+          } ${
+            isExpanded 
+              ? 'cursor-default' 
+              : 'cursor-grab active:cursor-grabbing'
+          }`}
         >
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <div className="relative w-[55px] h-[55px] rounded-[16px] overflow-hidden flex-shrink-0 select-none bg-gradient-to-br from-gray-800 to-gray-900">
-                {!imageError ? (
-                  <Image
-                    key={`${displayedSong.id}-${displayedSong.cover}`}
-                    src={displayedSong.cover}
-                    alt={displayedSong.title}
-                    fill
-                    sizes="55px"
-                    className={`object-cover select-none pointer-events-none transition-opacity duration-200 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    draggable={false}
-                    onContextMenu={(e) => e.preventDefault()}
-                    onDragStart={(e) => e.preventDefault()}
-                    onLoad={() => setImageLoaded(true)}
-                    onError={() => {
-                      setImageError(true);
-                      setImageLoaded(false);
-                    }}
-                    unoptimized={false}
-                    priority={false}
-                  />
-                ) : null}
-                {(imageError || !imageLoaded) && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-xl select-none">🎵</span>
-                  </div>
-                )}
+          <motion.div
+            initial={false}
+            animate={{
+              opacity: isExpanded ? 1 : 0,
+              scale: isExpanded ? 1 : 0.95,
+            }}
+            transition={{
+              opacity: { duration: 0.2, delay: isExpanded ? 0.1 : 0 },
+              scale: { duration: 0.2, delay: isExpanded ? 0.1 : 0 },
+            }}
+            className="p-4"
+            style={{
+              display: isExpanded ? 'block' : 'none',
+            }}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-3">
+                <div className="relative w-[55px] h-[55px] rounded-[16px] overflow-hidden flex-shrink-0 select-none bg-gradient-to-br from-gray-800 to-gray-900">
+                  {!imageError ? (
+                    <Image
+                      key={`${displayedSong.id}-${displayedSong.cover}`}
+                      src={displayedSong.cover}
+                      alt={displayedSong.title}
+                      fill
+                      sizes="55px"
+                      className={`object-cover select-none pointer-events-none transition-opacity duration-200 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
+                      onDragStart={(e) => e.preventDefault()}
+                      onLoad={() => setImageLoaded(true)}
+                      onError={() => {
+                        setImageError(true);
+                        setImageLoaded(false);
+                      }}
+                      unoptimized={false}
+                      priority={false}
+                    />
+                  ) : null}
+                  {(imageError || !imageLoaded) && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-xl select-none">🎵</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-col">
+                  <h3 className={`font-semibold text-sm leading-tight truncate max-w-[110px] ${mounted && isDark ? 'text-black' : 'text-white'}`}>
+                    {displayedSong.title}
+                  </h3>
+                  <p className={`text-xs truncate max-w-[110px] ${mounted && isDark ? 'text-gray-600' : 'text-gray-400'}`}>
+                    {displayedSong.artist}
+                  </p>
+                </div>
               </div>
 
-              <div className="flex flex-col">
-                <h3 className={`font-semibold text-sm leading-tight truncate max-w-[110px] ${mounted && isDark ? 'text-black' : 'text-white'}`}>
-                  {displayedSong.title}
-                </h3>
-                <p className={`text-xs truncate max-w-[110px] ${mounted && isDark ? 'text-gray-600' : 'text-gray-400'}`}>
-                  {displayedSong.artist}
-                </p>
-              </div>
+              <MusicWaveform isPlaying={isPlaying} size="medium" />
             </div>
 
-            <MusicWaveform isPlaying={isPlaying} size="medium" />
-          </div>
-
-          <div className="flex items-center gap-2 mb-3">
-            <span className={`text-[10px] font-bold min-w-[28px] ${mounted && isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-              {formatTime(currentTime)}
-            </span>
-            <div className={`flex-1 h-1 rounded-full overflow-hidden ${mounted && isDark ? 'bg-gray-300' : 'bg-gray-700'}`}>
-              <div 
-                className={`h-full rounded-full transition-all duration-100 ${mounted && isDark ? 'bg-black' : 'bg-white'}`}
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            <span className={`text-[10px] font-bold min-w-[28px] text-right ${mounted && isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-              {formatTime(duration)}
-            </span>
-          </div>
-
-          <div className="flex items-center justify-center gap-5">
-            <button
-              onClick={skipBackward}
-              className={`transition-colors ${mounted && isDark ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'}`}
-              aria-label="Skip backward"
-            >
-              <FaBackward size={16} />
-            </button>
-
-            <button
-              onClick={togglePlay}
-              className={`transition-colors ${mounted && isDark ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'}`}
-              aria-label={isPlaying ? 'Pause' : 'Play'}
-            >
-              {isPlaying ? <FaPause size={26} /> : <FaPlay size={26} />}
-            </button>
-
-            <button
-              onClick={skipForward}
-              className={`transition-colors ${mounted && isDark ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'}`}
-              aria-label="Skip forward"
-            >
-              <FaForward size={16} />
-            </button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={false}
-          animate={{
-            opacity: isExpanded ? 0 : 1,
-          }}
-          transition={{
-            opacity: { duration: 0.15 },
-          }}
-          className="flex items-center justify-between px-[6px] h-[44px]"
-          style={{
-            display: isExpanded ? 'none' : 'flex',
-          }}
-        >
-          <div className="relative w-[28px] h-[28px] rounded-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-gray-800 to-gray-900">
-            {!imageError ? (
-              <Image
-                src={displayedSong.cover}
-                alt={displayedSong.title}
-                fill
-                sizes="28px"
-                className={`object-cover select-none pointer-events-none ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                draggable={false}
-                onLoad={() => setImageLoaded(true)}
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-sm">🎵</span>
+            <div className="flex items-center gap-2 mb-3">
+              <span className={`text-[10px] font-bold min-w-[28px] ${mounted && isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                {formatTime(currentTime)}
+              </span>
+              <div className={`flex-1 h-1 rounded-full overflow-hidden ${mounted && isDark ? 'bg-gray-300' : 'bg-gray-700'}`}>
+                <div 
+                  className={`h-full rounded-full transition-all duration-100 ${mounted && isDark ? 'bg-black' : 'bg-white'}`}
+                  style={{ width: `${progress}%` }}
+                />
               </div>
-            )}
-          </div>
-          
-          <div className="pl-10 pr-4">
-            <MusicWaveform isPlaying={isPlaying} size="small" />
-          </div>
+              <span className={`text-[10px] font-bold min-w-[28px] text-right ${mounted && isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                {formatTime(duration)}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-center gap-5">
+              <button
+                onClick={skipBackward}
+                className={`transition-colors ${mounted && isDark ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'}`}
+                aria-label="Skip backward"
+              >
+                <FaBackward size={16} />
+              </button>
+
+              <button
+                onClick={togglePlay}
+                className={`transition-colors ${mounted && isDark ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'}`}
+                aria-label={isPlaying ? 'Pause' : 'Play'}
+              >
+                {isPlaying ? <FaPause size={26} /> : <FaPlay size={26} />}
+              </button>
+
+              <button
+                onClick={skipForward}
+                className={`transition-colors ${mounted && isDark ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'}`}
+                aria-label="Skip forward"
+              >
+                <FaForward size={16} />
+              </button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={false}
+            animate={{
+              opacity: isExpanded ? 0 : 1,
+            }}
+            transition={{
+              opacity: { duration: 0.15 },
+            }}
+            className="flex items-center justify-between px-[6px] h-[44px]"
+            style={{
+              display: isExpanded ? 'none' : 'flex',
+            }}
+          >
+            <div className="relative w-[28px] h-[28px] rounded-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-gray-800 to-gray-900">
+              {!imageError ? (
+                <Image
+                  src={displayedSong.cover}
+                  alt={displayedSong.title}
+                  fill
+                  sizes="28px"
+                  className={`object-cover select-none pointer-events-none ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                  draggable={false}
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-sm">🎵</span>
+                </div>
+              )}
+            </div>
+            
+            <div className="pl-10 pr-4">
+              <MusicWaveform isPlaying={isPlaying} size="small" />
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 }
