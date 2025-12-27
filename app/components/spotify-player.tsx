@@ -205,10 +205,12 @@ export default function SpotifyPlayer() {
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   const handleExpand = () => {
-    if (!isExpanded) {
+    if (!isExpanded && !isDragging) {
       setIsExpanded(true);
     }
   };
+
+  const [isDragging, setIsDragging] = useState(false);
 
   return (
     <div 
@@ -222,6 +224,11 @@ export default function SpotifyPlayer() {
       <motion.div 
         drag
         dragMomentum={false}
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={() => {
+          // Small timeout to prevent immediate click trigger after drag
+          setTimeout(() => setIsDragging(false), 50);
+        }}
         onClick={handleExpand}
         initial={false}
         animate={{
