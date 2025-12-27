@@ -46,15 +46,15 @@ export default function Hero() {
             className={classNames('relative min-h-svh', merryWeather.className)}
           >
             <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
-              <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl flex items-center gap-3">
+              <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl">
                 <Image
                   src="/assets/welcome-icon.png"
                   alt="Welcome icon"
                   width={40}
                   height={40}
-                  className="inline-block"
+                  className="inline-block mr-3 align-middle dark:invert"
                 />
-                <span>
+                <span className="align-middle">
                   Hi, welcome to my{' '}
                   <span className="font-bold">personal portfolio — </span> or, as I
                   like to call it, my{' '}
