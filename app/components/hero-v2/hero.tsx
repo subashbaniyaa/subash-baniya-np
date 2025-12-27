@@ -50,11 +50,11 @@ export default function Hero() {
                 <Image
                   src="/assets/welcome-icon.png"
                   alt="Welcome icon"
-                  width={40}
-                  height={40}
-                  className="inline-block mr-3 align-middle dark:invert"
+                  width={24}
+                  height={24}
+                  className="inline-block mr-2 align-baseline dark:invert md:w-8 md:h-8"
                 />
-                <span className="align-middle">
+                <span className="align-baseline">
                   Hi, welcome to my{' '}
                   <span className="font-bold">personal portfolio — </span> or, as I
                   like to call it, my{' '}
