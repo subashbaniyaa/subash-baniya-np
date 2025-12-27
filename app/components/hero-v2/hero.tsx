@@ -8,6 +8,7 @@ import { BackgroundGradientAnimation } from '../background-gradient-animation';
 import { GithubIcon } from '../layouts/icons/github-icon';
 import { LinkedinIcon } from '../layouts/icons/linkedin-icon';
 import { InstagramIcon } from '../layouts/icons/instagram-icon';
+import { GalleryIcon } from '../layouts/icons/gallery-icon';
 import Image from 'next/image';
 import SplashCursor from '../splash-cursor';
 
@@ -15,6 +16,7 @@ export default function Hero() {
   const linkedinRef = useRef<any>(null);
   const githubRef = useRef<any>(null);
   const instagramRef = useRef<any>(null);
+  const galleryRef = useRef<any>(null);
   const hoveringRef = useRef(false);
 
   useEffect(() => {
@@ -22,6 +24,7 @@ export default function Hero() {
     linkedinRef.current?.startAnimation?.();
     githubRef.current?.startAnimation?.();
     instagramRef.current?.startAnimation?.();
+    galleryRef.current?.startAnimation?.();
 
     // Set up interval to animate every 5 seconds when not hovering
     const interval = setInterval(() => {
@@ -29,6 +32,7 @@ export default function Hero() {
         linkedinRef.current?.startAnimation?.();
         githubRef.current?.startAnimation?.();
         instagramRef.current?.startAnimation?.();
+        galleryRef.current?.startAnimation?.();
       }
     }, 5000);
 
@@ -89,7 +93,15 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="h-14 border-l border-gray-300" />
-                <div className="flex flex-wrap space-x-3 space-y-1">
+                <div className="flex flex-wrap space-x-3 space-y-1 items-center">
+                  <Link href="/archive" className="underline-magical flex items-center gap-1 group">
+                    <GalleryIcon 
+                      ref={galleryRef} 
+                      className="h-8 w-8 p-1 group-hover:bg-transparent" 
+                      size={20}
+                    />
+                    /archive
+                  </Link>
                   <Link href="/articles" className="underline-magical">/articles</Link>
                 </div>
               </section>
