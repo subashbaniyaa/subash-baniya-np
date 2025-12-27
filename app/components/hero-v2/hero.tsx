@@ -47,14 +47,7 @@ export default function Hero() {
           >
             <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
               <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl">
-                <Image
-                  src="/assets/welcome-icon.png"
-                  alt="Welcome icon"
-                  width={24}
-                  height={24}
-                  className="inline-block mr-2 align-baseline dark:invert md:w-8 md:h-8"
-                />
-                <span className="align-baseline">
+                <span>
                   Hi, welcome to my{' '}
                   <span className="font-bold">personal portfolio — </span> or, as I
                   like to call it, my{' '}
