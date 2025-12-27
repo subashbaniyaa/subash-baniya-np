@@ -220,6 +220,8 @@ export default function SpotifyPlayer() {
       <audio ref={audioRef} />
       
       <motion.div 
+        drag
+        dragMomentum={false}
         onClick={handleExpand}
         initial={false}
         animate={{
@@ -238,7 +240,7 @@ export default function SpotifyPlayer() {
         } ${
           isExpanded 
             ? 'cursor-default' 
-            : 'cursor-pointer'
+            : 'cursor-grab active:cursor-grabbing'
         }`}
       >
         <motion.div
