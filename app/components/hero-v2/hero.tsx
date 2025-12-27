@@ -46,11 +46,20 @@ export default function Hero() {
             className={classNames('relative min-h-svh', merryWeather.className)}
           >
             <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
-              <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl">
-                Hi, welcome to my{' '}
-                <span className="font-bold">personal portfolio — </span> or, as I
-                like to call it, my{' '}
-                <span className="italic border-b">playground</span> on the web.
+              <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl flex items-center gap-3">
+                <Image
+                  src="/assets/welcome-icon.png"
+                  alt="Welcome icon"
+                  width={40}
+                  height={40}
+                  className="inline-block"
+                />
+                <span>
+                  Hi, welcome to my{' '}
+                  <span className="font-bold">personal portfolio — </span> or, as I
+                  like to call it, my{' '}
+                  <span className="italic border-b">playground</span> on the web.
+                </span>
               </h1>
               <section className="relative z-10">
                 <p className={classNames("text-2xl md:text-3xl", gistesy.className)}>
