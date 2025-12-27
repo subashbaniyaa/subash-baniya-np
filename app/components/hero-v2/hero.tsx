@@ -90,12 +90,6 @@ export default function Hero() {
                     >
                       <InstagramIcon ref={instagramRef} className="h-9 w-9" />
                     </Link>
-                    <Link
-                      href="/archive"
-                      aria-label="archive"
-                    >
-                      <GalleryIcon ref={galleryRef} className="h-9 w-9" />
-                    </Link>
                   </div>
                 </div>
                 <div className="h-14 border-l border-gray-300" />
