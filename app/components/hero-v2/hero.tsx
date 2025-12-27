@@ -90,18 +90,16 @@ export default function Hero() {
                     >
                       <InstagramIcon ref={instagramRef} className="h-9 w-9" />
                     </Link>
+                    <Link
+                      href="/archive"
+                      aria-label="archive"
+                    >
+                      <GalleryIcon ref={galleryRef} className="h-9 w-9" />
+                    </Link>
                   </div>
                 </div>
                 <div className="h-14 border-l border-gray-300" />
                 <div className="flex flex-wrap space-x-3 space-y-1 items-center">
-                  <Link href="/archive" className="underline-magical flex items-center gap-1 group">
-                    <GalleryIcon 
-                      ref={galleryRef} 
-                      className="h-8 w-8 p-1 group-hover:bg-transparent" 
-                      size={20}
-                    />
-                    /archive
-                  </Link>
                   <Link href="/articles" className="underline-magical">/articles</Link>
                 </div>
               </section>

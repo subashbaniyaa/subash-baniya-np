@@ -24,27 +24,28 @@ const containerVariants: Variants = {
     },
   },
   animate: {
-    rotate: [0, -5, 5, 0],
-    scale: [1, 1.1, 1.1, 1],
+    scale: [1, 1.1, 1],
     transition: {
       duration: 0.5,
+      ease: 'easeInOut',
     },
   },
 };
 
 const imageVariants: Variants = {
   normal: {
-    y: 0,
+    pathLength: 1,
     opacity: 1,
     transition: {
       duration: 0.3,
     },
   },
   animate: {
-    y: [0, -2, 0],
-    opacity: [1, 0.8, 1],
+    pathLength: [0, 1],
+    opacity: [0, 1],
     transition: {
-      duration: 0.5,
+      duration: 0.6,
+      ease: 'circIn',
     },
   },
 };
