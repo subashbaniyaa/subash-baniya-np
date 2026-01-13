@@ -18,7 +18,7 @@ export default function Oneko() {
     catEl.style.height = '32px';
     catEl.style.position = 'fixed';
     catEl.style.pointerEvents = 'none';
-    catEl.style.backgroundImage = "url('/oneko/oneko.gif')";
+    catEl.style.backgroundImage = "url('/oneko/cat-follow-cursor-oneko/oneko.gif')";
     catEl.style.imageRendering = 'pixelated';
     catEl.style.left = '0px';
     catEl.style.top = '0px';
