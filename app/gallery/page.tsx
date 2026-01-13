@@ -18,7 +18,7 @@ export default function GalleryPage() {
           <TeamCarousel />
         </div>
         <div className="relative z-10 p-8 flex-shrink-0">
-          <Link href="/" className="underline-magical">
+          <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded">
             Return to homepage
           </Link>
         </div>
