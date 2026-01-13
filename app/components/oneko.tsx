@@ -6,8 +6,6 @@ import { useEffect, useRef } from 'react';
 // Original by Hajime Kumumiya, adapted for React by Subash's AI Assistant
 
 export default function Oneko() {
-  const catRef = useRef<HTMLDivElement>(null);
-  
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (isReducedMotion) return;
