@@ -23,7 +23,28 @@ export default function Oneko() {
     catEl.style.left = '0px';
     catEl.style.top = '0px';
     catEl.style.zIndex = '9999';
+    catEl.style.filter = 'invert(0)'; // Default
     document.body.appendChild(catEl);
+
+    // Initial check for theme
+    if (document.documentElement.classList.contains('light')) {
+      catEl.style.filter = 'invert(1)';
+    }
+
+    // Observe theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          const isLight = document.documentElement.classList.contains('light');
+          catEl.style.filter = isLight ? 'invert(1)' : 'invert(0)';
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
 
     let catPosX = 32;
     let catPosY = 32;
@@ -122,6 +143,7 @@ export default function Oneko() {
       window.removeEventListener('mousemove', onMouseMove);
       clearInterval(interval);
       catEl.remove();
+      observer.disconnect();
     };
   }, []);
 
