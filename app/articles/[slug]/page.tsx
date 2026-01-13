@@ -32,7 +32,6 @@ export default async function Blog(props: {
           {formatDate(metadata.publishedAt)}
         </p>
       </div>
-      <article className="md:max-w-5xl">{content}</article>
       <div className="mt-12 pt-8 border-t border-primary-500">
         <Link href="/articles" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none">
           Return to articles
