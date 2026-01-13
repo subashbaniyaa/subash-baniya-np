@@ -58,7 +58,7 @@ export default function Hero() {
                 </span>
               </h1>
               <section className="relative z-10">
-                <p className={classNames("text-2xl md:text-3xl", gistesy.className)}>
+                <p className={classNames("text-2xl md:text-3xl", poppins.className)}>
                   I&apos;m <span className="font-semibold">Subash Baniya</span> ~ Web developer, designer and lifelong learner.
                 </p>
               </section>
