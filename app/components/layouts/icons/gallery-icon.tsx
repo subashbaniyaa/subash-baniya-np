@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import type { Variants } from 'motion/react';
 import { motion, useAnimation } from 'motion/react';
 import type { HTMLAttributes } from 'react';
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 
 export interface GalleryIconHandle {
   startAnimation: () => void;
@@ -53,12 +53,22 @@ const imageVariants: Variants = {
 const GalleryIcon = forwardRef<GalleryIconHandle, GalleryIconProps>(
   ({ onMouseEnter, onMouseLeave, className, size = 28, ...props }, ref) => {
     const controls = useAnimation();
+    const mounted = useRef(false);
+
+    useEffect(() => {
+      mounted.current = true;
+      return () => {
+        mounted.current = false;
+      };
+    }, []);
 
     useImperativeHandle(ref, () => ({
       startAnimation: () => {
+        if (!mounted.current) return;
         controls.start('animate');
       },
       stopAnimation: () => {
+        if (!mounted.current) return;
         controls.start('normal');
       },
     }));

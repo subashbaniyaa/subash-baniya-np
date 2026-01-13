@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import type { Variants } from 'motion/react';
 import { motion, useAnimation } from 'motion/react';
 import type { HTMLAttributes } from 'react';
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 
 export interface GithubIconHandle {
   startAnimation: () => void;
@@ -64,15 +64,25 @@ const GithubIcon = forwardRef<GithubIconHandle, GithubIconProps>(
   ({ onMouseEnter, onMouseLeave, className, size = 28, ...props }, ref) => {
     const bodyControls = useAnimation();
     const tailControls = useAnimation();
-    const isControlledRef = useRef(false);
+    const mounted = useRef(false);
+
+    useEffect(() => {
+      mounted.current = true;
+      return () => {
+        mounted.current = false;
+      };
+    }, []);
 
     useImperativeHandle(ref, () => ({
       startAnimation: async () => {
+        if (!mounted.current) return;
         bodyControls.start('animate');
         await tailControls.start('draw');
+        if (!mounted.current) return;
         tailControls.start('wag');
       },
       stopAnimation: () => {
+        if (!mounted.current) return;
         bodyControls.start('normal');
         tailControls.start('normal');
       },

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import type { Variants } from 'motion/react';
 import { motion, useAnimation } from 'motion/react';
 import type { HTMLAttributes } from 'react';
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 
 export interface LinkedinIconHandle {
   startAnimation: () => void;
@@ -87,15 +87,24 @@ const LinkedinIcon = forwardRef<LinkedinIconHandle, LinkedinIconProps>(
     const rectControls = useAnimation();
     const circleControls = useAnimation();
 
-    const isControlledRef = useRef(false);
+    const mounted = useRef(false);
+
+    useEffect(() => {
+      mounted.current = true;
+      return () => {
+        mounted.current = false;
+      };
+    }, []);
 
     useImperativeHandle(ref, () => ({
       startAnimation: () => {
+        if (!mounted.current) return;
         pathControls.start('animate');
         rectControls.start('animate');
         circleControls.start('animate');
       },
       stopAnimation: () => {
+        if (!mounted.current) return;
         pathControls.start('normal');
         rectControls.start('normal');
         circleControls.start('normal');
