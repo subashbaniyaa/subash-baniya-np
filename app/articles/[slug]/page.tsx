@@ -24,7 +24,7 @@ export default async function Blog(props: {
   const { metadata, content } = await getPostFromSlug(params.slug);
 
   return (
-    <section className={boringSans.className}>
+    <section>
       <BackNavigation />
       <div className="md:max-w-5xl">
         <PageTitle>{metadata.title}</PageTitle>
