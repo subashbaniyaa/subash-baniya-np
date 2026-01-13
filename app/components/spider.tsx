@@ -20,7 +20,7 @@ export default function Spider() {
 
     // Initial drop animation
     gsap.to(spider, {
-      top: '20%',
+      top: '35%',
       duration: 4,
       ease: 'elastic.out(1, 0.3)',
       delay: 0.5
