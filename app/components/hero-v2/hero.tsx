@@ -93,7 +93,7 @@ export default function Hero() {
                 </div>
                 <div className="h-14 border-l border-gray-300" />
                 <div className="flex flex-wrap space-x-3 space-y-1 items-center">
-                  <Link href="/articles" className="underline-magical">/articles</Link>
+                  <Link href="/articles" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded">/articles</Link>
                 </div>
               </section>
               <div className="select-none pointer-events-none">
