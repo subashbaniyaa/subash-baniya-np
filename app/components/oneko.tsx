@@ -44,15 +44,18 @@ export default function Oneko() {
       attributeFilter: ['class'],
     });
 
-    let catPosX = 32;
-    let catPosY = 32;
-    let mousePosX = 32;
-    let mousePosY = 32;
+    let catPosX = window.innerWidth / 2;
+    let catPosY = window.innerHeight * 0.1;
+    let mousePosX = catPosX;
+    let mousePosY = catPosY;
     let frameCount = 0;
     let idleTime = 0;
     let idleAnimation: string | null = null;
     let idleAnimationFrame = 0;
     const catSpeed = 10;
+
+    catEl.style.left = `${catPosX - 16}px`;
+    catEl.style.top = `${catPosY - 16}px`;
 
     const spriteSets: Record<string, number[][]> = {
       idle: [[-3, -3]],
