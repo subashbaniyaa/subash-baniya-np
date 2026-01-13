@@ -45,7 +45,7 @@ export default function Oneko() {
     });
 
     let catPosX = window.innerWidth / 2;
-    let catPosY = window.innerHeight * 0.1;
+    let catPosY = window.innerHeight * 0.15;
     let mousePosX = catPosX;
     let mousePosY = catPosY;
     let frameCount = 0;
