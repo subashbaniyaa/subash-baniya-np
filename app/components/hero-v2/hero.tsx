@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRef, useEffect } from 'react';
-import { merryWeather, gistesy } from '../../fonts';
+import { merryWeather, gistesy, poppins } from '../../fonts';
 import { BackgroundGradientAnimation } from '../background-gradient-animation';
 import { GithubIcon } from '../layouts/icons/github-icon';
 import { LinkedinIcon } from '../layouts/icons/linkedin-icon';
@@ -93,7 +93,7 @@ export default function Hero() {
                 </div>
                 <div className="h-14 border-l border-gray-300" />
                 <div className="flex flex-wrap space-x-3 space-y-1 items-center">
-                  <Link href="/articles" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded">/articles</Link>
+                  <Link href="/articles" className={classNames("underline-magical bg-black/10 dark:bg-white/10 px-1 rounded", poppins.className)}>/articles</Link>
                 </div>
               </section>
               <div className="select-none pointer-events-none">
