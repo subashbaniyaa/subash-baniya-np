@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRef, useEffect } from 'react';
-import { merryWeather, gistesy, poppins } from '../../fonts';
+import { merryWeather, gistesy } from '../../fonts';
 import { BackgroundGradientAnimation } from '../background-gradient-animation';
 import { GithubIcon } from '../layouts/icons/github-icon';
 import { LinkedinIcon } from '../layouts/icons/linkedin-icon';
@@ -46,10 +46,10 @@ export default function Hero() {
     >
       <main className="relative min-h-svh w-screen overflow-hidden">
         <div
-          className={classNames('relative min-h-svh', poppins.className)}
+          className={classNames('relative min-h-svh', merryWeather.className)}
         >
             <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
-              <h1 className="font-sans text-2xl font-medium md:mr-4 md:text-4xl">
+              <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl">
                 <span>
                   Hi, welcome to my{' '}
                   <span className="font-bold">personal portfolio — </span> or, as I
@@ -58,7 +58,7 @@ export default function Hero() {
                 </span>
               </h1>
               <section className="relative z-10">
-                <p className={classNames("text-2xl md:text-3xl", poppins.className)}>
+                <p className={classNames("text-2xl md:text-3xl", gistesy.className)}>
                   I&apos;m <span className="font-semibold">Subash Baniya</span> ~ Web developer, designer and lifelong learner.
                 </p>
               </section>
