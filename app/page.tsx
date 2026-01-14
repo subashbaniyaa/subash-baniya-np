@@ -6,8 +6,8 @@ import Spider from './components/spider';
 export default function Home() {
   return (
     <ScrollProvider>
-      <Oneko />
-      <Spider />
+      {/* <Oneko /> */}
+      {/* <Spider /> */}
       <Hero />
     </ScrollProvider>
   );
