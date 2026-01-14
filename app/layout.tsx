@@ -7,6 +7,7 @@ import { Metadata } from 'next';
 import { ReactNode } from 'react';
 import ThemeSwitch from './components/layouts/theme-switch/theme-switch';
 import { mukta, beVietnamPro, boringSans, boringSansWithNumberFallback } from './fonts';
+import DisableContextMenu from './components/disable-context-menu';
 import './tailwind.css';
 
 export const metadata: Metadata = {
@@ -59,7 +60,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="theme-color" content="#000000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
-      <body className="bg-white text-black antialiased dark:bg-black dark:text-white selection:bg-primary-500 selection:text-white" onContextMenu={(e) => e.preventDefault()}>
+      <body className="bg-white text-black antialiased dark:bg-black dark:text-white selection:bg-primary-500 selection:text-white">
+        <DisableContextMenu />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

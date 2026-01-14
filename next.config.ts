@@ -3,10 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx'],
   transpilePackages: ['next-mdx-remote'],
-  allowedDevOrigins: ['*'],
+  allowedDevOrigins: ['*', '82812b6c-9fc8-4305-bb3a-7d69170a60c3-00-lry47mqf14f7.spock.replit.dev'],
   experimental: {
     serverActions: {
-      allowedOrigins: ['*'],
+      allowedOrigins: ['*', '82812b6c-9fc8-4305-bb3a-7d69170a60c3-00-lry47mqf14f7.spock.replit.dev'],
     },
   },
   onDemandEntries: {
