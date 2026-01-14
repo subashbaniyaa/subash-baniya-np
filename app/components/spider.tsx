@@ -92,7 +92,7 @@ export default function Spider() {
   }, []);
 
   return (
-    <div ref={containerRef} className="fixed top-0 left-1/2 -translate-x-1/2 z-[0] opacity-50 pointer-events-none w-[200px] h-[400px]">
+    <div ref={containerRef} className="fixed top-0 left-[60%] -translate-x-1/2 z-[0] opacity-50 pointer-events-none w-[200px] h-[400px]">
       <div ref={spiderRef} className="relative -top-[350px] w-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"

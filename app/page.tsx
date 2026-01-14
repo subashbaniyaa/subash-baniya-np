@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <ScrollProvider>
       {/* <Oneko /> */}
-      {/* <Spider /> */}
+      <Spider />
       <Hero />
     </ScrollProvider>
   );
