@@ -4,6 +4,11 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx'],
   transpilePackages: ['next-mdx-remote'],
   allowedDevOrigins: ['*'],
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['*'],
+    },
+  },
   onDemandEntries: {
     maxInactiveAge: 60 * 1000,
     pagesBufferLength: 5,
