@@ -36,16 +36,16 @@ export default function PopUpMessage() {
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.9, transition: { duration: 0.4, ease: 'easeInOut' } }}
-          className="fixed bottom-8 left-8 z-[100] w-[320px] bg-primary-600 dark:bg-primary-500 text-white p-6 rounded-2xl shadow-2xl pointer-events-auto"
+          className="fixed bottom-8 left-8 z-[100] w-[260px] bg-primary-600 dark:bg-primary-500 text-white p-5 rounded-2xl shadow-2xl pointer-events-auto"
         >
           <button
             onClick={() => setIsVisible(false)}
-            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+            className="absolute top-3 right-3 text-white/80 hover:text-white transition-colors"
             aria-label="Close"
           >
-            <IoClose size={20} />
+            <IoClose size={18} />
           </button>
-          <div className="space-y-3 text-left">
+          <div className="space-y-2 text-left">
             <div className="space-y-1">
               <h3 className="font-bold text-xl leading-tight whitespace-nowrap tabular-nums">
                 {format(currentTime, 'pp')}
