@@ -161,26 +161,25 @@ export default function DrawContent() {
       <div className="font-poppins select-none">
         <div className="flex flex-col gap-4">
           {/* MS Paint Style Toolbar */}
-          <div className="bg-[#f3f3f3] dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 rounded-xl p-2 flex flex-wrap items-stretch gap-4 shadow-sm">
+          <div className="bg-[#f3f3f3] dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 rounded-xl p-2 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-4 shadow-sm">
             
             {/* Tools Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center justify-center gap-1">
-                  <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
-                  <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
-                  <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
-                  <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
-                  <button onClick={() => clear()} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={14}/></button>
-                </div>
+            <div className="flex items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
+              <div className="flex items-center gap-1">
+                <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
+                <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
+                <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
+              </div>
+              <div className="w-px h-8 bg-gray-300 dark:bg-white/10 mx-1 hidden sm:block" />
+              <div className="flex items-center gap-1">
+                <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
+                <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
+                <button onClick={() => clear()} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={14}/></button>
               </div>
             </div>
 
             {/* Size Group */}
-            <div className="flex flex-col items-center justify-center px-2 border-r border-gray-300 dark:border-white/10 min-h-[56px]">
+            <div className="flex items-center justify-center px-2 border-r border-gray-300 dark:border-white/10 h-10">
               <div className="flex flex-col items-center justify-center gap-1">
                 <input 
                   type="range" 
@@ -198,17 +197,17 @@ export default function DrawContent() {
                       setMinWidth(val / 3);
                     }
                   }}
-                  className={`w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
+                  className={`w-20 sm:w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
                 />
-                <span className="text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
+                <span className="text-[9px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
               </div>
             </div>
 
             {/* Background Group */}
-            <div className="flex flex-col items-center justify-center px-2 border-r border-gray-300 dark:border-white/10 min-h-[56px]">
+            <div className="flex flex-wrap items-center justify-center gap-2 px-2 border-r border-gray-300 dark:border-white/10 py-1 sm:py-0">
               <div className="flex gap-1">
                 {/* Column 1: Two rows of 5 */}
-                <div className="grid grid-cols-5 gap-1">
+                <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
                   {[
                     { label: 'T', value: 'transparent', title: 'Transparent' },
                     { label: 'W', value: '#ffffff', title: 'White' },
@@ -224,7 +223,7 @@ export default function DrawContent() {
                     <button
                       key={option.value}
                       onClick={() => setBgColor(option.value)}
-                      className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border shadow-sm ${
+                      className={`w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
                         bgColor === option.value 
                           ? 'ring-2 ring-primary-500 border-white' 
                           : 'border-gray-200 dark:border-white/10'
@@ -245,7 +244,7 @@ export default function DrawContent() {
                   ))}
                 </div>
                 {/* Column 2: Two rows of 5 */}
-                <div className="grid grid-cols-5 gap-1">
+                <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
                   {[
                     { label: 'S', value: '#f8fafc', title: 'Soft Gray' },
                     { label: 'D', value: '#1e293b', title: 'Deep Slate' },
@@ -261,7 +260,7 @@ export default function DrawContent() {
                     <button
                       key={option.value}
                       onClick={() => setBgColor(option.value)}
-                      className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border shadow-sm ${
+                      className={`w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
                         bgColor === option.value 
                           ? 'ring-2 ring-primary-500 border-white' 
                           : 'border-gray-200 dark:border-white/10'
@@ -280,15 +279,15 @@ export default function DrawContent() {
             </div>
 
             {/* Colors Group */}
-            <div className="flex flex-col items-center justify-center px-2 flex-1 min-h-[56px]">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
-                <div className="grid grid-cols-10 gap-1">
+            <div className="flex flex-col items-center justify-center px-2 flex-1 min-w-fit">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
+                <div className="grid grid-cols-10 sm:grid-cols-10 gap-0.5 sm:gap-1">
                   {colors.map(color => (
                     <button
                       key={color}
                       onClick={() => setPenColor(color)}
-                      className="w-4 h-4 rounded-full border border-gray-300 dark:border-white/10 transition-transform hover:scale-125"
+                      className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-gray-300 dark:border-white/10 transition-transform hover:scale-125"
                       style={{ backgroundColor: color }}
                     />
                   ))}
