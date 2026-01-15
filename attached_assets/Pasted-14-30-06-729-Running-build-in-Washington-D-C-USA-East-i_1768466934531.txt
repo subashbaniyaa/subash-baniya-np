@@ -1,0 +1,44 @@
+14:30:06.729 Running build in Washington, D.C., USA (East) – iad1
+14:30:06.729 Build machine configuration: 2 cores, 8 GB
+14:30:06.916 Cloning github.com/subashbaniyaa/subash-baniya-np (Branch: main, Commit: 4fccf16)
+14:30:08.530 Cloning completed: 1.614s
+14:30:08.655 Restored build cache from previous deployment (44AgxDehNgawJNVjGpXzwe2KPXjP)
+14:30:09.006 Running "vercel build"
+14:30:10.079 Vercel CLI 50.3.1
+14:30:10.373 Installing dependencies...
+14:30:11.683 
+14:30:11.685 > subash-baniya.com.np@2.0.0 prepare
+14:30:11.686 > husky
+14:30:11.686 
+14:30:11.735 
+14:30:11.736 up to date in 1s
+14:30:11.736 
+14:30:11.736 287 packages are looking for funding
+14:30:11.736   run `npm fund` for details
+14:30:11.766 Detected Next.js version: 16.0.10
+14:30:11.771 Running "npm run build"
+14:30:11.874 
+14:30:11.874 > subash-baniya.com.np@2.0.0 build
+14:30:11.875 > next build
+14:30:11.875 
+14:30:12.865    ▲ Next.js 16.0.10 (Turbopack)
+14:30:12.866    - Experiments (use with caution):
+14:30:12.867      · serverActions
+14:30:12.867 
+14:30:12.907    Creating an optimized production build ...
+14:30:29.503  ✓ Compiled successfully in 16.0s
+14:30:29.505    Running TypeScript ...
+14:30:35.764 Failed to compile.
+14:30:35.765 
+14:30:35.765 ./app/components/hero-v2/hero.tsx:15:26
+14:30:35.765 Type error: Cannot find module '../ui/popup-message' or its corresponding type declarations.
+14:30:35.765 
+14:30:35.765 [0m [90m 13 |[39m [36mimport[39m [33mSplashCursor[39m [36mfrom[39m [32m'../splash-cursor'[39m[33m;[39m
+14:30:35.765  [90m 14 |[39m [36mimport[39m { motion[33m,[39m useSpring[33m,[39m useScroll[33m,[39m useTransform } [36mfrom[39m [32m'framer-motion'[39m[33m;[39m
+14:30:35.765 [31m[1m>[22m[39m[90m 15 |[39m [36mimport[39m [33mPopUpMessage[39m [36mfrom[39m [32m'../ui/popup-message'[39m[33m;[39m
+14:30:35.765  [90m    |[39m                          [31m[1m^[22m[39m
+14:30:35.765  [90m 16 |[39m
+14:30:35.766  [90m 17 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mHero[39m() {
+14:30:35.766  [90m 18 |[39m   [36mconst[39m linkedinRef [33m=[39m useRef[33m<[39m[33many[39m[33m>[39m([36mnull[39m)[33m;[39m[0m
+14:30:35.803 Next.js build worker exited with code: 1 and signal: null
+14:30:35.846 Error: Command "npm run build" exited with 1
