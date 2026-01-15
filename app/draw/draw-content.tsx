@@ -140,7 +140,7 @@ export default function DrawContent() {
             {/* Top Blue Decorative Line for Toolbar */}
             <div className="w-full border-b border-primary-500 mb-6" />
             
-            <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between pb-6">
+            <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between pb-6 text-poppins">
               <div className="flex items-center gap-1">
                 <button onClick={undo} disabled={undoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Undo"><IoArrowBack size={18}/></button>
                 <button onClick={redo} disabled={redoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Redo"><IoArrowForward size={18}/></button>
@@ -151,7 +151,7 @@ export default function DrawContent() {
               <div className="flex flex-wrap gap-6 items-center">
                 {/* Color Picker */}
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Color</span>
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Color</span>
                   <div className="relative group/picker">
                     <div className="w-6 h-6 rounded-full border border-gray-200 dark:border-white/10 overflow-hidden" style={{ backgroundColor: penColor }}>
                       <input type="color" value={penColor} onChange={(e) => setPenColor(e.target.value)} className="absolute inset-0 opacity-0 cursor-pointer" />
@@ -178,21 +178,36 @@ export default function DrawContent() {
                 </div>
 
                 {/* Background Selection */}
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Canvas</span>
-                  <select value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="bg-transparent text-xs font-semibold outline-none appearance-none cursor-pointer hover:text-primary-500 transition-colors">
-                    <option value="rgba(0,0,0,0)">Transparent</option>
-                    <option value="#ffffff">White</option>
-                    <option value="#f8fafc">Soft Gray</option>
-                    <option value="#0f172a">Deep Navy</option>
-                    <option value="#000000">True Black</option>
-                  </select>
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Canvas</span>
+                  <div className="flex gap-2">
+                    {[
+                      { label: 'T', value: 'rgba(0,0,0,0)', title: 'Transparent' },
+                      { label: 'W', value: '#ffffff', title: 'White' },
+                      { label: 'G', value: '#f8fafc', title: 'Soft Gray' },
+                      { label: 'N', value: '#0f172a', title: 'Deep Navy' },
+                      { label: 'B', value: '#000000', title: 'True Black' }
+                    ].map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() => setBgColor(option.value)}
+                        className={`w-6 h-6 rounded-md flex items-center justify-center text-[10px] font-bold transition-all border ${
+                          bgColor === option.value 
+                            ? 'bg-primary-500 border-primary-500 text-white shadow-sm' 
+                            : 'bg-transparent border-gray-200 dark:border-white/10 text-gray-400 hover:border-gray-300 dark:hover:border-white/20'
+                        }`}
+                        title={option.title}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               <div className="flex gap-3">
-                <button onClick={() => save('png')} className="px-4 py-1.5 text-xs font-bold border border-gray-200 dark:border-white/10 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-all">PNG</button>
-                <button onClick={() => save('jpg')} className="px-4 py-1.5 text-xs font-bold bg-black dark:bg-white text-white dark:text-black rounded-full hover:opacity-90 transition-all">JPG</button>
+                <button onClick={() => save('png')} className="px-4 py-1.5 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-all">PNG</button>
+                <button onClick={() => save('jpg')} className="px-4 py-1.5 text-[10px] font-bold bg-black dark:bg-white text-white dark:text-black rounded-full hover:opacity-90 transition-all">JPG</button>
               </div>
             </div>
             {/* Bottom Blue Decorative Line for Toolbar */}
@@ -208,7 +223,7 @@ export default function DrawContent() {
 
           {/* Footer Navigation */}
           <div className="mt-12 pt-8 border-t border-primary-500">
-            <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none">Return to homepage</Link>
+            <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none text-poppins">Return to homepage</Link>
           </div>
         </div>
       </div>
