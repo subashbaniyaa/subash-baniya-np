@@ -49,7 +49,7 @@ export default function Hero() {
         <div
           className={classNames('relative min-h-svh', merryWeather.className)}
         >
-            <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl flex flex-col items-center space-y-4 px-8 md:px-24 text-shadow-lg text-center">
               <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl">
                 <span>
                   Hi, welcome to my{' '}
@@ -63,9 +63,9 @@ export default function Hero() {
                   I&apos;m <span className="font-semibold">Subash Baniya</span> ~ Web developer, designer and lifelong learner.
                 </p>
               </section>
-              <section className="relative z-10 flex space-x-4 items-center text-sm">
+              <section className="relative z-10 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center text-sm">
                 <div>
-                  <div className="flex -ml-2" onMouseEnter={() => { hoveringRef.current = true; }} onMouseLeave={() => { hoveringRef.current = false; }}>
+                  <div className="flex" onMouseEnter={() => { hoveringRef.current = true; }} onMouseLeave={() => { hoveringRef.current = false; }}>
                     <Link
                       href="https://www.linkedin.com/in/subashbaniyaa"
                       target="_blank"
@@ -92,7 +92,7 @@ export default function Hero() {
                     </Link>
                   </div>
                 </div>
-                <div className="h-14 border-l border-gray-300" />
+                <div className="hidden md:block h-14 border-l border-gray-300" />
                 <div className="flex space-x-3 items-center">
                   <Link href="/articles" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>articles</Link>
                   <Link href="/archive" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>archive</Link>
