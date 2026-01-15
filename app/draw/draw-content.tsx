@@ -58,7 +58,7 @@ export default function DrawContent() {
         maxWidth: maxWidth
       });
 
-      const handleDraw = (e: any) => {
+      const handleDraw = (e: MouseEvent) => {
         if (!canvasRef.current || isEraser) return;
         const ctx = canvasRef.current.getContext('2d');
         if (!ctx) return;
@@ -81,8 +81,18 @@ export default function DrawContent() {
         pointsRef.current.push(currentPoint);
       };
 
-      canvas.addEventListener('mousemove', handleDraw);
-      canvas.addEventListener('mousedown', () => { pointsRef.current = []; });
+      const handleMouseDown = (e: MouseEvent) => {
+        if (activeTool === 'pencil' || activeTool === 'brush' || isEraser) return;
+        pointsRef.current = [];
+        window.addEventListener('mousemove', handleDraw);
+      };
+
+      const handleMouseUp = () => {
+        window.removeEventListener('mousemove', handleDraw);
+      };
+
+      canvas.addEventListener('mousedown', handleMouseDown);
+      window.addEventListener('mouseup', handleMouseUp);
 
       signaturePadRef.current.addEventListener('endStroke', () => {
         const data = signaturePadRef.current?.toData();
@@ -111,12 +121,16 @@ export default function DrawContent() {
         signaturePadRef.current.compositeOperation = 'source-over';
         signaturePadRef.current.minWidth = 0.5;
         signaturePadRef.current.maxWidth = 1.5;
-      } else {
-        // Marker Brush (default)
+      } else if (activeTool === 'brush') {
         signaturePadRef.current.penColor = penColor;
         signaturePadRef.current.compositeOperation = 'source-over';
         signaturePadRef.current.minWidth = maxWidth * 0.9;
         signaturePadRef.current.maxWidth = maxWidth;
+      } else {
+        // Disable signature_pad drawing for custom brushes
+        signaturePadRef.current.compositeOperation = 'source-over';
+        signaturePadRef.current.minWidth = 0;
+        signaturePadRef.current.maxWidth = 0;
       }
     }
   }, [penColor, isEraser, activeTool, bgColor, eraserWidth, minWidth, maxWidth, brushType]);
