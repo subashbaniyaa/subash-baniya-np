@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
-import { IoArrowBack, IoArrowForward, IoTrash, IoDownload, IoImage, IoBrush, IoHomeOutline, IoPencil, IoColorFill, IoText, IoSearch, IoShapesOutline } from 'react-icons/io5';
-import { LuEraser, LuLayers } from "react-icons/lu";
+import { IoBrush, IoHomeOutline, IoImage, IoSearch, IoTrash } from 'react-icons/io5';
+import { FaPencil, FaEraser, FaRotateLeft, FaRotateRight } from "react-icons/fa6";
+import { LuLayers } from "react-icons/lu";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { BsStars } from "react-icons/bs";
 import Link from 'next/link';
@@ -152,12 +153,12 @@ export default function DrawContent() {
             <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
               <div className="flex gap-2">
                 <div className="flex flex-col gap-1">
-                  <button onClick={undo} disabled={undoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30"><IoArrowBack size={14}/></button>
-                  <button onClick={redo} disabled={redoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30"><IoArrowForward size={14}/></button>
+                  <button onClick={undo} disabled={undoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
+                  <button onClick={redo} disabled={redoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
                 </div>
                 <div className="grid grid-cols-2 gap-1">
-                  <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`}><IoPencil size={16}/></button>
-                  <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`}><LuEraser size={16}/></button>
+                  <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={16}/></button>
+                  <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={16}/></button>
                 </div>
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Tools</span>
@@ -180,7 +181,7 @@ export default function DrawContent() {
 
             {/* Background Group */}
             <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="flex gap-1 pt-1">
+              <div className="grid grid-cols-5 gap-1 pt-1">
                 {[
                   { label: 'T', value: 'transparent', title: 'Transparent' },
                   { label: 'W', value: '#ffffff', title: 'White' },
@@ -265,7 +266,7 @@ export default function DrawContent() {
 
             <div className={`relative h-[70vh] w-full bg-[#f0f0f0] dark:bg-black/40 rounded-lg p-4 overflow-hidden border border-gray-200 dark:border-white/10 shadow-inner ${isEraser ? 'cursor-[url("/eraser-cursor.png"),_auto]' : 'cursor-[url("/pencil-cursor.png"),_auto]'}`}>
                <div className="w-full h-full bg-white shadow-lg relative mx-auto" style={{ backgroundColor: bgColor }}>
-                  <canvas ref={canvasRef} className={`w-full h-full touch-none ${isEraser ? 'cursor-[url("https://api.iconify.design/lu:eraser.svg?color=black&width=24&height=24"),_auto]' : 'cursor-[url("https://api.iconify.design/io:pencil.svg?color=black&width=24&height=24"),_auto]'}`} />
+                  <canvas ref={canvasRef} className={`w-full h-full touch-none ${isEraser ? 'cursor-[url("https://api.iconify.design/fa6-solid:eraser.svg?color=black&width=24&height=24"),_auto]' : 'cursor-[url("https://api.iconify.design/fa6-solid:pencil.svg?color=black&width=24&height=24"),_auto]'}`} />
                </div>
             </div>
           </div>
