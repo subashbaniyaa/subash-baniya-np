@@ -210,10 +210,12 @@ export default function DrawContent() {
               <div className="flex flex-col gap-1">
                 <div className="flex items-center justify-center gap-1">
                   <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
+                  <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
+                </div>
+                <div className="flex items-center justify-center gap-1 border-t border-gray-300 dark:border-white/10 pt-1">
                   <button onClick={() => { setIsEraser(false); setActiveTool('rainbow'); }} className={`p-1.5 rounded-full ${activeTool === 'rainbow' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Rainbow"><IoColorPaletteOutline size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('pixel'); }} className={`p-1.5 rounded-full ${activeTool === 'pixel' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pixel"><IoGridOutline size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('mesh'); }} className={`p-1.5 rounded-full ${activeTool === 'mesh' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Mesh"><FaCloud size={14}/></button>
-                  <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
                 </div>
                 <div className="flex items-center justify-center gap-1">
                   <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
