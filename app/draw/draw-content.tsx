@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
-import { IoArrowBack, IoArrowForward, IoTrash, IoDownload, IoImage, IoBrush } from 'react-icons/io5';
+import { IoArrowBack, IoArrowForward, IoTrash, IoDownload, IoImage, IoBrush, IoHomeOutline } from 'react-icons/io5';
+import Link from 'next/link';
 
 export default function DrawContent() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -133,8 +134,6 @@ export default function DrawContent() {
   return (
     <PageContainer>
       <div className="font-poppins">
-        <Header title="Draw" />
-        
         <div className="flex flex-col gap-6">
           {/* Minimal Toolbar */}
           <div className="relative group">
@@ -207,6 +206,17 @@ export default function DrawContent() {
             </div>
             {/* Bottom Blue Decorative Line */}
             <div className="w-full border-b border-primary-500 mt-6" />
+          </div>
+
+          {/* Footer Navigation */}
+          <div className="mt-8 flex justify-start">
+            <Link 
+              href="/" 
+              className="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary-500 transition-colors group"
+            >
+              <IoHomeOutline className="group-hover:-translate-x-1 transition-transform" />
+              Return to homepage
+            </Link>
           </div>
         </div>
       </div>
