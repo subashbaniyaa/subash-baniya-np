@@ -214,94 +214,98 @@ export default function DrawContent() {
               </div>
             </div>
 
-            {/* Background Group */}
-            <div className="flex flex-col items-center justify-center px-4 border-r border-gray-300 dark:border-white/10 sm:min-h-[56px] py-1 sm:py-0">
-              <div className="flex items-center gap-1">
-                {/* Column 1: Two rows of 5 */}
-                <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
-                  {[
-                    { label: 'T', value: 'transparent', title: 'Transparent' },
-                    { label: 'W', value: '#ffffff', title: 'White' },
-                    { label: 'B', value: '#000000', title: 'True Black' },
-                    { label: 'R', value: '#ef4444', title: 'Red' },
-                    { label: 'G', value: '#22c55e', title: 'Green' },
-                    { label: 'B', value: '#3b82f6', title: 'Blue' },
-                    { label: 'Y', value: '#eab308', title: 'Yellow' },
-                    { label: 'P', value: '#a855f7', title: 'Purple' },
-                    { label: 'O', value: '#f97316', title: 'Orange' },
-                    { label: 'P', value: '#ec4899', title: 'Pink' }
-                  ].map((option) => (
-                    <button
-                      key={option.value}
-                      onClick={() => setBgColor(option.value)}
-                      className={`w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
-                        bgColor === option.value 
-                          ? 'ring-2 ring-primary-500 border-white' 
-                          : 'border-gray-200 dark:border-white/10'
-                      }`}
-                      style={{ 
-                        backgroundColor: option.value === 'transparent' ? 'white' : option.value,
-                        backgroundImage: option.value === 'transparent' 
-                          ? 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)' 
-                          : 'none',
-                        backgroundSize: '4px 4px',
-                        backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
-                        color: ['transparent', '#ffffff', '#eab308', '#fef08a'].includes(option.value) ? '#000' : '#fff'
-                      }}
-                      title={option.title}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
-                {/* Column 2: Two rows of 5 */}
-                <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
-                  {[
-                    { label: 'S', value: '#f8fafc', title: 'Soft Gray' },
-                    { label: 'D', value: '#1e293b', title: 'Deep Slate' },
-                    { label: 'I', value: '#4c1d95', title: 'Indigo' },
-                    { label: 'F', value: '#064e3b', title: 'Forest' },
-                    { label: 'M', value: '#701a75', title: 'Magenta' },
-                    { label: 'T', value: '#0d9488', title: 'Teal' },
-                    { label: 'C', value: '#fff7ed', title: 'Cream' },
-                    { label: 'S', value: '#fecaca', title: 'Soft Red' },
-                    { label: 'V', value: '#f5f3ff', title: 'Soft Violet' },
-                    { label: 'K', value: '#f0f9ff', title: 'Soft Sky' }
-                  ].map((option) => (
-                    <button
-                      key={option.value}
-                      onClick={() => setBgColor(option.value)}
-                      className={`w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
-                        bgColor === option.value 
-                          ? 'ring-2 ring-primary-500 border-white' 
-                          : 'border-gray-200 dark:border-white/10'
-                      }`}
-                      style={{ 
-                        backgroundColor: option.value,
-                        color: ['#f8fafc', '#fff7ed', '#fecaca', '#f5f3ff', '#f0f9ff'].includes(option.value) ? '#000' : '#fff'
-                      }}
-                      title={option.title}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
+            {/* Background & Colors Container */}
+            <div className="flex flex-col sm:flex-row items-center justify-center flex-1 sm:min-h-[56px] min-w-fit">
+              {/* Background Group */}
+              <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
+                <div className="flex items-center gap-1">
+                  <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
+                    {[
+                      { label: 'T', value: 'transparent', title: 'Transparent' },
+                      { label: 'W', value: '#ffffff', title: 'White' },
+                      { label: 'B', value: '#000000', title: 'True Black' },
+                      { label: 'R', value: '#ef4444', title: 'Red' },
+                      { label: 'G', value: '#22c55e', title: 'Green' },
+                      { label: 'B', value: '#3b82f6', title: 'Blue' },
+                      { label: 'Y', value: '#eab308', title: 'Yellow' },
+                      { label: 'P', value: '#a855f7', title: 'Purple' },
+                      { label: 'O', value: '#f97316', title: 'Orange' },
+                      { label: 'P', value: '#ec4899', title: 'Pink' }
+                    ].map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() => setBgColor(option.value)}
+                        className={`w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
+                          bgColor === option.value 
+                            ? 'ring-2 ring-primary-500 border-white' 
+                            : 'border-gray-200 dark:border-white/10'
+                        }`}
+                        style={{ 
+                          backgroundColor: option.value === 'transparent' ? 'white' : option.value,
+                          backgroundImage: option.value === 'transparent' 
+                            ? 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)' 
+                            : 'none',
+                          backgroundSize: '4px 4px',
+                          backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
+                          color: ['transparent', '#ffffff', '#eab308', '#fef08a'].includes(option.value) ? '#000' : '#fff'
+                        }}
+                        title={option.title}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
+                    {[
+                      { label: 'S', value: '#f8fafc', title: 'Soft Gray' },
+                      { label: 'D', value: '#1e293b', title: 'Deep Slate' },
+                      { label: 'I', value: '#4c1d95', title: 'Indigo' },
+                      { label: 'F', value: '#064e3b', title: 'Forest' },
+                      { label: 'M', value: '#701a75', title: 'Magenta' },
+                      { label: 'T', value: '#0d9488', title: 'Teal' },
+                      { label: 'C', value: '#fff7ed', title: 'Cream' },
+                      { label: 'S', value: '#fecaca', title: 'Soft Red' },
+                      { label: 'V', value: '#f5f3ff', title: 'Soft Violet' },
+                      { label: 'K', value: '#f0f9ff', title: 'Soft Sky' }
+                    ].map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() => setBgColor(option.value)}
+                        className={`w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
+                          bgColor === option.value 
+                            ? 'ring-2 ring-primary-500 border-white' 
+                            : 'border-gray-200 dark:border-white/10'
+                        }`}
+                        style={{ 
+                          backgroundColor: option.value,
+                          color: ['#f8fafc', '#fff7ed', '#fecaca', '#f5f3ff', '#f0f9ff'].includes(option.value) ? '#000' : '#fff'
+                        }}
+                        title={option.title}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Colors Group */}
-            <div className="flex flex-col items-center justify-center px-4 flex-1 sm:min-h-[56px] min-w-fit">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
-                <div className="grid grid-cols-10 gap-0.5 sm:gap-1">
-                  {colors.map(color => (
-                    <button
-                      key={color}
-                      onClick={() => setPenColor(color)}
-                      className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-gray-300 dark:border-white/10 transition-transform hover:scale-125"
-                      style={{ backgroundColor: color }}
-                    />
-                  ))}
+              {/* Horizontal Separator for Mobile, Vertical for Desktop */}
+              <div className="w-full h-px sm:w-px sm:h-8 bg-gray-300 dark:bg-white/10 my-1 sm:my-0 sm:mx-2" />
+
+              {/* Colors Group */}
+              <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
+                  <div className="grid grid-cols-10 gap-0.5 sm:gap-1">
+                    {colors.map(color => (
+                      <button
+                        key={color}
+                        onClick={() => setPenColor(color)}
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-gray-300 dark:border-white/10 transition-transform hover:scale-125"
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
