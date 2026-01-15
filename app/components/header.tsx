@@ -16,7 +16,7 @@ export default function Header({ title }: { title: string }) {
             href="/"
             className="flex items-center text-primary-500 outline-0 hover:translate-x-[-4px] transition-transform duration-200 group"
           >
-            <span className={`text-2xl font-bold ${gistesy.className} whitespace-nowrap`}>← HomePage</span>
+            <span className={`text-2xl font-bold ${gistesy.className} whitespace-nowrap`}>← </span>
           </Link>
           <div className="mx-3 w-full border-b border-primary-500" />
         </>
