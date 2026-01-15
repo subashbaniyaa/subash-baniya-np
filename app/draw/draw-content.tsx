@@ -151,6 +151,7 @@ export default function DrawContent() {
     if (!canvas) return;
 
     const dataUrl = canvas.toDataURL('image/png');
+    localStorage.setItem('persistent-drawing-bg', dataUrl);
     const bgRoot = document.getElementById('drawing-bg-root');
     if (bgRoot) {
       bgRoot.innerHTML = '';
