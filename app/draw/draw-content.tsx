@@ -72,12 +72,25 @@ export default function DrawContent() {
 
   useEffect(() => {
     if (signaturePadRef.current) {
-      signaturePadRef.current.penColor = isEraser ? (bgColor === 'transparent' ? '#ffffff' : bgColor) : penColor;
-      signaturePadRef.current.compositeOperation = isEraser ? 'destination-out' : 'source-over';
-      signaturePadRef.current.minWidth = isEraser ? eraserWidth / 3 : minWidth;
-      signaturePadRef.current.maxWidth = isEraser ? eraserWidth : maxWidth;
+      if (isEraser) {
+        signaturePadRef.current.penColor = bgColor === 'transparent' ? '#ffffff' : bgColor;
+        signaturePadRef.current.compositeOperation = 'destination-out';
+        signaturePadRef.current.minWidth = eraserWidth / 3;
+        signaturePadRef.current.maxWidth = eraserWidth;
+      } else if (activeTool === 'pencil') {
+        signaturePadRef.current.penColor = penColor;
+        signaturePadRef.current.compositeOperation = 'source-over';
+        signaturePadRef.current.minWidth = 0.5;
+        signaturePadRef.current.maxWidth = 1.5;
+      } else {
+        // Brush
+        signaturePadRef.current.penColor = penColor;
+        signaturePadRef.current.compositeOperation = 'source-over';
+        signaturePadRef.current.minWidth = minWidth;
+        signaturePadRef.current.maxWidth = maxWidth;
+      }
     }
-  }, [penColor, isEraser, bgColor, eraserWidth, minWidth, maxWidth]);
+  }, [penColor, isEraser, activeTool, bgColor, eraserWidth, minWidth, maxWidth]);
 
   useEffect(() => {
     if (signaturePadRef.current) {
@@ -158,6 +171,7 @@ export default function DrawContent() {
                 </div>
                 <div className="grid grid-cols-2 gap-1">
                   <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={16}/></button>
+                  <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><IoBrush size={16}/></button>
                   <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={16}/></button>
                 </div>
               </div>
@@ -239,15 +253,15 @@ export default function DrawContent() {
 
           {/* Canvas Area */}
           <div className="relative group/canvas">
-            {/* Sidebar Controls (Size) */}
             <div className="absolute left-[-50px] top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 opacity-0 group-hover/canvas:opacity-100 transition-opacity">
               <div className="bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 p-2 rounded-full shadow-lg flex flex-col items-center gap-2">
-                <span className="text-[8px] font-bold uppercase">{isEraser ? 'Eraser' : 'Brush'}</span>
+                <span className="text-[8px] font-bold uppercase">{isEraser ? 'Eraser' : activeTool === 'pencil' ? 'Pencil' : 'Brush'}</span>
                 <input 
                   type="range" 
                   min="0.5" 
                   max={isEraser ? "50" : "20"}
                   step="0.5"
+                  disabled={activeTool === 'pencil' && !isEraser}
                   value={isEraser ? eraserWidth : maxWidth} 
                   onChange={(e) => {
                     const val = parseFloat(e.target.value);
@@ -258,7 +272,7 @@ export default function DrawContent() {
                       setMinWidth(val / 3);
                     }
                   }}
-                  className="h-32 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full w-1"
+                  className={`h-32 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full w-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
                   style={{ writingMode: 'bt-lr' as any, appearance: 'slider-vertical' as any }}
                 />
               </div>
@@ -272,6 +286,8 @@ export default function DrawContent() {
                     style={{ 
                       cursor: isEraser 
                         ? `url('data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="${eraserWidth}" height="${eraserWidth}" viewBox="0 0 ${eraserWidth} ${eraserWidth}"><rect x="0" y="0" width="${eraserWidth}" height="${eraserWidth}" fill="rgba(255,255,255,0.5)" stroke="black" stroke-width="1"/></svg>`)}') ${eraserWidth/2} ${eraserWidth/2}, auto`
+                        : activeTool === 'brush'
+                        ? `crosshair`
                         : `url('data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`)}') 1 15, auto`
                     }}
                   />
