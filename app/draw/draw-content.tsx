@@ -177,13 +177,12 @@ export default function DrawContent() {
             <div className="flex flex-col sm:flex-row items-center justify-center sm:min-h-[56px] min-w-fit">
               {/* Tools Group */}
               <div className="flex flex-col items-center gap-1 px-3 sm:border-r border-gray-300 dark:border-white/10 sm:min-h-[56px] justify-center">
-                <div className="flex sm:flex-row gap-1">
+                <div className="flex flex-row sm:flex-col gap-1">
                   <div className="flex items-center justify-center gap-1">
                     <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
                     <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
                     <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
                   </div>
-                  <div className="w-px h-8 bg-gray-300 dark:bg-white/10 mx-1 hidden sm:block" />
                   <div className="flex items-center justify-center gap-1">
                     <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
                     <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
@@ -197,7 +196,7 @@ export default function DrawContent() {
 
               {/* Size Group */}
               <div className="flex flex-col items-center justify-center px-4 sm:border-r border-gray-300 dark:border-white/10 sm:min-h-[56px] py-1 sm:py-0">
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex flex-row sm:flex-col items-center justify-center gap-1">
                   <input 
                     type="range" 
                     min="0.5" 
@@ -216,7 +215,7 @@ export default function DrawContent() {
                     }}
                     className={`w-20 sm:w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
                   />
-                  <span className="text-[9px] sm:text-[10px] font-bold leading-none w-8">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
                 </div>
               </div>
             </div>
