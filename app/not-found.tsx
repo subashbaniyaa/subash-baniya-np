@@ -25,10 +25,10 @@ export default function FourZeroFour() {
             <p className={`text-3xl md:text-4xl leading-7 text-gray-500 dark:text-gray-400 ${gistesy.className}`}>
               The page you&apos;re looking for doesn&apos;t exist.
             </p>
-            <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none">
-              Return to homepage
-            </Link>
           </div>
+          <Link href="/" className="absolute bottom-8 left-8 z-20 underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none pointer-events-auto">
+            Return to homepage
+          </Link>
         </div>
       </div>
     </SplashCursor>
