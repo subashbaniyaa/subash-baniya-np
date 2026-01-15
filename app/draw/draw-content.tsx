@@ -252,14 +252,6 @@ export default function DrawContent() {
               </div>
             </div>
 
-            {/* Save Group */}
-            <div className="flex flex-col items-center gap-1 px-2">
-              <div className="flex gap-2 pt-1">
-                <button onClick={() => save('png')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">PNG</button>
-                <button onClick={() => save('jpg')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">JPG</button>
-                <button onClick={() => alert('SVG export coming soon!')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">SVG</button>
-              </div>
-            </div>
           </div>
 
           {/* Canvas Area */}
@@ -287,9 +279,9 @@ export default function DrawContent() {
             
             <div className="flex gap-4 items-center">
                 <div className="flex gap-2">
-                    <button onClick={() => save('png')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all uppercase">PNG</button>
-                    <button onClick={() => save('jpg')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all uppercase">JPG</button>
-                    <button onClick={() => alert('SVG export coming soon!')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all uppercase">SVG</button>
+                    <button onClick={() => save('png')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md bg-white/50 dark:bg-white/5 hover:bg-primary-500 hover:text-white hover:border-primary-500 transition-all uppercase shadow-sm">PNG</button>
+                    <button onClick={() => save('jpg')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md bg-white/50 dark:bg-white/5 hover:bg-primary-500 hover:text-white hover:border-primary-500 transition-all uppercase shadow-sm">JPG</button>
+                    <button onClick={() => alert('SVG export coming soon!')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md bg-white/50 dark:bg-white/5 hover:bg-primary-500 hover:text-white hover:border-primary-500 transition-all uppercase shadow-sm">SVG</button>
                 </div>
                 <div className="w-px h-3 bg-gray-300" />
                 <div className="flex items-center gap-4 text-[10px] text-gray-400">
