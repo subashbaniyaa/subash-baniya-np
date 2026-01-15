@@ -137,65 +137,73 @@ export default function DrawContent() {
         
         <div className="flex flex-col gap-6">
           {/* Minimal Toolbar */}
-          <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between border-b border-gray-100 dark:border-white/5 pb-6">
-            <div className="flex items-center gap-1">
-              <button onClick={undo} disabled={undoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Undo"><IoArrowBack size={18}/></button>
-              <button onClick={redo} disabled={redoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Redo"><IoArrowForward size={18}/></button>
-              <div className="w-px h-4 bg-gray-200 dark:bg-white/10 mx-2" />
-              <button onClick={clear} className="p-2 hover:bg-red-50 dark:hover:bg-red-900/10 text-red-400 rounded-full transition-all" title="Clear"><IoTrash size={18}/></button>
-            </div>
+          <div className="relative group">
+            <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between pb-6">
+              <div className="flex items-center gap-1">
+                <button onClick={undo} disabled={undoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Undo"><IoArrowBack size={18}/></button>
+                <button onClick={redo} disabled={redoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Redo"><IoArrowForward size={18}/></button>
+                <div className="w-px h-4 bg-gray-200 dark:bg-white/10 mx-2" />
+                <button onClick={clear} className="p-2 hover:bg-red-50 dark:hover:bg-red-900/10 text-red-400 rounded-full transition-all" title="Clear"><IoTrash size={18}/></button>
+              </div>
 
-            <div className="flex flex-wrap gap-6 items-center">
-              {/* Color Picker */}
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Color</span>
-                <div className="relative group">
-                  <div className="w-6 h-6 rounded-full border border-gray-200 dark:border-white/10 overflow-hidden" style={{ backgroundColor: penColor }}>
-                    <input type="color" value={penColor} onChange={(e) => setPenColor(e.target.value)} className="absolute inset-0 opacity-0 cursor-pointer" />
+              <div className="flex flex-wrap gap-6 items-center">
+                {/* Color Picker */}
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Color</span>
+                  <div className="relative group/picker">
+                    <div className="w-6 h-6 rounded-full border border-gray-200 dark:border-white/10 overflow-hidden" style={{ backgroundColor: penColor }}>
+                      <input type="color" value={penColor} onChange={(e) => setPenColor(e.target.value)} className="absolute inset-0 opacity-0 cursor-pointer" />
+                    </div>
                   </div>
+                </div>
+
+                {/* Stroke Width */}
+                <div className="flex items-center gap-3">
+                  <IoBrush size={14} className="text-gray-400" />
+                  <input 
+                    type="range" 
+                    min="0.5" 
+                    max="10" 
+                    step="0.5"
+                    value={maxWidth} 
+                    onChange={(e) => {
+                      const val = parseFloat(e.target.value);
+                      setMaxWidth(val);
+                      setMinWidth(val / 3);
+                    }}
+                    className="w-24 accent-primary-500 h-1 bg-gray-200 dark:bg-white/10 rounded-full appearance-none cursor-pointer"
+                  />
+                </div>
+
+                {/* Background Selection */}
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Canvas</span>
+                  <select value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="bg-transparent text-xs font-semibold outline-none appearance-none cursor-pointer hover:text-primary-500 transition-colors">
+                    <option value="rgba(0,0,0,0)">Transparent</option>
+                    <option value="#ffffff">White</option>
+                    <option value="#f8fafc">Soft Gray</option>
+                    <option value="#0f172a">Deep Navy</option>
+                    <option value="#000000">True Black</option>
+                  </select>
                 </div>
               </div>
 
-              {/* Stroke Width */}
-              <div className="flex items-center gap-3">
-                <IoBrush size={14} className="text-gray-400" />
-                <input 
-                  type="range" 
-                  min="0.5" 
-                  max="10" 
-                  step="0.5"
-                  value={maxWidth} 
-                  onChange={(e) => {
-                    const val = parseFloat(e.target.value);
-                    setMaxWidth(val);
-                    setMinWidth(val / 3);
-                  }}
-                  className="w-24 accent-primary-500 h-1 bg-gray-200 dark:bg-white/10 rounded-full appearance-none cursor-pointer"
-                />
-              </div>
-
-              {/* Background Selection */}
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Canvas</span>
-                <select value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="bg-transparent text-xs font-semibold outline-none appearance-none cursor-pointer hover:text-primary-500 transition-colors">
-                  <option value="rgba(0,0,0,0)">Transparent</option>
-                  <option value="#ffffff">White</option>
-                  <option value="#f8fafc">Soft Gray</option>
-                  <option value="#0f172a">Deep Navy</option>
-                  <option value="#000000">True Black</option>
-                </select>
+              <div className="flex gap-3">
+                <button onClick={() => save('png')} className="px-4 py-1.5 text-xs font-bold border border-gray-200 dark:border-white/10 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-all">PNG</button>
+                <button onClick={() => save('jpg')} className="px-4 py-1.5 text-xs font-bold bg-black dark:bg-white text-white dark:text-black rounded-full hover:opacity-90 transition-all">JPG</button>
               </div>
             </div>
-
-            <div className="flex gap-3">
-              <button onClick={() => save('png')} className="px-4 py-1.5 text-xs font-bold border border-gray-200 dark:border-white/10 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-all">PNG</button>
-              <button onClick={() => save('jpg')} className="px-4 py-1.5 text-xs font-bold bg-black dark:bg-white text-white dark:text-black rounded-full hover:opacity-90 transition-all">JPG</button>
-            </div>
+            {/* Top Blue Decorative Line */}
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
           </div>
 
           {/* Canvas Area */}
-          <div className="relative h-[65vh] w-full rounded-2xl overflow-hidden bg-white dark:bg-black/20 transition-colors duration-500" style={{ backgroundColor: bgColor }}>
-            <canvas ref={canvasRef} className="h-full w-full cursor-crosshair touch-none" />
+          <div className="relative">
+            <div className="relative h-[65vh] w-full rounded-2xl overflow-hidden bg-white dark:bg-black/20 transition-colors duration-500" style={{ backgroundColor: bgColor }}>
+              <canvas ref={canvasRef} className="h-full w-full cursor-crosshair touch-none" />
+            </div>
+            {/* Bottom Blue Decorative Line */}
+            <div className="absolute -bottom-6 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
           </div>
         </div>
       </div>
