@@ -152,6 +152,10 @@ export default function DrawContent() {
 
     const dataUrl = canvas.toDataURL('image/png');
     localStorage.setItem('persistent-drawing-bg', dataUrl);
+    
+    // Dispatch a custom event to notify the layout to update immediately
+    window.dispatchEvent(new Event('drawing-bg-updated'));
+    
     const bgRoot = document.getElementById('drawing-bg-root');
     if (bgRoot) {
       bgRoot.innerHTML = '';

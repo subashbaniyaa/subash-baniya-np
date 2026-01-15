@@ -9,29 +9,45 @@ import ThemeSwitch from 'app/components/layouts/theme-switch/theme-switch';
 import SpotifyPlayer from 'app/components/spotify-player';
 import Analytics from 'app/components/analytics/analytics';
 import DisableContextMenu from '../disable-context-menu';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ClientLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const showBackground = pathname === '/' || pathname === '/draw';
+  const [bgImage, setBgImage] = useState<string | null>(null);
 
   useEffect(() => {
-    const savedBg = localStorage.getItem('persistent-drawing-bg');
-    if (savedBg && showBackground) {
+    const updateBg = () => {
+      if (typeof window !== 'undefined') {
+        const savedBg = localStorage.getItem('persistent-drawing-bg');
+        setBgImage(savedBg);
+      }
+    };
+
+    updateBg();
+    window.addEventListener('drawing-bg-updated', updateBg);
+    return () => window.removeEventListener('drawing-bg-updated', updateBg);
+  }, []);
+
+  useEffect(() => {
+    if (bgImage && showBackground) {
       const bgRoot = document.getElementById('drawing-bg-root');
       if (bgRoot) {
         bgRoot.innerHTML = '';
         const img = new Image();
-        img.src = savedBg;
+        img.src = bgImage;
         img.className = 'w-full h-full object-cover';
         bgRoot.appendChild(img);
       }
     }
-  }, [pathname, showBackground]);
+  }, [pathname, showBackground, bgImage]);
 
   return (
     <>
-      {showBackground && <div id="drawing-bg-root" className="fixed inset-0 pointer-events-none z-[-1] opacity-50" />}
+      <div 
+        id="drawing-bg-root" 
+        className={`fixed inset-0 pointer-events-none z-[-1] opacity-50 transition-opacity duration-300 ${showBackground ? 'visible' : 'invisible'}`} 
+      />
       <DisableContextMenu />
       <ThemeProvider
         attribute="class"
