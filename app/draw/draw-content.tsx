@@ -217,7 +217,17 @@ export default function DrawContent() {
                   { label: 'P', value: '#e9d5ff', title: 'Soft Purple' },
                   { label: 'Y', value: '#fef08a', title: 'Soft Yellow' },
                   { label: 'A', value: '#99f6e4', title: 'Soft Teal' },
-                  { label: 'O', value: '#fed7aa', title: 'Soft Orange' }
+                  { label: 'O', value: '#fed7aa', title: 'Soft Orange' },
+                  { label: 'L', value: '#dcfce7', title: 'Soft Green' },
+                  { label: 'V', value: '#f5f3ff', title: 'Soft Violet' },
+                  { label: 'M', value: '#fff1f2', title: 'Soft Rose' },
+                  { label: 'K', value: '#f0f9ff', title: 'Soft Sky' },
+                  { label: 'E', value: '#ecfeff', title: 'Soft Cyan' },
+                  { label: 'C', value: '#fff7ed', title: 'Soft Cream' },
+                  { label: 'Z', value: '#334155', title: 'Slate' },
+                  { label: 'H', value: '#475569', title: 'Steel' },
+                  { label: 'U', value: '#1e293b', title: 'Midnight' },
+                  { label: 'D', value: '#422006', title: 'Deep Wood' }
                 ].map((option) => (
                   <button
                     key={option.value}
@@ -234,7 +244,7 @@ export default function DrawContent() {
                         : 'none',
                       backgroundSize: '4px 4px',
                       backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
-                      color: option.value === 'transparent' || option.value === '#ffffff' || option.value === '#f8fafc' || option.value === '#fef08a' || option.value === '#fed7aa' || option.value === '#fecaca' || option.value === '#e9d5ff' || option.value === '#99f6e4' ? '#000' : '#fff'
+                      color: ['transparent', '#ffffff', '#f8fafc', '#fef08a', '#fed7aa', '#fecaca', '#e9d5ff', '#99f6e4', '#dcfce7', '#f5f3ff', '#fff1f2', '#f0f9ff', '#ecfeff', '#fff7ed'].includes(option.value) ? '#000' : '#fff'
                     }}
                     title={option.title}
                   >
