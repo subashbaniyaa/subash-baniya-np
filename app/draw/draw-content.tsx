@@ -186,12 +186,6 @@ export default function DrawContent() {
                   <IoTrash size={20} />
                   <span className="text-[10px]">Reset</span>
                 </button>
-                <div className="relative group/brushes">
-                  <button className="p-2 hover:bg-white dark:hover:bg-white/5 rounded-md transition-all flex flex-col items-center gap-1">
-                    <IoBrush size={24} className="text-primary-500" />
-                    <span className="text-[10px]">Brush</span>
-                  </button>
-                </div>
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Tools</span>
             </div>
@@ -252,13 +246,14 @@ export default function DrawContent() {
 
           {/* Canvas Area */}
           <div className="relative group/canvas">
+            {/* Sidebar Controls (Size) */}
             <div className="absolute left-[-50px] top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 opacity-0 group-hover/canvas:opacity-100 transition-opacity">
               <div className="bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 p-2 rounded-full shadow-lg flex flex-col items-center gap-2">
                 <span className="text-[8px] font-bold uppercase">{isEraser ? 'Eraser' : activeTool === 'pencil' ? 'Pencil' : 'Brush'}</span>
                 <input 
                   type="range" 
                   min="0.5" 
-                  max={isEraser ? "50" : "20"}
+                  max={isEraser ? "100" : "50"}
                   step="0.5"
                   disabled={activeTool === 'pencil' && !isEraser}
                   value={isEraser ? eraserWidth : maxWidth} 
@@ -274,6 +269,7 @@ export default function DrawContent() {
                   className={`h-32 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full w-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
                   style={{ writingMode: 'bt-lr' as any, appearance: 'slider-vertical' as any }}
                 />
+                <span className="text-[8px] font-bold">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
               </div>
             </div>
 
