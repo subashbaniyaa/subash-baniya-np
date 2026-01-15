@@ -263,8 +263,8 @@ export default function DrawContent() {
               </div>
             </div>
 
-            <div className="relative h-[70vh] w-full bg-[#f0f0f0] dark:bg-black/40 rounded-lg p-4 overflow-hidden border border-gray-200 dark:border-white/10 shadow-inner">
-               <div className="w-full h-full bg-white shadow-lg relative mx-auto" style={{ backgroundColor: bgColor }}>
+            <div className="relative h-[70vh] w-full bg-[#f0f0f0] dark:bg-black/40 rounded-lg p-4 overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
+               <div className="w-full h-full bg-white relative mx-auto" style={{ backgroundColor: bgColor }}>
                   <canvas 
                     ref={canvasRef} 
                     className="w-full h-full touch-none" 
