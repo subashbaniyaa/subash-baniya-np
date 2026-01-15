@@ -155,13 +155,9 @@ export default function DrawContent() {
                   <button onClick={undo} disabled={undoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30"><IoArrowBack size={14}/></button>
                   <button onClick={redo} disabled={redoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30"><IoArrowForward size={14}/></button>
                 </div>
-                <div className="grid grid-cols-3 gap-1">
+                <div className="grid grid-cols-2 gap-1">
                   <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`}><IoPencil size={16}/></button>
-                  <button className="p-1.5 rounded hover:bg-white/50"><IoColorFill size={16}/></button>
-                  <button className="p-1.5 rounded hover:bg-white/50"><IoText size={16}/></button>
                   <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`}><LuEraser size={16}/></button>
-                  <button className="p-1.5 rounded hover:bg-white/50"><IoImage size={16}/></button>
-                  <button className="p-1.5 rounded hover:bg-white/50"><IoSearch size={16}/></button>
                 </div>
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Tools</span>
@@ -184,18 +180,23 @@ export default function DrawContent() {
 
             {/* Background Group */}
             <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="flex gap-2 pt-1">
+              <div className="flex gap-1 pt-1">
                 {[
                   { label: 'T', value: 'transparent', title: 'Transparent' },
                   { label: 'W', value: '#ffffff', title: 'White' },
                   { label: 'G', value: '#f8fafc', title: 'Soft Gray' },
                   { label: 'N', value: '#0f172a', title: 'Deep Navy' },
-                  { label: 'B', value: '#000000', title: 'True Black' }
+                  { label: 'B', value: '#000000', title: 'True Black' },
+                  { label: 'S', value: '#fecaca', title: 'Soft Red' },
+                  { label: 'P', value: '#e9d5ff', title: 'Soft Purple' },
+                  { label: 'Y', value: '#fef08a', title: 'Soft Yellow' },
+                  { label: 'A', value: '#99f6e4', title: 'Soft Teal' },
+                  { label: 'O', value: '#fed7aa', title: 'Soft Orange' }
                 ].map((option) => (
                   <button
                     key={option.value}
                     onClick={() => setBgColor(option.value)}
-                    className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold transition-all border ${
+                    className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border ${
                       bgColor === option.value 
                         ? 'bg-primary-500 border-primary-500 text-white' 
                         : 'bg-white dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-400'
