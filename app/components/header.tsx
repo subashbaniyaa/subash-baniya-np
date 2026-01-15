@@ -23,10 +23,10 @@ export default function Header({ title }: { title: string }) {
       )}
       {!title && <div className="w-full border-b border-primary-500" />}
       {title && (
-        <div className="flex items-center gap-4 flex-1">
+        <div className="flex items-center gap-2 flex-1 min-w-0">
           <span
             className={classNames(
-              'text-black dark:text-white text-lg md:text-4xl font-bold whitespace-nowrap',
+              'text-black dark:text-white text-lg md:text-4xl font-bold truncate',
               boringSans.className,
             )}
           >
@@ -35,7 +35,7 @@ export default function Header({ title }: { title: string }) {
           {title === 'Articles' && (
             <Link 
               href="/archive" 
-              className="text-primary-500 hover:underline text-sm md:text-base font-medium whitespace-nowrap ml-2"
+              className="text-primary-500 hover:underline text-sm md:text-base font-medium whitespace-nowrap shrink-0"
             >
               Archive
             </Link>
