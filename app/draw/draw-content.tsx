@@ -167,9 +167,32 @@ export default function DrawContent() {
             <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-center gap-2">
-                  <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={16}/></button>
-                  <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={16}/></button>
-                  <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={16}/></button>
+                  <div className="flex items-center gap-1 pr-2 border-r border-gray-300 dark:border-white/10">
+                    <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={16}/></button>
+                    <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={16}/></button>
+                    <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={16}/></button>
+                  </div>
+                  <div className="flex items-center gap-3 pl-1">
+                    <input 
+                      type="range" 
+                      min="0.5" 
+                      max={isEraser ? "100" : "50"}
+                      step="0.5"
+                      disabled={activeTool === 'pencil' && !isEraser}
+                      value={isEraser ? eraserWidth : maxWidth} 
+                      onChange={(e) => {
+                        const val = parseFloat(e.target.value);
+                        if (isEraser) {
+                          setEraserWidth(val);
+                        } else {
+                          setMaxWidth(val);
+                          setMinWidth(val / 3);
+                        }
+                      }}
+                      className={`w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
+                    />
+                    <span className="text-[10px] font-bold w-8">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
+                  </div>
                 </div>
                 <div className="flex items-center justify-center gap-2">
                   <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={16}/></button>
@@ -234,39 +257,13 @@ export default function DrawContent() {
             </div>
 
             {/* Save Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
+            <div className="flex flex-col items-center gap-1 px-2">
               <div className="flex gap-2 pt-1">
                 <button onClick={() => save('png')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">PNG</button>
                 <button onClick={() => save('jpg')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">JPG</button>
                 <button onClick={() => alert('SVG export coming soon!')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">SVG</button>
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Save As</span>
-            </div>
-
-            {/* Size Group */}
-            <div className="flex flex-col items-center gap-1 px-2">
-              <div className="flex items-center gap-3 pt-1">
-                <input 
-                  type="range" 
-                  min="0.5" 
-                  max={isEraser ? "100" : "50"}
-                  step="0.5"
-                  disabled={activeTool === 'pencil' && !isEraser}
-                  value={isEraser ? eraserWidth : maxWidth} 
-                  onChange={(e) => {
-                    const val = parseFloat(e.target.value);
-                    if (isEraser) {
-                      setEraserWidth(val);
-                    } else {
-                      setMaxWidth(val);
-                      setMinWidth(val / 3);
-                    }
-                  }}
-                  className={`w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
-                />
-                <span className="text-[10px] font-bold w-8">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
-              </div>
-              <span className="text-[9px] text-gray-500 font-medium uppercase">{isEraser ? 'Eraser' : activeTool === 'pencil' ? 'Pencil' : 'Brush'} Size</span>
             </div>
           </div>
 
