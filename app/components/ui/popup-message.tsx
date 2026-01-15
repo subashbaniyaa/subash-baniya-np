@@ -40,8 +40,8 @@ export default function PopUpMessage() {
         >
           <motion.button
             onClick={() => setIsVisible(false)}
-            whileHover={{ scale: 1.1, rotate: 90 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
             className="absolute top-3 right-3 text-white/80 hover:text-white transition-colors p-1"
             aria-label="Close"
           >
