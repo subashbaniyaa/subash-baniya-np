@@ -21,10 +21,10 @@ export default function Hero() {
   const hoveringRef = useRef(false);
 
   const { scrollY } = useScroll();
-  const yRange = useTransform(scrollY, [0, 500], [0, -100]);
+  const yRange = useTransform(scrollY, [0, 500], [0, -200]);
   const springY = useSpring(yRange, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 150,
+    damping: 15,
     restDelta: 0.001
   });
 
