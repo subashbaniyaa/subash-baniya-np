@@ -99,15 +99,17 @@ export default function Spider() {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         const colors = ['red', 'green', 'yellow', '#3B82F6', 'brown', 'orange', 'purple', 'gray'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        setColor(randomColor);
+        setColor((prevColor) => {
+          const otherColors = colors.filter((c) => c !== prevColor);
+          return otherColors[Math.floor(Math.random() * otherColors.length)];
+        });
         gsap.killTweensOf(spider);
         gsap.set(spider, { top: '-350px' });
         gsap.to(spider, {
           top: '35%',
           duration: 4,
           ease: 'elastic.out(1, 0.3)',
-          delay: 0.1
+          delay: 0.1,
         });
       }
     };
