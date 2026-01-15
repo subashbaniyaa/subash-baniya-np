@@ -152,30 +152,21 @@ export default function DrawContent() {
           {/* MS Paint Style Toolbar */}
           <div className="bg-[#f3f3f3] dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 rounded-xl p-2 flex flex-wrap items-stretch gap-4 shadow-sm">
             
-            {/* Clipboard/Image Group */}
+            {/* Tools Group */}
             <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
               <div className="flex gap-2">
-                <button className="p-2 hover:bg-white dark:hover:bg-white/5 rounded-md transition-all flex flex-col items-center gap-1">
-                  <MdOutlinePhotoLibrary size={20} className="text-blue-500" />
-                  <span className="text-[10px]">Image</span>
-                </button>
                 <div className="flex flex-col gap-1">
                   <button onClick={undo} disabled={undoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30"><IoArrowBack size={14}/></button>
                   <button onClick={redo} disabled={redoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30"><IoArrowForward size={14}/></button>
                 </div>
-              </div>
-              <span className="text-[9px] text-gray-500 font-medium">Image</span>
-            </div>
-
-            {/* Tools Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="grid grid-cols-3 gap-1">
-                <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`}><IoPencil size={16}/></button>
-                <button className="p-1.5 rounded hover:bg-white/50"><IoColorFill size={16}/></button>
-                <button className="p-1.5 rounded hover:bg-white/50"><IoText size={16}/></button>
-                <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`}><LuEraser size={16}/></button>
-                <button className="p-1.5 rounded hover:bg-white/50"><IoImage size={16}/></button>
-                <button className="p-1.5 rounded hover:bg-white/50"><IoSearch size={16}/></button>
+                <div className="grid grid-cols-3 gap-1">
+                  <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`}><IoPencil size={16}/></button>
+                  <button className="p-1.5 rounded hover:bg-white/50"><IoColorFill size={16}/></button>
+                  <button className="p-1.5 rounded hover:bg-white/50"><IoText size={16}/></button>
+                  <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`}><LuEraser size={16}/></button>
+                  <button className="p-1.5 rounded hover:bg-white/50"><IoImage size={16}/></button>
+                  <button className="p-1.5 rounded hover:bg-white/50"><IoSearch size={16}/></button>
+                </div>
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Tools</span>
             </div>
@@ -187,18 +178,6 @@ export default function DrawContent() {
                 <span className="text-[10px]">Brushes</span>
               </button>
               <span className="text-[9px] text-gray-500 font-medium">Brushes</span>
-            </div>
-
-            {/* Shapes Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="grid grid-cols-4 gap-1 p-1 bg-white dark:bg-black/20 rounded-md border border-gray-200 dark:border-white/5">
-                {[1,2,3,4,5,6,7,8].map(i => (
-                  <div key={i} className="w-5 h-5 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-white/5 rounded cursor-pointer">
-                    <IoShapesOutline size={12} />
-                  </div>
-                ))}
-              </div>
-              <span className="text-[9px] text-gray-500 font-medium">Shapes</span>
             </div>
 
             {/* Colors Group */}
@@ -224,15 +203,6 @@ export default function DrawContent() {
                 </button>
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Colors</span>
-            </div>
-
-            {/* Layers/View Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-l border-gray-300 dark:border-white/10">
-              <button className="p-2 hover:bg-white dark:hover:bg-white/5 rounded-md transition-all flex flex-col items-center gap-1">
-                <LuLayers size={20} className="text-gray-500" />
-                <span className="text-[10px]">Layers</span>
-              </button>
-              <span className="text-[9px] text-gray-500 font-medium">Layers</span>
             </div>
           </div>
 
