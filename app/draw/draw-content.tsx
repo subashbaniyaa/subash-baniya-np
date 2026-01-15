@@ -139,9 +139,9 @@ export default function DrawContent() {
           {/* Minimal Toolbar */}
           <div className="relative group">
             {/* Top Blue Decorative Line for Toolbar */}
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+            <div className="w-full border-b border-primary-500 mb-6" />
             
-            <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between py-6">
+            <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between pb-6">
               <div className="flex items-center gap-1">
                 <button onClick={undo} disabled={undoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Undo"><IoArrowBack size={18}/></button>
                 <button onClick={redo} disabled={redoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Redo"><IoArrowForward size={18}/></button>
@@ -197,16 +197,16 @@ export default function DrawContent() {
               </div>
             </div>
             {/* Bottom Blue Decorative Line for Toolbar */}
-            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+            <div className="w-full border-b border-primary-500" />
           </div>
 
           {/* Canvas Area */}
           <div className="relative">
-            <div className="relative h-[65vh] w-full rounded-2xl overflow-hidden bg-white dark:bg-black/20 transition-colors duration-500" style={{ backgroundColor: bgColor }}>
+            <div className="relative h-[65vh] w-full rounded-2xl overflow-hidden bg-white dark:bg-black/20 transition-colors duration-500 mt-6" style={{ backgroundColor: bgColor }}>
               <canvas ref={canvasRef} className="h-full w-full cursor-crosshair touch-none" />
             </div>
             {/* Bottom Blue Decorative Line */}
-            <div className="absolute -bottom-6 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+            <div className="w-full border-b border-primary-500 mt-6" />
           </div>
         </div>
       </div>
