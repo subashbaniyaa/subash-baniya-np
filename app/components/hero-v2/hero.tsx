@@ -28,6 +28,21 @@ export default function Hero() {
     restDelta: 0.001
   });
 
+  // Handle spring reset when scroll stops
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    const handleScroll = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        // If scroll hasn't moved for 100ms, we can assume it stopped
+        // But useSpring will handle the return if we reset the value it's tracking
+        // Actually, better to just let it return to 0 when at top
+      }, 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     // Trigger animation on mount
     linkedinRef.current?.startAnimation?.();
@@ -50,16 +65,28 @@ export default function Hero() {
 
   return (
     <SplashCursor
-      containerClassName="min-h-svh w-screen"
+      containerClassName="h-svh w-screen overflow-hidden"
       usePrimaryColors={true}
     >
-      <main className="relative min-h-svh w-screen overflow-auto">
-        <div className="min-h-[150vh] w-full relative">
+      <main 
+        className="relative h-svh w-screen overflow-y-auto overflow-x-hidden"
+        onScroll={(e) => {
+          const target = e.currentTarget;
+          if (target.scrollTop > 0) {
+            const timer = (target as any)._scrollTimer;
+            if (timer) clearTimeout(timer);
+            (target as any)._scrollTimer = setTimeout(() => {
+              target.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 50);
+          }
+        }}
+      >
+        <div className="h-[150vh] w-full relative pointer-events-none">
           <motion.div
             style={{ y: springY }}
-            className={classNames('relative w-full', merryWeather.className)}
+            className="fixed inset-0 h-svh flex items-center justify-center pointer-events-auto"
           >
-            <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
+            <div className={classNames('relative max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14', merryWeather.className)}>
               <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl">
                 <span>
                   Hi, welcome to my{' '}
