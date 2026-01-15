@@ -213,7 +213,7 @@ export default function DrawContent() {
             </div>
 
             {/* Colors Group */}
-            <div className="flex flex-col items-center gap-1 px-2 flex-1">
+            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
               <div className="flex items-center gap-3">
                 <div className="flex flex-col items-center gap-1">
                   <div className="w-8 h-8 rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: penColor }} />
@@ -232,12 +232,22 @@ export default function DrawContent() {
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Colors</span>
             </div>
+
+            {/* Save Group */}
+            <div className="flex flex-col items-center gap-1 px-2">
+              <div className="flex gap-2 pt-1">
+                <button onClick={() => save('png')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">PNG</button>
+                <button onClick={() => save('jpg')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">JPG</button>
+                <button onClick={() => alert('SVG export coming soon!')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">SVG</button>
+              </div>
+              <span className="text-[9px] text-gray-500 font-medium">Save As</span>
+            </div>
           </div>
 
           {/* Canvas Area */}
           <div className="relative group/canvas">
             {/* Sidebar Controls (Size) */}
-            <div className="absolute left-[-50px] top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 opacity-0 group-hover/canvas:opacity-100 transition-opacity">
+            <div className="absolute left-[-50px] top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 opacity-0 group-hover/canvas:opacity-100 transition-opacity z-10">
               <div className="bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 p-2 rounded-full shadow-lg flex flex-col items-center gap-2">
                 <span className="text-[8px] font-bold uppercase">{isEraser ? 'Eraser' : activeTool === 'pencil' ? 'Pencil' : 'Brush'}</span>
                 <input 
@@ -263,8 +273,8 @@ export default function DrawContent() {
               </div>
             </div>
 
-            <div className="relative h-[70vh] w-full bg-[#f0f0f0] dark:bg-black/40 rounded-lg p-4 overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
-               <div className="w-full h-full bg-white relative mx-auto" style={{ backgroundColor: bgColor }}>
+            <div className="w-full h-[75vh] flex items-center justify-center p-4">
+               <div className="w-full h-full relative border-2 border-dashed border-gray-300 dark:border-white/20 rounded-lg overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <canvas 
                     ref={canvasRef} 
                     className="w-full h-full touch-none" 
@@ -280,25 +290,15 @@ export default function DrawContent() {
             </div>
           </div>
 
-          {/* Bottom Bar */}
-          <div className="flex justify-between items-center px-4 py-2 bg-[#f3f3f3] dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 rounded-lg text-[10px] text-gray-500">
-            <div className="flex gap-4">
-              <div className="flex items-center gap-1">
-                <IoHomeOutline />
-                <span>1727 x 648px</span>
-              </div>
-              <div className="flex items-center gap-1 text-primary-500">
-                <button onClick={() => clear()} className="hover:underline">Reset Canvas</button>
-              </div>
-            </div>
-            <div className="flex gap-4 items-center">
-              <div className="flex gap-2">
-                <button onClick={() => save('png')} className="hover:text-black dark:hover:text-white transition-colors uppercase font-bold tracking-tighter">Save PNG</button>
-                <button onClick={() => save('jpg')} className="hover:text-black dark:hover:text-white transition-colors uppercase font-bold tracking-tighter">Save JPG</button>
-              </div>
-              <div className="w-px h-3 bg-gray-300" />
-              <span>100%</span>
-              <Link href="/" className="text-primary-500 hover:underline">Return Home</Link>
+          {/* Footer Navigation */}
+          <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center">
+            <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none text-poppins text-xs">Return to homepage</Link>
+            <div className="flex gap-4 items-center text-[10px] text-gray-400">
+               <div className="flex items-center gap-1">
+                  <IoHomeOutline />
+                  <span>1727 x 648px</span>
+               </div>
+               <span>100%</span>
             </div>
           </div>
         </div>
