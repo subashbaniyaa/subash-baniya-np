@@ -23,9 +23,12 @@ export default function Spider() {
     // Reset position before starting animation
     gsap.set(spider, { top: '-350px' });
 
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    const targetTop = isMobile ? '55%' : '35%';
+
     // Initial drop animation
     gsap.to(spider, {
-      top: '35%',
+      top: targetTop,
       duration: 4,
       ease: 'elastic.out(1, 0.3)',
       delay: 0.1,
@@ -101,10 +104,13 @@ export default function Spider() {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
+        const isMobileVis = window.matchMedia('(max-width: 767px)').matches;
+        const targetTopVis = isMobileVis ? '55%' : '35%';
+        
         gsap.killTweensOf(spider);
         gsap.set(spider, { top: '-350px' });
         gsap.to(spider, {
-          top: '35%',
+          top: targetTopVis,
           duration: 4,
           ease: 'elastic.out(1, 0.3)',
           delay: 0.05,
