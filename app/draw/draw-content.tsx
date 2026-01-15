@@ -206,51 +206,76 @@ export default function DrawContent() {
 
             {/* Background Group */}
             <div className="flex flex-col items-center justify-center px-2 border-r border-gray-300 dark:border-white/10 min-h-[56px]">
-              <div className="grid grid-cols-5 gap-1">
-                {[
-                  { label: 'T', value: 'transparent', title: 'Transparent' },
-                  { label: 'W', value: '#ffffff', title: 'White' },
-                  { label: 'G', value: '#f8fafc', title: 'Soft Gray' },
-                  { label: 'N', value: '#0f172a', title: 'Deep Navy' },
-                  { label: 'B', value: '#000000', title: 'True Black' },
-                  { label: 'S', value: '#fecaca', title: 'Soft Red' },
-                  { label: 'P', value: '#e9d5ff', title: 'Soft Purple' },
-                  { label: 'Y', value: '#fef08a', title: 'Soft Yellow' },
-                  { label: 'A', value: '#99f6e4', title: 'Soft Teal' },
-                  { label: 'O', value: '#fed7aa', title: 'Soft Orange' },
-                  { label: 'L', value: '#dcfce7', title: 'Soft Green' },
-                  { label: 'V', value: '#f5f3ff', title: 'Soft Violet' },
-                  { label: 'M', value: '#fff1f2', title: 'Soft Rose' },
-                  { label: 'K', value: '#f0f9ff', title: 'Soft Sky' },
-                  { label: 'E', value: '#ecfeff', title: 'Soft Cyan' },
-                  { label: 'C', value: '#fff7ed', title: 'Soft Cream' },
-                  { label: 'Z', value: '#334155', title: 'Slate' },
-                  { label: 'H', value: '#475569', title: 'Steel' },
-                  { label: 'U', value: '#1e293b', title: 'Midnight' },
-                  { label: 'D', value: '#422006', title: 'Deep Wood' }
-                ].map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => setBgColor(option.value)}
-                    className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border shadow-sm ${
-                      bgColor === option.value 
-                        ? 'ring-2 ring-primary-500 border-white' 
-                        : 'border-gray-200 dark:border-white/10'
-                    }`}
-                    style={{ 
-                      backgroundColor: option.value === 'transparent' ? 'white' : option.value,
-                      backgroundImage: option.value === 'transparent' 
-                        ? 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)' 
-                        : 'none',
-                      backgroundSize: '4px 4px',
-                      backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
-                      color: ['transparent', '#ffffff', '#f8fafc', '#fef08a', '#fed7aa', '#fecaca', '#e9d5ff', '#99f6e4', '#dcfce7', '#f5f3ff', '#fff1f2', '#f0f9ff', '#ecfeff', '#fff7ed'].includes(option.value) ? '#000' : '#fff'
-                    }}
-                    title={option.title}
-                  >
-                    {option.label}
-                  </button>
-                ))}
+              <div className="flex gap-1">
+                {/* Column 1: Two rows of 5 */}
+                <div className="grid grid-cols-5 gap-1">
+                  {[
+                    { label: 'T', value: 'transparent', title: 'Transparent' },
+                    { label: 'W', value: '#ffffff', title: 'White' },
+                    { label: 'G', value: '#f8fafc', title: 'Soft Gray' },
+                    { label: 'N', value: '#0f172a', title: 'Deep Navy' },
+                    { label: 'B', value: '#000000', title: 'True Black' },
+                    { label: 'S', value: '#fecaca', title: 'Soft Red' },
+                    { label: 'P', value: '#e9d5ff', title: 'Soft Purple' },
+                    { label: 'Y', value: '#fef08a', title: 'Soft Yellow' },
+                    { label: 'A', value: '#99f6e4', title: 'Soft Teal' },
+                    { label: 'O', value: '#fed7aa', title: 'Soft Orange' }
+                  ].map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => setBgColor(option.value)}
+                      className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border shadow-sm ${
+                        bgColor === option.value 
+                          ? 'ring-2 ring-primary-500 border-white' 
+                          : 'border-gray-200 dark:border-white/10'
+                      }`}
+                      style={{ 
+                        backgroundColor: option.value === 'transparent' ? 'white' : option.value,
+                        backgroundImage: option.value === 'transparent' 
+                          ? 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)' 
+                          : 'none',
+                        backgroundSize: '4px 4px',
+                        backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
+                        color: ['transparent', '#ffffff', '#f8fafc', '#fef08a', '#fed7aa', '#fecaca', '#e9d5ff', '#99f6e4'].includes(option.value) ? '#000' : '#fff'
+                      }}
+                      title={option.title}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+                {/* Column 2: Two rows of 5 */}
+                <div className="grid grid-cols-5 gap-1">
+                  {[
+                    { label: 'L', value: '#dcfce7', title: 'Soft Green' },
+                    { label: 'V', value: '#f5f3ff', title: 'Soft Violet' },
+                    { label: 'M', value: '#fff1f2', title: 'Soft Rose' },
+                    { label: 'K', value: '#f0f9ff', title: 'Soft Sky' },
+                    { label: 'E', value: '#ecfeff', title: 'Soft Cyan' },
+                    { label: 'C', value: '#fff7ed', title: 'Soft Cream' },
+                    { label: 'Z', value: '#334155', title: 'Slate' },
+                    { label: 'H', value: '#475569', title: 'Steel' },
+                    { label: 'U', value: '#1e293b', title: 'Midnight' },
+                    { label: 'D', value: '#422006', title: 'Deep Wood' }
+                  ].map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => setBgColor(option.value)}
+                      className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border shadow-sm ${
+                        bgColor === option.value 
+                          ? 'ring-2 ring-primary-500 border-white' 
+                          : 'border-gray-200 dark:border-white/10'
+                      }`}
+                      style={{ 
+                        backgroundColor: option.value,
+                        color: ['#dcfce7', '#f5f3ff', '#fff1f2', '#f0f9ff', '#ecfeff', '#fff7ed'].includes(option.value) ? '#000' : '#fff'
+                      }}
+                      title={option.title}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
