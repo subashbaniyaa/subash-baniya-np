@@ -212,14 +212,14 @@ export default function DrawContent() {
                   {[
                     { label: 'T', value: 'transparent', title: 'Transparent' },
                     { label: 'W', value: '#ffffff', title: 'White' },
-                    { label: 'G', value: '#f8fafc', title: 'Soft Gray' },
-                    { label: 'N', value: '#0f172a', title: 'Deep Navy' },
                     { label: 'B', value: '#000000', title: 'True Black' },
-                    { label: 'S', value: '#fecaca', title: 'Soft Red' },
-                    { label: 'P', value: '#e9d5ff', title: 'Soft Purple' },
-                    { label: 'Y', value: '#fef08a', title: 'Soft Yellow' },
-                    { label: 'A', value: '#99f6e4', title: 'Soft Teal' },
-                    { label: 'O', value: '#fed7aa', title: 'Soft Orange' }
+                    { label: 'R', value: '#ef4444', title: 'Red' },
+                    { label: 'G', value: '#22c55e', title: 'Green' },
+                    { label: 'B', value: '#3b82f6', title: 'Blue' },
+                    { label: 'Y', value: '#eab308', title: 'Yellow' },
+                    { label: 'P', value: '#a855f7', title: 'Purple' },
+                    { label: 'O', value: '#f97316', title: 'Orange' },
+                    { label: 'P', value: '#ec4899', title: 'Pink' }
                   ].map((option) => (
                     <button
                       key={option.value}
@@ -236,7 +236,7 @@ export default function DrawContent() {
                           : 'none',
                         backgroundSize: '4px 4px',
                         backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
-                        color: ['transparent', '#ffffff', '#f8fafc', '#fef08a', '#fed7aa', '#fecaca', '#e9d5ff', '#99f6e4'].includes(option.value) ? '#000' : '#fff'
+                        color: ['transparent', '#ffffff', '#eab308', '#fef08a'].includes(option.value) ? '#000' : '#fff'
                       }}
                       title={option.title}
                     >
@@ -247,16 +247,16 @@ export default function DrawContent() {
                 {/* Column 2: Two rows of 5 */}
                 <div className="grid grid-cols-5 gap-1">
                   {[
-                    { label: 'L', value: '#dcfce7', title: 'Soft Green' },
+                    { label: 'S', value: '#f8fafc', title: 'Soft Gray' },
+                    { label: 'D', value: '#1e293b', title: 'Deep Slate' },
+                    { label: 'I', value: '#4c1d95', title: 'Indigo' },
+                    { label: 'F', value: '#064e3b', title: 'Forest' },
+                    { label: 'M', value: '#701a75', title: 'Magenta' },
+                    { label: 'T', value: '#0d9488', title: 'Teal' },
+                    { label: 'C', value: '#fff7ed', title: 'Cream' },
+                    { label: 'S', value: '#fecaca', title: 'Soft Red' },
                     { label: 'V', value: '#f5f3ff', title: 'Soft Violet' },
-                    { label: 'M', value: '#fff1f2', title: 'Soft Rose' },
-                    { label: 'K', value: '#f0f9ff', title: 'Soft Sky' },
-                    { label: 'E', value: '#ecfeff', title: 'Soft Cyan' },
-                    { label: 'C', value: '#fff7ed', title: 'Soft Cream' },
-                    { label: 'Z', value: '#334155', title: 'Slate' },
-                    { label: 'H', value: '#475569', title: 'Steel' },
-                    { label: 'U', value: '#1e293b', title: 'Midnight' },
-                    { label: 'D', value: '#422006', title: 'Deep Wood' }
+                    { label: 'K', value: '#f0f9ff', title: 'Soft Sky' }
                   ].map((option) => (
                     <button
                       key={option.value}
@@ -268,7 +268,7 @@ export default function DrawContent() {
                       }`}
                       style={{ 
                         backgroundColor: option.value,
-                        color: ['#dcfce7', '#f5f3ff', '#fff1f2', '#f0f9ff', '#ecfeff', '#fff7ed'].includes(option.value) ? '#000' : '#fff'
+                        color: ['#f8fafc', '#fff7ed', '#fecaca', '#f5f3ff', '#f0f9ff'].includes(option.value) ? '#000' : '#fff'
                       }}
                       title={option.title}
                     >
