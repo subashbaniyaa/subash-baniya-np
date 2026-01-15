@@ -11,7 +11,7 @@ export default function Spider() {
   const [color, setColor] = useState('#3B82F6');
 
   useEffect(() => {
-    const colors = ['red', 'green', 'yellow', 'blue', 'brown', 'orange', 'purple', 'gray'];
+    const colors = ['red', 'green', 'yellow', '#3B82F6', 'brown', 'orange', 'purple', 'gray'];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     setColor(randomColor);
     
