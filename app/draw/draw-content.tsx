@@ -158,7 +158,6 @@ export default function DrawContent() {
       img.src = dataUrl;
       img.className = 'w-full h-full object-cover';
       bgRoot.appendChild(img);
-      alert('Drawing applied to background!');
     }
   };
 
