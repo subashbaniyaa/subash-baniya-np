@@ -24,13 +24,11 @@ export default function Spider() {
     gsap.set(spider, { top: '-350px' });
 
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    const targetTop = isMobile ? '70%' : '35%';
+    if (isMobile) return;
 
-    if (isMobile) {
-      gsap.set(container, { left: '50%' });
-    } else {
-      gsap.set(container, { left: '75%' });
-    }
+    const targetTop = '35%';
+
+    gsap.set(container, { left: '75%' });
 
     // Initial drop animation
     gsap.to(spider, {
