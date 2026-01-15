@@ -11,6 +11,7 @@ import { InstagramIcon } from '../layouts/icons/instagram-icon';
 import { GalleryIcon } from '../layouts/icons/gallery-icon';
 import Image from 'next/image';
 import SplashCursor from '../splash-cursor';
+import { motion, useSpring, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero() {
   const linkedinRef = useRef<any>(null);
@@ -18,6 +19,14 @@ export default function Hero() {
   const instagramRef = useRef<any>(null);
   const galleryRef = useRef<any>(null);
   const hoveringRef = useRef(false);
+
+  const { scrollY } = useScroll();
+  const yRange = useTransform(scrollY, [0, 500], [0, -100]);
+  const springY = useSpring(yRange, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     // Trigger animation on mount
@@ -45,7 +54,8 @@ export default function Hero() {
       usePrimaryColors={true}
     >
       <main className="relative min-h-svh w-screen overflow-hidden">
-        <div
+        <motion.div
+          style={{ y: springY }}
           className={classNames('relative min-h-svh', merryWeather.className)}
         >
             <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
@@ -108,7 +118,7 @@ export default function Hero() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
       </main>
     </SplashCursor>
   );
