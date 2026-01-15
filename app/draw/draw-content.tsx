@@ -322,10 +322,10 @@ export default function DrawContent() {
             <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none text-poppins text-xs">Return to homepage</Link>
             
             <div className="flex gap-4 items-center">
-                <div className="flex gap-2">
-                    <button onClick={() => save('png')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md bg-white/50 dark:bg-white/5 hover:bg-primary-500 hover:text-white hover:border-primary-500 transition-all uppercase shadow-sm">PNG</button>
-                    <button onClick={() => save('jpg')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md bg-white/50 dark:bg-white/5 hover:bg-primary-500 hover:text-white hover:border-primary-500 transition-all uppercase shadow-sm">JPG</button>
-                    <button onClick={() => alert('SVG export coming soon!')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md bg-white/50 dark:bg-white/5 hover:bg-primary-500 hover:text-white hover:border-primary-500 transition-all uppercase shadow-sm">SVG</button>
+                <div className="flex gap-4">
+                    <button onClick={() => save('png')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">PNG</button>
+                    <button onClick={() => save('jpg')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">JPG</button>
+                    <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">SVG</button>
                 </div>
                 <div className="w-px h-3 bg-gray-300" />
                 <div className="flex items-center gap-4 text-[10px] text-gray-400">
