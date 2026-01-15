@@ -96,9 +96,27 @@ export default function Spider() {
       });
     };
 
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        setColor(randomColor);
+        gsap.set(spider, { top: '-350px' });
+        gsap.to(spider, {
+          top: '35%',
+          duration: 4,
+          ease: 'elastic.out(1, 0.3)',
+          delay: 0.1
+        });
+      }
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [color]);
 
   return (
     <div ref={containerRef} className="fixed top-0 left-[75%] -translate-x-1/2 z-[0] opacity-100 pointer-events-none w-[200px] h-[400px]">
