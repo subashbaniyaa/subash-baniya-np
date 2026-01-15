@@ -21,6 +21,7 @@ export default function DrawContent() {
   const [maxWidth, setMaxWidth] = useState(2.5);
   const [undoStack, setUndoStack] = useState<string[]>([]);
   const [redoStack, setRedoStack] = useState<string[]>([]);
+  const [eraserWidth, setEraserWidth] = useState(10);
 
   const colors = [
     '#000000', '#7f7f7f', '#880015', '#ed1c24', '#ff7f27', '#fff200', '#22b14c', '#00a2e8', '#3f48cc', '#a349a4',
@@ -72,15 +73,10 @@ export default function DrawContent() {
     if (signaturePadRef.current) {
       signaturePadRef.current.penColor = isEraser ? (bgColor === 'transparent' ? '#ffffff' : bgColor) : penColor;
       signaturePadRef.current.compositeOperation = isEraser ? 'destination-out' : 'source-over';
+      signaturePadRef.current.minWidth = isEraser ? eraserWidth / 3 : minWidth;
+      signaturePadRef.current.maxWidth = isEraser ? eraserWidth : maxWidth;
     }
-  }, [penColor, isEraser, bgColor]);
-
-  useEffect(() => {
-    if (signaturePadRef.current) {
-      signaturePadRef.current.minWidth = minWidth;
-      signaturePadRef.current.maxWidth = maxWidth;
-    }
-  }, [minWidth, maxWidth]);
+  }, [penColor, isEraser, bgColor, eraserWidth, minWidth, maxWidth]);
 
   useEffect(() => {
     if (signaturePadRef.current) {
@@ -173,11 +169,44 @@ export default function DrawContent() {
 
             {/* Brushes Group */}
             <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <button className="p-2 hover:bg-white dark:hover:bg-white/5 rounded-md transition-all flex flex-col items-center gap-1">
-                <IoBrush size={24} className="text-primary-500" />
-                <span className="text-[10px]">Brushes</span>
-              </button>
-              <span className="text-[9px] text-gray-500 font-medium">Brushes</span>
+              <div className="flex gap-2">
+                <button onClick={() => clear()} className="p-2 hover:bg-white dark:hover:bg-white/5 rounded-md transition-all flex flex-col items-center gap-1 text-red-500">
+                  <IoTrash size={20} />
+                  <span className="text-[10px]">Reset</span>
+                </button>
+                <button className="p-2 hover:bg-white dark:hover:bg-white/5 rounded-md transition-all flex flex-col items-center gap-1">
+                  <IoBrush size={24} className="text-primary-500" />
+                  <span className="text-[10px]">Brushes</span>
+                </button>
+              </div>
+              <span className="text-[9px] text-gray-500 font-medium">Tools</span>
+            </div>
+
+            {/* Background Group */}
+            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
+              <div className="flex gap-2 pt-1">
+                {[
+                  { label: 'T', value: 'transparent', title: 'Transparent' },
+                  { label: 'W', value: '#ffffff', title: 'White' },
+                  { label: 'G', value: '#f8fafc', title: 'Soft Gray' },
+                  { label: 'N', value: '#0f172a', title: 'Deep Navy' },
+                  { label: 'B', value: '#000000', title: 'True Black' }
+                ].map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => setBgColor(option.value)}
+                    className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold transition-all border ${
+                      bgColor === option.value 
+                        ? 'bg-primary-500 border-primary-500 text-white' 
+                        : 'bg-white dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-400'
+                    }`}
+                    title={option.title}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+              <span className="text-[9px] text-gray-500 font-medium">Background</span>
             </div>
 
             {/* Colors Group */}
@@ -211,17 +240,21 @@ export default function DrawContent() {
             {/* Sidebar Controls (Size) */}
             <div className="absolute left-[-50px] top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 opacity-0 group-hover/canvas:opacity-100 transition-opacity">
               <div className="bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 p-2 rounded-full shadow-lg flex flex-col items-center gap-2">
-                <span className="text-[8px] font-bold">SIZE</span>
+                <span className="text-[8px] font-bold uppercase">{isEraser ? 'Eraser' : 'Brush'}</span>
                 <input 
                   type="range" 
                   min="0.5" 
-                  max="20" 
+                  max={isEraser ? "50" : "20"}
                   step="0.5"
-                  value={maxWidth} 
+                  value={isEraser ? eraserWidth : maxWidth} 
                   onChange={(e) => {
                     const val = parseFloat(e.target.value);
-                    setMaxWidth(val);
-                    setMinWidth(val / 3);
+                    if (isEraser) {
+                      setEraserWidth(val);
+                    } else {
+                      setMaxWidth(val);
+                      setMinWidth(val / 3);
+                    }
                   }}
                   className="h-32 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full w-1"
                   style={{ writingMode: 'bt-lr' as any, appearance: 'slider-vertical' as any }}
@@ -229,9 +262,9 @@ export default function DrawContent() {
               </div>
             </div>
 
-            <div className="relative h-[70vh] w-full bg-[#f0f0f0] dark:bg-black/40 rounded-lg p-4 overflow-hidden border border-gray-200 dark:border-white/10 shadow-inner">
+            <div className={`relative h-[70vh] w-full bg-[#f0f0f0] dark:bg-black/40 rounded-lg p-4 overflow-hidden border border-gray-200 dark:border-white/10 shadow-inner ${isEraser ? 'cursor-[url("/eraser-cursor.png"),_auto]' : 'cursor-[url("/pencil-cursor.png"),_auto]'}`}>
                <div className="w-full h-full bg-white shadow-lg relative mx-auto" style={{ backgroundColor: bgColor }}>
-                  <canvas ref={canvasRef} className="w-full h-full cursor-crosshair touch-none" />
+                  <canvas ref={canvasRef} className={`w-full h-full touch-none ${isEraser ? 'cursor-[url("https://api.iconify.design/lu:eraser.svg?color=black&width=24&height=24"),_auto]' : 'cursor-[url("https://api.iconify.design/io:pencil.svg?color=black&width=24&height=24"),_auto]'}`} />
                </div>
             </div>
           </div>
