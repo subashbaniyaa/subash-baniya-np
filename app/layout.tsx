@@ -64,7 +64,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <DisableContextMenu />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
+          enableSystem
           themes={['dark', 'light']}
         >
           <SpotifyPlayerProvider>
