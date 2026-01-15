@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
-import { IoHomeOutline, IoImage, IoSearch, IoTrash } from 'react-icons/io5';
-import { FaPencil, FaEraser, FaRotateLeft, FaRotateRight, FaBrush } from "react-icons/fa6";
+import { IoHomeOutline, IoImage, IoSearch, IoTrash, IoColorPaletteOutline } from 'react-icons/io5';
+import { FaPencil, FaEraser, FaRotateLeft, FaRotateRight, FaBrush, FaFont, FaThLarge, FaCloud } from "react-icons/fa6";
 import { LuLayers } from "react-icons/lu";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { BsStars } from "react-icons/bs";
 import Link from 'next/link';
+import { drawRainbow, drawPixel, drawMesh } from './brush-utils';
 
 export default function DrawContent() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -23,7 +24,8 @@ export default function DrawContent() {
   const [undoStack, setUndoStack] = useState<string[]>([]);
   const [redoStack, setRedoStack] = useState<string[]>([]);
   const [eraserWidth, setEraserWidth] = useState(10);
-  const [brushType, setBrushType] = useState<'marker'>('marker');
+  const [brushType, setBrushType] = useState<'pencil' | 'brush' | 'rainbow' | 'pixel' | 'mesh'>('pencil');
+  const pointsRef = useRef<{ x: number, y: number }[]>([]);
 
   const colors = [
     '#000000', '#7f7f7f', '#880015', '#ed1c24', '#ff7f27', '#fff200', '#22b14c', '#00a2e8', '#3f48cc', '#a349a4',
@@ -55,6 +57,32 @@ export default function DrawContent() {
         minWidth: minWidth,
         maxWidth: maxWidth
       });
+
+      const handleDraw = (e: any) => {
+        if (!canvasRef.current || isEraser) return;
+        const ctx = canvasRef.current.getContext('2d');
+        if (!ctx) return;
+
+        const rect = canvasRef.current.getBoundingClientRect();
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        const currentPoint = {
+          x: (e.clientX - rect.left) * ratio,
+          y: (e.clientY - rect.top) * ratio
+        };
+
+        if (activeTool === 'rainbow') {
+          const lastPoint = pointsRef.current[pointsRef.current.length - 1] || currentPoint;
+          drawRainbow(ctx, lastPoint, currentPoint, maxWidth * ratio);
+        } else if (activeTool === 'pixel') {
+          drawPixel(ctx, currentPoint, maxWidth * ratio, penColor);
+        } else if (activeTool === 'mesh') {
+          drawMesh(ctx, currentPoint, pointsRef.current, penColor);
+        }
+        pointsRef.current.push(currentPoint);
+      };
+
+      canvas.addEventListener('mousemove', handleDraw);
+      canvas.addEventListener('mousedown', () => { pointsRef.current = []; });
 
       signaturePadRef.current.addEventListener('endStroke', () => {
         const data = signaturePadRef.current?.toData();
@@ -169,6 +197,9 @@ export default function DrawContent() {
                 <div className="flex items-center justify-center gap-1">
                   <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
+                  <button onClick={() => { setIsEraser(false); setActiveTool('rainbow'); }} className={`p-1.5 rounded-full ${activeTool === 'rainbow' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Rainbow"><IoColorPaletteOutline size={14}/></button>
+                  <button onClick={() => { setIsEraser(false); setActiveTool('pixel'); }} className={`p-1.5 rounded-full ${activeTool === 'pixel' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pixel"><FaThLarge size={14}/></button>
+                  <button onClick={() => { setIsEraser(false); setActiveTool('mesh'); }} className={`p-1.5 rounded-full ${activeTool === 'mesh' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Mesh"><FaCloud size={14}/></button>
                   <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
                 </div>
                 <div className="flex items-center justify-center gap-1">
