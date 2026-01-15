@@ -10,18 +10,7 @@ export default function Header({ title }: { title: string }) {
         beVietnamPro.className,
       )}
     >
-      {title && (
-        <>
-          <Link
-            href="/"
-            className="flex items-center text-primary-500 outline-0 hover:translate-x-[-4px] transition-transform duration-200 group"
-          >
-            <span className={`text-2xl font-bold ${gistesy.className} whitespace-nowrap`}>← </span>
-          </Link>
-          <div className="mx-3 w-full border-b border-primary-500" />
-        </>
-      )}
-      {!title && <div className="w-full border-b border-primary-500" />}
+      <div className="w-full border-b border-primary-500" />
       {title && (
         <div className="flex items-center gap-2 flex-1 min-w-0">
           <span
