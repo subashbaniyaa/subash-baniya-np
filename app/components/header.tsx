@@ -32,14 +32,6 @@ export default function Header({ title }: { title: string }) {
           >
             {title}
           </span>
-          {title === 'Articles' && (
-            <Link 
-              href="/archive" 
-              className="text-primary-500 hover:underline text-sm md:text-base font-medium whitespace-nowrap shrink-0"
-            >
-              Archive
-            </Link>
-          )}
         </div>
       )}
     </div>
