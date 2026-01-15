@@ -30,6 +30,8 @@ export default function DrawContent() {
     '#ffffff', '#c3c3c3', '#b97a57', '#ffaec9', '#ffc90e', '#efe4b0', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7'
   ];
 
+  const [isEmpty, setIsEmpty] = useState(true);
+
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -66,6 +68,7 @@ export default function DrawContent() {
       });
 
       signaturePadRef.current.addEventListener('endStroke', () => {
+        setIsEmpty(false);
         const data = signaturePadRef.current?.toData();
         if (data) {
           setUndoStack(prev => [...prev, JSON.stringify(data)]);
@@ -139,6 +142,7 @@ export default function DrawContent() {
     signaturePadRef.current?.clear();
     setUndoStack([]);
     setRedoStack([]);
+    setIsEmpty(true);
   };
 
   const applyToBackground = () => {
@@ -364,7 +368,9 @@ export default function DrawContent() {
                 <button onClick={() => save('png')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">PNG</button>
                 <button onClick={() => save('jpg')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">JPG</button>
                 <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">SVG</button>
-                <button onClick={applyToBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Apply to background</button>
+                {!isEmpty && (
+                  <button onClick={applyToBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Apply to background</button>
+                )}
               </div>
               <div className="w-px h-3 bg-gray-300" />
               <div className="flex items-center gap-4 text-[10px] text-gray-400">

@@ -6,6 +6,7 @@ import { SpotifyPlayerProvider } from 'app/components/contexts/spotify-player-co
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 import ThemeSwitch from './components/layouts/theme-switch/theme-switch';
+import { usePathname } from 'next/navigation';
 import { mukta, beVietnamPro, boringSans, boringSansWithNumberFallback, poppins } from './fonts';
 import DisableContextMenu from './components/disable-context-menu';
 import './tailwind.css';
@@ -36,6 +37,13 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  return <LayoutContent>{children}</LayoutContent>;
+}
+
+function LayoutContent({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const showBackground = pathname === '/' || pathname === '/draw';
+
   return (
     <html lang="en" suppressHydrationWarning className={`${mukta.className} ${beVietnamPro.variable} ${boringSans.variable} ${boringSansWithNumberFallback.variable} ${poppins.variable}`}>
       <head>
@@ -61,7 +69,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
       <body className="bg-white text-black antialiased dark:bg-black dark:text-white selection:bg-primary-500 selection:text-white">
-        <div id="drawing-bg-root" className="fixed inset-0 pointer-events-none z-[-1] opacity-50" />
+        {showBackground && <div id="drawing-bg-root" className="fixed inset-0 pointer-events-none z-[-1] opacity-50" />}
         <DisableContextMenu />
         <ThemeProvider
           attribute="class"
