@@ -234,7 +234,7 @@ export default function DrawContent() {
             </div>
 
             {/* Save Group */}
-            <div className="flex flex-col items-center gap-1 px-2">
+            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
               <div className="flex gap-2 pt-1">
                 <button onClick={() => save('png')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">PNG</button>
                 <button onClick={() => save('jpg')} className="px-3 py-1 text-[10px] font-bold border border-gray-200 dark:border-white/10 rounded-md hover:bg-white dark:hover:bg-white/5 transition-all">JPG</button>
@@ -242,14 +242,10 @@ export default function DrawContent() {
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Save As</span>
             </div>
-          </div>
 
-          {/* Canvas Area */}
-          <div className="relative group/canvas">
-            {/* Sidebar Controls (Size) */}
-            <div className="absolute left-[-50px] top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 opacity-0 group-hover/canvas:opacity-100 transition-opacity z-10">
-              <div className="bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 p-2 rounded-full shadow-lg flex flex-col items-center gap-2">
-                <span className="text-[8px] font-bold uppercase">{isEraser ? 'Eraser' : activeTool === 'pencil' ? 'Pencil' : 'Brush'}</span>
+            {/* Size Group */}
+            <div className="flex flex-col items-center gap-1 px-2">
+              <div className="flex items-center gap-3 pt-1">
                 <input 
                   type="range" 
                   min="0.5" 
@@ -266,13 +262,16 @@ export default function DrawContent() {
                       setMinWidth(val / 3);
                     }
                   }}
-                  className={`h-32 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full w-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
-                  style={{ writingMode: 'bt-lr' as any, appearance: 'slider-vertical' as any }}
+                  className={`w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
                 />
-                <span className="text-[8px] font-bold">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
+                <span className="text-[10px] font-bold w-8">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
               </div>
+              <span className="text-[9px] text-gray-500 font-medium uppercase">{isEraser ? 'Eraser' : activeTool === 'pencil' ? 'Pencil' : 'Brush'} Size</span>
             </div>
+          </div>
 
+          {/* Canvas Area */}
+          <div className="relative group/canvas">
             <div className="w-full h-[75vh] flex items-center justify-center p-4">
                <div className="w-full h-full relative border-2 border-dashed border-gray-300 dark:border-white/20 rounded-lg overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <canvas 
