@@ -362,23 +362,20 @@ export default function DrawContent() {
 
           {/* Footer Navigation */}
           <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center">
-            <div className="flex gap-4 items-center">
-              <div className="flex gap-4">
-                <button onClick={() => save('png')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">PNG</button>
-                <button onClick={() => save('jpg')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">JPG</button>
-                <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">SVG</button>
-                {!isEmpty && (
-                  <button onClick={applyToBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Apply to background</button>
-                )}
+            <div className="flex gap-4">
+              <button onClick={() => save('png')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">PNG</button>
+              <button onClick={() => save('jpg')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">JPG</button>
+              <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">SVG</button>
+              {!isEmpty && (
+                <button onClick={applyToBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Apply to background</button>
+              )}
+            </div>
+            <div className="flex items-center gap-4 text-[10px] text-gray-400">
+              <div className="flex items-center gap-1">
+                <IoHomeOutline />
+                <span>{canvasSize.width} x {canvasSize.height}px</span>
               </div>
-              <div className="w-px h-3 bg-gray-300" />
-              <div className="flex items-center gap-4 text-[10px] text-gray-400">
-                <div className="flex items-center gap-1">
-                  <IoHomeOutline />
-                  <span>{canvasSize.width} x {canvasSize.height}px</span>
-                </div>
-                <span>100%</span>
-              </div>
+              <span>100%</span>
             </div>
           </div>
         </div>
