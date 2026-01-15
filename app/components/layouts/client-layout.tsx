@@ -31,14 +31,23 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (bgImage && showBackground) {
-      const bgRoot = document.getElementById('drawing-bg-root');
-      if (bgRoot) {
-        bgRoot.innerHTML = '';
-        const img = new Image();
-        img.src = bgImage;
-        img.className = 'w-full h-full object-cover';
-        bgRoot.appendChild(img);
-      }
+      const applyBg = () => {
+        const bgRoot = document.getElementById('drawing-bg-root');
+        if (bgRoot) {
+          bgRoot.innerHTML = '';
+          const img = new Image();
+          img.src = bgImage;
+          img.className = 'w-full h-full object-cover';
+          bgRoot.appendChild(img);
+        }
+      };
+
+      // Apply immediately
+      applyBg();
+
+      // Also apply after a short delay to ensure DOM is fully ready
+      const timer = setTimeout(applyBg, 100);
+      return () => clearTimeout(timer);
     }
   }, [pathname, showBackground, bgImage]);
 
