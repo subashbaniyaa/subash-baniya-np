@@ -5,12 +5,14 @@ import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
 import { IoArrowBack, IoArrowForward, IoTrash, IoDownload, IoImage, IoBrush, IoHomeOutline } from 'react-icons/io5';
+import { LuEraser } from "react-icons/lu";
 import Link from 'next/link';
 
 export default function DrawContent() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const signaturePadRef = useRef<SignaturePad | null>(null);
   const [penColor, setPenColor] = useState('#3B82F6');
+  const [isEraser, setIsEraser] = useState(false);
   const [bgColor, setBgColor] = useState('rgba(0,0,0,0)');
   const [minWidth, setMinWidth] = useState(0.5);
   const [maxWidth, setMaxWidth] = useState(2.5);
@@ -57,9 +59,10 @@ export default function DrawContent() {
 
   useEffect(() => {
     if (signaturePadRef.current) {
-      signaturePadRef.current.penColor = penColor;
+      signaturePadRef.current.penColor = isEraser ? (bgColor === 'rgba(0,0,0,0)' ? '#ffffff' : bgColor) : penColor;
+      signaturePadRef.current.compositeOperation = isEraser ? 'destination-out' : 'source-over';
     }
-  }, [penColor]);
+  }, [penColor, isEraser, bgColor]);
 
   useEffect(() => {
     if (signaturePadRef.current) {
@@ -149,6 +152,26 @@ export default function DrawContent() {
               </div>
 
               <div className="flex flex-wrap gap-6 items-center">
+                {/* Tools */}
+                <div className="flex items-center gap-1">
+                  <button 
+                    onClick={() => setIsEraser(false)} 
+                    className={`p-2 rounded-full transition-all ${!isEraser ? 'bg-primary-500 text-white shadow-sm' : 'hover:bg-gray-100 dark:hover:bg-white/5 text-gray-400'}`}
+                    title="Brush"
+                  >
+                    <IoBrush size={18}/>
+                  </button>
+                  <button 
+                    onClick={() => setIsEraser(true)} 
+                    className={`p-2 rounded-full transition-all ${isEraser ? 'bg-primary-500 text-white shadow-sm' : 'hover:bg-gray-100 dark:hover:bg-white/5 text-gray-400'}`}
+                    title="Eraser"
+                  >
+                    <LuEraser size={18}/>
+                  </button>
+                </div>
+
+                <div className="w-px h-4 bg-gray-200 dark:bg-white/10 mx-2" />
+
                 {/* Color Picker */}
                 <div className="flex items-center gap-3">
                   <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Color</span>
