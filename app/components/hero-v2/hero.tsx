@@ -21,29 +21,6 @@ export default function Hero() {
   const galleryRef = useRef<any>(null);
   const hoveringRef = useRef(false);
 
-  const { scrollY } = useScroll();
-  const yRange = useTransform(scrollY, [0, 500], [0, -200]);
-  const springY = useSpring(yRange, {
-    stiffness: 150,
-    damping: 15,
-    restDelta: 0.001
-  });
-
-  // Handle spring reset when scroll stops
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    const handleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        // If scroll hasn't moved for 100ms, we can assume it stopped
-        // But useSpring will handle the return if we reset the value it's tracking
-        // Actually, better to just let it return to 0 when at top
-      }, 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   useEffect(() => {
     // Trigger animation on mount
     linkedinRef.current?.startAnimation?.();
@@ -66,28 +43,14 @@ export default function Hero() {
 
   return (
     <SplashCursor
-      containerClassName="h-svh w-screen overflow-hidden"
+      containerClassName="min-h-svh w-screen"
       usePrimaryColors={true}
     >
-      <main 
-        className="relative h-svh w-screen overflow-y-auto overflow-x-hidden"
-        onScroll={(e) => {
-          const target = e.currentTarget;
-          if (target.scrollTop > 0) {
-            const timer = (target as any)._scrollTimer;
-            if (timer) clearTimeout(timer);
-            (target as any)._scrollTimer = setTimeout(() => {
-              target.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 50);
-          }
-        }}
-      >
-        <div className="h-[150vh] w-full relative pointer-events-none">
-          <motion.div
-            style={{ y: springY }}
-            className="fixed inset-0 h-svh flex items-center justify-center pointer-events-auto"
-          >
-            <div className={classNames('relative max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14', merryWeather.className)}>
+      <main className="relative min-h-svh w-screen overflow-hidden">
+        <div
+          className={classNames('relative min-h-svh', merryWeather.className)}
+        >
+            <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
               <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl">
                 <span>
                   Hi, welcome to my{' '}
@@ -147,8 +110,7 @@ export default function Hero() {
                 />
               </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
       </main>
       <PopUpMessage />
     </SplashCursor>
