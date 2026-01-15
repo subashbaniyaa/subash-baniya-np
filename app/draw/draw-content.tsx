@@ -23,7 +23,7 @@ export default function DrawContent() {
   const [undoStack, setUndoStack] = useState<string[]>([]);
   const [redoStack, setRedoStack] = useState<string[]>([]);
   const [eraserWidth, setEraserWidth] = useState(10);
-  const [brushType, setBrushType] = useState<'normal' | 'air' | 'oil' | 'marker' | 'crayon'>('normal');
+  const [brushType, setBrushType] = useState<'marker'>('marker');
 
   const colors = [
     '#000000', '#7f7f7f', '#880015', '#ed1c24', '#ff7f27', '#fff200', '#22b14c', '#00a2e8', '#3f48cc', '#a349a4',
@@ -84,32 +84,11 @@ export default function DrawContent() {
         signaturePadRef.current.minWidth = 0.5;
         signaturePadRef.current.maxWidth = 1.5;
       } else {
-        // Brush
+        // Marker Brush (default)
         signaturePadRef.current.penColor = penColor;
         signaturePadRef.current.compositeOperation = 'source-over';
-        
-        // Apply brush types
-        switch(brushType) {
-          case 'air':
-            signaturePadRef.current.minWidth = minWidth * 0.1;
-            signaturePadRef.current.maxWidth = maxWidth * 2;
-            break;
-          case 'oil':
-            signaturePadRef.current.minWidth = minWidth * 0.8;
-            signaturePadRef.current.maxWidth = maxWidth;
-            break;
-          case 'marker':
-            signaturePadRef.current.minWidth = maxWidth * 0.9;
-            signaturePadRef.current.maxWidth = maxWidth;
-            break;
-          case 'crayon':
-            signaturePadRef.current.minWidth = minWidth * 0.5;
-            signaturePadRef.current.maxWidth = maxWidth * 1.2;
-            break;
-          default:
-            signaturePadRef.current.minWidth = minWidth;
-            signaturePadRef.current.maxWidth = maxWidth;
-        }
+        signaturePadRef.current.minWidth = maxWidth * 0.9;
+        signaturePadRef.current.maxWidth = maxWidth;
       }
     }
   }, [penColor, isEraser, activeTool, bgColor, eraserWidth, minWidth, maxWidth, brushType]);
@@ -210,15 +189,8 @@ export default function DrawContent() {
                 <div className="relative group/brushes">
                   <button className="p-2 hover:bg-white dark:hover:bg-white/5 rounded-md transition-all flex flex-col items-center gap-1">
                     <IoBrush size={24} className="text-primary-500" />
-                    <span className="text-[10px]">Brushes</span>
+                    <span className="text-[10px]">Brush</span>
                   </button>
-                  <div className="absolute top-full left-0 mt-1 hidden group-hover/brushes:grid grid-cols-1 bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 rounded shadow-lg z-50 w-24 overflow-hidden">
-                    <button onClick={() => setBrushType('normal')} className={`px-2 py-1 text-[10px] text-left hover:bg-primary-500 hover:text-white ${brushType === 'normal' ? 'bg-primary-500/10' : ''}`}>Normal</button>
-                    <button onClick={() => setBrushType('air')} className={`px-2 py-1 text-[10px] text-left hover:bg-primary-500 hover:text-white ${brushType === 'air' ? 'bg-primary-500/10' : ''}`}>Air Brush</button>
-                    <button onClick={() => setBrushType('oil')} className={`px-2 py-1 text-[10px] text-left hover:bg-primary-500 hover:text-white ${brushType === 'oil' ? 'bg-primary-500/10' : ''}`}>Oil Brush</button>
-                    <button onClick={() => setBrushType('marker')} className={`px-2 py-1 text-[10px] text-left hover:bg-primary-500 hover:text-white ${brushType === 'marker' ? 'bg-primary-500/10' : ''}`}>Marker</button>
-                    <button onClick={() => setBrushType('crayon')} className={`px-2 py-1 text-[10px] text-left hover:bg-primary-500 hover:text-white ${brushType === 'crayon' ? 'bg-primary-500/10' : ''}`}>Crayon</button>
-                  </div>
                 </div>
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Tools</span>
