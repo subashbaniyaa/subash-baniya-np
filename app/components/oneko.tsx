@@ -8,7 +8,9 @@ import { useEffect, useRef } from 'react';
 export default function Oneko() {
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isReducedMotion) return;
+    const isMobileDevice = window.matchMedia('(max-width: 767px)').matches;
+    
+    if (isReducedMotion || isMobileDevice) return;
 
     const catEl = document.createElement('div');
     catEl.id = 'oneko';
