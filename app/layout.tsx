@@ -6,7 +6,7 @@ import { SpotifyPlayerProvider } from 'app/components/contexts/spotify-player-co
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 import ThemeSwitch from './components/layouts/theme-switch/theme-switch';
-import { mukta, beVietnamPro, boringSans, boringSansWithNumberFallback } from './fonts';
+import { mukta, beVietnamPro, boringSans, boringSansWithNumberFallback, poppins } from './fonts';
 import DisableContextMenu from './components/disable-context-menu';
 import './tailwind.css';
 
@@ -37,7 +37,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${mukta.className} ${beVietnamPro.variable} ${boringSans.variable} ${boringSansWithNumberFallback.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${mukta.className} ${beVietnamPro.variable} ${boringSans.variable} ${boringSansWithNumberFallback.variable} ${poppins.variable}`}>
       <head>
         <link
           rel="apple-touch-icon"

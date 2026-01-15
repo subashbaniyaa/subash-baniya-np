@@ -4,13 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
-import { IoArrowBack, IoArrowForward, IoTrash, IoDownload, IoColorPalette, IoImage } from 'react-icons/io5';
+import { IoArrowBack, IoArrowForward, IoTrash, IoDownload, IoColorPalette, IoImage, IoBrush } from 'react-icons/io5';
 
 export default function DrawPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const signaturePadRef = useRef<SignaturePad | null>(null);
   const [penColor, setPenColor] = useState('#3B82F6');
   const [bgColor, setBgColor] = useState('rgba(0,0,0,0)');
+  const [minWidth, setMinWidth] = useState(0.5);
+  const [maxWidth, setMaxWidth] = useState(2.5);
   const [undoStack, setUndoStack] = useState<string[]>([]);
   const [redoStack, setRedoStack] = useState<string[]>([]);
 
@@ -32,7 +34,9 @@ export default function DrawPage() {
 
       signaturePadRef.current = new SignaturePad(canvas, {
         backgroundColor: bgColor,
-        penColor: penColor
+        penColor: penColor,
+        minWidth: minWidth,
+        maxWidth: maxWidth
       });
 
       signaturePadRef.current.addEventListener('endStroke', () => {
@@ -55,6 +59,13 @@ export default function DrawPage() {
       signaturePadRef.current.penColor = penColor;
     }
   }, [penColor]);
+
+  useEffect(() => {
+    if (signaturePadRef.current) {
+      signaturePadRef.current.minWidth = minWidth;
+      signaturePadRef.current.maxWidth = maxWidth;
+    }
+  }, [minWidth, maxWidth]);
 
   useEffect(() => {
     if (signaturePadRef.current) {
@@ -101,7 +112,6 @@ export default function DrawPage() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // For JPG we need a white background if transparent
     const tempCanvas = document.createElement('canvas');
     tempCanvas.width = canvas.width;
     tempCanvas.height = canvas.height;
@@ -122,49 +132,72 @@ export default function DrawPage() {
 
   return (
     <PageContainer>
-      <Header title="Draw" />
-      
-      <div className="flex flex-col gap-6">
-        {/* Toolbar */}
-        <div className="flex flex-wrap gap-4 p-4 bg-gray-50 dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 items-center justify-between">
-          <div className="flex gap-2">
-            <button onClick={undo} disabled={undoStack.length === 0} className="p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-lg disabled:opacity-30 transition-all" title="Undo"><IoArrowBack size={20}/></button>
-            <button onClick={redo} disabled={redoStack.length === 0} className="p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-lg disabled:opacity-30 transition-all" title="Redo"><IoArrowForward size={20}/></button>
-            <div className="w-px h-6 bg-gray-300 dark:bg-white/20 mx-1" />
-            <button onClick={clear} className="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 rounded-lg transition-all" title="Clear"><IoTrash size={20}/></button>
+      <div className="font-poppins">
+        <Header title="Draw" />
+        
+        <div className="flex flex-col gap-6">
+          {/* Minimal Toolbar */}
+          <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between border-b border-gray-100 dark:border-white/5 pb-6">
+            <div className="flex items-center gap-1">
+              <button onClick={undo} disabled={undoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Undo"><IoArrowBack size={18}/></button>
+              <button onClick={redo} disabled={redoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Redo"><IoArrowForward size={18}/></button>
+              <div className="w-px h-4 bg-gray-200 dark:bg-white/10 mx-2" />
+              <button onClick={clear} className="p-2 hover:bg-red-50 dark:hover:bg-red-900/10 text-red-400 rounded-full transition-all" title="Clear"><IoTrash size={18}/></button>
+            </div>
+
+            <div className="flex flex-wrap gap-6 items-center">
+              {/* Color Picker */}
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Color</span>
+                <div className="relative group">
+                  <div className="w-6 h-6 rounded-full border border-gray-200 dark:border-white/10 overflow-hidden" style={{ backgroundColor: penColor }}>
+                    <input type="color" value={penColor} onChange={(e) => setPenColor(e.target.value)} className="absolute inset-0 opacity-0 cursor-pointer" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Stroke Width */}
+              <div className="flex items-center gap-3">
+                <IoBrush size={14} className="text-gray-400" />
+                <input 
+                  type="range" 
+                  min="0.5" 
+                  max="10" 
+                  step="0.5"
+                  value={maxWidth} 
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    setMaxWidth(val);
+                    setMinWidth(val / 3);
+                  }}
+                  className="w-24 accent-primary-500 h-1 bg-gray-200 dark:bg-white/10 rounded-full appearance-none cursor-pointer"
+                />
+              </div>
+
+              {/* Background Selection */}
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Canvas</span>
+                <select value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="bg-transparent text-xs font-semibold outline-none appearance-none cursor-pointer hover:text-primary-500 transition-colors">
+                  <option value="rgba(0,0,0,0)">Transparent</option>
+                  <option value="#ffffff">White</option>
+                  <option value="#f8fafc">Soft Gray</option>
+                  <option value="#0f172a">Deep Navy</option>
+                  <option value="#000000">True Black</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <button onClick={() => save('png')} className="px-4 py-1.5 text-xs font-bold border border-gray-200 dark:border-white/10 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-all">PNG</button>
+              <button onClick={() => save('jpg')} className="px-4 py-1.5 text-xs font-bold bg-black dark:bg-white text-white dark:text-black rounded-full hover:opacity-90 transition-all">JPG</button>
+            </div>
           </div>
 
-          <div className="flex gap-4 items-center">
-            <div className="flex items-center gap-2">
-              <IoColorPalette className="text-gray-500" />
-              <input type="color" value={penColor} onChange={(e) => setPenColor(e.target.value)} className="w-8 h-8 rounded cursor-pointer bg-transparent" title="Pen Color" />
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded border border-gray-400" style={{ backgroundColor: bgColor === 'rgba(0,0,0,0)' ? 'white' : bgColor }} />
-              <select value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="bg-transparent text-sm font-medium outline-none">
-                <option value="rgba(0,0,0,0)">Transparent</option>
-                <option value="#ffffff">White</option>
-                <option value="#f3f4f6">Light Gray</option>
-                <option value="#1f2937">Dark Gray</option>
-                <option value="#000000">Black</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="flex gap-2">
-            <button onClick={() => save('png')} className="flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-xl hover:opacity-90 transition-all text-sm font-bold shadow-lg shadow-primary-500/20"><IoImage /> PNG</button>
-            <button onClick={() => save('jpg')} className="flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-white text-white dark:text-black rounded-xl hover:opacity-90 transition-all text-sm font-bold"><IoDownload /> JPG</button>
+          {/* Canvas Area */}
+          <div className="relative h-[65vh] w-full rounded-2xl overflow-hidden bg-white dark:bg-black/20 transition-colors duration-500" style={{ backgroundColor: bgColor }}>
+            <canvas ref={canvasRef} className="h-full w-full cursor-crosshair touch-none" />
           </div>
         </div>
-
-        {/* Canvas Area */}
-        <div className="relative h-[65vh] w-full border-2 border-dashed border-gray-300 dark:border-white/20 rounded-3xl overflow-hidden bg-white dark:bg-black/40 shadow-inner">
-          <canvas ref={canvasRef} className="h-full w-full cursor-crosshair touch-none" style={{ backgroundColor: bgColor }} />
-        </div>
-
-        <p className="text-center text-sm text-gray-500 font-medium">
-          Create, edit, and export your drawings in high quality.
-        </p>
       </div>
     </PageContainer>
   );
