@@ -26,9 +26,10 @@ export default function Spider() {
     // Initial drop animation
     gsap.to(spider, {
       top: '35%',
-      duration: 4,
-      ease: 'elastic.out(1, 0.3)',
-      delay: 0.1
+      duration: 3.5,
+      ease: 'power3.out',
+      delay: 0.1,
+      force3D: true,
     });
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -41,8 +42,9 @@ export default function Spider() {
         gsap.to(pupil, {
           x: xPos * 5,
           y: yPos * 5,
-          duration: 0.5,
+          duration: 0.4,
           ease: 'power1.out',
+          force3D: true,
         });
       });
 
@@ -51,8 +53,9 @@ export default function Spider() {
         gsap.to(mouth, {
           x: xPos * 5,
           rotation: rotation,
-          duration: 0.5,
+          duration: 0.4,
           ease: 'power1.out',
+          force3D: true,
         });
       }
 
@@ -60,33 +63,37 @@ export default function Spider() {
       leftLegs.forEach((leg) => {
         gsap.to(leg, {
           rotation: Math.random() * xPos * yPos * 100,
-          duration: 1,
+          duration: 0.8,
           ease: 'power1.out',
           transformOrigin: 'right 50%',
+          force3D: true,
         });
       });
 
       rightLegs.forEach((leg) => {
         gsap.to(leg, {
           rotation: Math.random() * xPos * yPos * 100,
-          duration: 1,
+          duration: 0.8,
           ease: 'power1.out',
           transformOrigin: 'left 50%',
+          force3D: true,
         });
       });
 
       // Animate container rotation
       gsap.to(container, {
         rotation: rotation,
-        duration: 3,
-        ease: 'power1.inOut',
+        duration: 2.5,
+        ease: 'power2.inOut',
         transformOrigin: 'center top',
+        force3D: true,
         onComplete: () => {
           gsap.to(container, {
             rotation: 0,
-            duration: 2.5,
-            ease: 'elastic.out(1, 0.15)',
+            duration: 2,
+            ease: 'back.out(1.7)',
             transformOrigin: 'center top',
+            force3D: true,
           });
         },
       });
@@ -98,9 +105,10 @@ export default function Spider() {
         gsap.set(spider, { top: '-350px' });
         gsap.to(spider, {
           top: '35%',
-          duration: 4,
-          ease: 'elastic.out(1, 0.3)',
-          delay: 0.1,
+          duration: 3.5,
+          ease: 'power3.out',
+          delay: 0.05,
+          force3D: true,
         });
       }
     };
