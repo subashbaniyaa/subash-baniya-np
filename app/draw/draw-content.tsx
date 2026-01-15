@@ -287,7 +287,7 @@ export default function DrawContent() {
                       cursor: isEraser 
                         ? `url('data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="${eraserWidth}" height="${eraserWidth}" viewBox="0 0 ${eraserWidth} ${eraserWidth}"><rect x="0" y="0" width="${eraserWidth}" height="${eraserWidth}" fill="rgba(255,255,255,0.5)" stroke="black" stroke-width="1"/></svg>`)}') ${eraserWidth/2} ${eraserWidth/2}, auto`
                         : activeTool === 'brush'
-                        ? `crosshair`
+                        ? `url('data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><line x1="7.5" y1="0" x2="7.5" y2="15" stroke="black" stroke-width="1"/><line x1="0" y1="7.5" x2="15" y2="7.5" stroke="black" stroke-width="1"/></svg>`)}') 7.5 7.5, crosshair`
                         : `url('data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`)}') 1 15, auto`
                     }}
                   />
