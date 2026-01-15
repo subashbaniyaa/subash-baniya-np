@@ -138,7 +138,10 @@ export default function DrawContent() {
         <div className="flex flex-col gap-6">
           {/* Minimal Toolbar */}
           <div className="relative group">
-            <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between pb-6">
+            {/* Top Blue Decorative Line for Toolbar */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+            
+            <div className="flex flex-wrap gap-6 p-2 bg-transparent items-center justify-between py-6">
               <div className="flex items-center gap-1">
                 <button onClick={undo} disabled={undoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Undo"><IoArrowBack size={18}/></button>
                 <button onClick={redo} disabled={redoStack.length === 0} className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full disabled:opacity-20 transition-all" title="Redo"><IoArrowForward size={18}/></button>
@@ -193,7 +196,7 @@ export default function DrawContent() {
                 <button onClick={() => save('jpg')} className="px-4 py-1.5 text-xs font-bold bg-black dark:bg-white text-white dark:text-black rounded-full hover:opacity-90 transition-all">JPG</button>
               </div>
             </div>
-            {/* Top Blue Decorative Line */}
+            {/* Bottom Blue Decorative Line for Toolbar */}
             <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
           </div>
 
