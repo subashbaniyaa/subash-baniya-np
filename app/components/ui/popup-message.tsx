@@ -26,19 +26,12 @@ export default function PopUpMessage() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.9, transition: { duration: 0.4, ease: 'easeInOut' } }}
-          className="fixed bottom-8 left-8 z-[100] w-[280px] bg-primary-600 dark:bg-primary-500 text-white p-6 rounded-2xl shadow-2xl pointer-events-auto"
+          initial={{ opacity: 0, y: 50, x: '-50%', scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, x: '-50%', scale: 1 }}
+          exit={{ opacity: 0, y: 20, x: '-50%', scale: 0.9, transition: { duration: 0.4, ease: 'easeInOut' } }}
+          className="fixed bottom-8 left-1/2 z-[100] w-[280px] bg-primary-600 dark:bg-primary-500 text-white p-6 rounded-2xl shadow-2xl pointer-events-auto"
         >
-          <button
-            onClick={() => setIsVisible(false)}
-            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
-            aria-label="Close"
-          >
-            <IoClose size={20} />
-          </button>
-          <div className="space-y-2">
+          <div className="space-y-2 text-center">
             <h3 className="font-bold text-lg leading-tight">
               Pick any idea to get started
             </h3>
