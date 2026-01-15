@@ -36,9 +36,9 @@ export default function DrawPage() {
       });
 
       signaturePadRef.current.addEventListener('endStroke', () => {
-        const data = signaturePadRef.current?.toDataURL();
+        const data = signaturePadRef.current?.toData();
         if (data) {
-          setUndoStack(prev => [...prev, data]);
+          setUndoStack(prev => [...prev, JSON.stringify(data)]);
           setRedoStack([]);
         }
       });
@@ -73,7 +73,7 @@ export default function DrawPage() {
       setRedoStack(prev => [...prev, current]);
       
       if (newUndo.length > 0) {
-        signaturePadRef.current?.fromDataURL(newUndo[newUndo.length - 1]);
+        signaturePadRef.current?.fromData(JSON.parse(newUndo[newUndo.length - 1]));
       } else {
         signaturePadRef.current?.clear();
       }
@@ -85,7 +85,7 @@ export default function DrawPage() {
       const next = redoStack[redoStack.length - 1];
       setRedoStack(prev => prev.slice(0, -1));
       setUndoStack(prev => [...prev, next]);
-      signaturePadRef.current?.fromDataURL(next);
+      signaturePadRef.current?.fromData(JSON.parse(next));
     }
   };
 
