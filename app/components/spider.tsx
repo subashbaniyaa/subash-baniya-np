@@ -98,8 +98,10 @@ export default function Spider() {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
+        const colors = ['red', 'green', 'yellow', '#3B82F6', 'brown', 'orange', 'purple', 'gray'];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         setColor(randomColor);
+        gsap.killTweensOf(spider);
         gsap.set(spider, { top: '-350px' });
         gsap.to(spider, {
           top: '35%',
