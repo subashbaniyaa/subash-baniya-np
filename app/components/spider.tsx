@@ -8,13 +8,9 @@ export default function Spider() {
   const spiderRef = useRef<HTMLDivElement>(null);
   const mouthRef = useRef<SVGPathElement>(null);
 
-  const [color, setColor] = useState('#3B82F6');
+  const [color, setColor] = useState('gray');
 
   useEffect(() => {
-    const colors = ['red', 'green', '#FFFF00', '#3B82F6', 'brown', 'orange', 'purple', 'gray'];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    setColor(randomColor);
-    
     if (!containerRef.current || !spiderRef.current) return;
 
     const container = containerRef.current;
@@ -98,11 +94,6 @@ export default function Spider() {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        const colors = ['red', 'green', '#FFFF00', '#3B82F6', 'brown', 'orange', 'purple', 'gray'];
-        setColor((prevColor) => {
-          const otherColors = colors.filter((c) => c !== prevColor);
-          return otherColors[Math.floor(Math.random() * otherColors.length)];
-        });
         gsap.killTweensOf(spider);
         gsap.set(spider, { top: '-350px' });
         gsap.to(spider, {
@@ -120,7 +111,7 @@ export default function Spider() {
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [color]);
+  }, []);
 
   return (
     <div ref={containerRef} className="fixed top-0 left-[75%] -translate-x-1/2 z-[0] opacity-100 pointer-events-none w-[200px] h-[400px]">
