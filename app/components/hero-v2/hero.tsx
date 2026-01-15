@@ -50,14 +50,15 @@ export default function Hero() {
 
   return (
     <SplashCursor
-      containerClassName="min-h-svh w-screen"
+      containerClassName="h-svh w-screen"
       usePrimaryColors={true}
     >
-      <main className="relative min-h-svh w-screen overflow-hidden">
-        <motion.div
-          style={{ y: springY }}
-          className={classNames('relative min-h-svh', merryWeather.className)}
-        >
+      <main className="relative h-svh w-screen">
+        <div className="h-[200vh] w-full">
+          <motion.div
+            style={{ y: springY }}
+            className={classNames('fixed inset-0 h-svh', merryWeather.className)}
+          >
             <div className="absolute top-[15%] md:top-[25%] max-w-5xl flex-col space-y-4 justify-center px-8 md:px-24 text-shadow-lg lg:ml-14">
               <h1 className="font-serif text-2xl font-medium md:mr-4 md:text-4xl">
                 <span>
@@ -119,6 +120,7 @@ export default function Hero() {
               </div>
             </div>
           </motion.div>
+        </div>
       </main>
     </SplashCursor>
   );
