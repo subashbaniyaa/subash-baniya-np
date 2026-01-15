@@ -12,6 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@excalidraw/excalidraw": "^0.18.0",
     "@octokit/graphql": "^8.2.1",
     "@radix-ui/react-tooltip": "1.2.7",
     "@tailwindcss/postcss": "^4.0.15",
