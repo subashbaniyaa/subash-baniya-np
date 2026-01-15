@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
-import { IoHomeOutline, IoImage, IoSearch, IoTrash, IoColorPaletteOutline } from 'react-icons/io5';
-import { FaPencil, FaEraser, FaRotateLeft, FaRotateRight, FaBrush, FaFont, FaThLarge, FaCloud } from "react-icons/fa6";
+import { IoHomeOutline, IoImage, IoSearch, IoTrash, IoColorPaletteOutline, IoGridOutline } from 'react-icons/io5';
+import { FaPencil, FaEraser, FaRotateLeft, FaRotateRight, FaBrush, FaFont, FaCloud } from "react-icons/fa6";
 import { LuLayers } from "react-icons/lu";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { BsStars } from "react-icons/bs";
@@ -198,7 +198,7 @@ export default function DrawContent() {
                   <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('rainbow'); }} className={`p-1.5 rounded-full ${activeTool === 'rainbow' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Rainbow"><IoColorPaletteOutline size={14}/></button>
-                  <button onClick={() => { setIsEraser(false); setActiveTool('pixel'); }} className={`p-1.5 rounded-full ${activeTool === 'pixel' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pixel"><FaThLarge size={14}/></button>
+                  <button onClick={() => { setIsEraser(false); setActiveTool('pixel'); }} className={`p-1.5 rounded-full ${activeTool === 'pixel' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pixel"><IoGridOutline size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('mesh'); }} className={`p-1.5 rounded-full ${activeTool === 'mesh' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Mesh"><FaCloud size={14}/></button>
                   <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
                 </div>
