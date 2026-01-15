@@ -12,6 +12,7 @@ import { GalleryIcon } from '../layouts/icons/gallery-icon';
 import Image from 'next/image';
 import SplashCursor from '../splash-cursor';
 import { motion, useSpring, useScroll, useTransform } from 'framer-motion';
+import PopUpMessage from '../ui/popup-message';
 
 export default function Hero() {
   const linkedinRef = useRef<any>(null);
@@ -149,6 +150,7 @@ export default function Hero() {
           </motion.div>
         </div>
       </main>
+      <PopUpMessage />
     </SplashCursor>
   );
 }
