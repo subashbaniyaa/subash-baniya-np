@@ -180,31 +180,27 @@ export default function DrawContent() {
             </div>
 
             {/* Size Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="flex flex-col gap-1 py-1">
-                <div className="flex items-center gap-2">
-                  <input 
-                    type="range" 
-                    min="0.5" 
-                    max={isEraser ? "100" : "50"}
-                    step="0.5"
-                    disabled={activeTool === 'pencil' && !isEraser}
-                    value={isEraser ? eraserWidth : maxWidth} 
-                    onChange={(e) => {
-                      const val = parseFloat(e.target.value);
-                      if (isEraser) {
-                        setEraserWidth(val);
-                      } else {
-                        setMaxWidth(val);
-                        setMinWidth(val / 3);
-                      }
-                    }}
-                    className={`w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
-                  />
-                </div>
-                <div className="flex items-center justify-center">
-                  <span className="text-[10px] font-bold">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
-                </div>
+            <div className="flex flex-col items-center justify-center px-2 border-r border-gray-300 dark:border-white/10 min-h-[56px]">
+              <div className="flex flex-col items-center justify-center gap-1">
+                <input 
+                  type="range" 
+                  min="0.5" 
+                  max={isEraser ? "100" : "50"}
+                  step="0.5"
+                  disabled={activeTool === 'pencil' && !isEraser}
+                  value={isEraser ? eraserWidth : maxWidth} 
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (isEraser) {
+                      setEraserWidth(val);
+                    } else {
+                      setMaxWidth(val);
+                      setMinWidth(val / 3);
+                    }
+                  }}
+                  className={`w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
+                />
+                <span className="text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
               </div>
             </div>
 
