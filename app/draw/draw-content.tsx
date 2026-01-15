@@ -173,46 +173,55 @@ export default function DrawContent() {
           {/* MS Paint Style Toolbar */}
           <div className="bg-[#f3f3f3] dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 rounded-xl p-2 flex flex-wrap items-center justify-center sm:justify-start gap-0 shadow-sm">
             
-            {/* Tools Group */}
-            <div className="flex flex-col items-center gap-1 px-3 border-r border-gray-300 dark:border-white/10 sm:min-h-[56px] justify-center">
-              <div className="flex sm:flex-col gap-1">
-                <div className="flex items-center justify-center gap-1">
-                  <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
-                  <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
-                  <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
+            {/* Tools & Size Container */}
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:min-h-[56px] min-w-fit">
+              {/* Tools Group */}
+              <div className="flex flex-col items-center gap-1 px-3 sm:border-r border-gray-300 dark:border-white/10 sm:min-h-[56px] justify-center">
+                <div className="flex sm:flex-col gap-1">
+                  <div className="flex items-center justify-center gap-1">
+                    <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
+                    <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
+                    <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
+                  </div>
+                  <div className="flex items-center justify-center gap-1">
+                    <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
+                    <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
+                    <button onClick={() => clear()} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={14}/></button>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-1">
-                  <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
-                  <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
-                  <button onClick={() => clear()} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={14}/></button>
+              </div>
+
+              {/* Horizontal Separator for Mobile, Hidden for Desktop (since Size Group has border) */}
+              <div className="w-full h-px bg-gray-300 dark:bg-white/10 my-1 sm:hidden" />
+
+              {/* Size Group */}
+              <div className="flex flex-col items-center justify-center px-4 sm:border-r border-gray-300 dark:border-white/10 sm:min-h-[56px] py-1 sm:py-0">
+                <div className="flex flex-col items-center justify-center gap-1">
+                  <input 
+                    type="range" 
+                    min="0.5" 
+                    max={isEraser ? "100" : "50"}
+                    step="0.5"
+                    disabled={activeTool === 'pencil' && !isEraser}
+                    value={isEraser ? eraserWidth : maxWidth} 
+                    onChange={(e) => {
+                      const val = parseFloat(e.target.value);
+                      if (isEraser) {
+                        setEraserWidth(val);
+                      } else {
+                        setMaxWidth(val);
+                        setMinWidth(val / 3);
+                      }
+                    }}
+                    className={`w-20 sm:w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
+                  />
+                  <span className="text-[9px] sm:text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
                 </div>
               </div>
             </div>
 
-            {/* Size Group */}
-            <div className="flex flex-col items-center justify-center px-4 border-r border-gray-300 dark:border-white/10 sm:min-h-[56px]">
-              <div className="flex flex-col items-center justify-center gap-1">
-                <input 
-                  type="range" 
-                  min="0.5" 
-                  max={isEraser ? "100" : "50"}
-                  step="0.5"
-                  disabled={activeTool === 'pencil' && !isEraser}
-                  value={isEraser ? eraserWidth : maxWidth} 
-                  onChange={(e) => {
-                    const val = parseFloat(e.target.value);
-                    if (isEraser) {
-                      setEraserWidth(val);
-                    } else {
-                      setMaxWidth(val);
-                      setMinWidth(val / 3);
-                    }
-                  }}
-                  className={`w-20 sm:w-24 accent-primary-500 appearance-none cursor-pointer bg-gray-200 dark:bg-white/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
-                />
-                <span className="text-[9px] sm:text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
-              </div>
-            </div>
+            {/* Horizontal Separator for Mobile between Size and Background groups */}
+            <div className="w-full h-px bg-gray-300 dark:bg-white/10 my-1 sm:hidden" />
 
             {/* Background & Colors Container */}
             <div className="flex flex-col sm:flex-row items-center justify-center flex-1 sm:min-h-[56px] min-w-fit">
