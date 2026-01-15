@@ -141,6 +141,23 @@ export default function DrawContent() {
     setRedoStack([]);
   };
 
+  const applyToBackground = () => {
+    if (signaturePadRef.current?.isEmpty()) return alert('Canvas is empty');
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const dataUrl = canvas.toDataURL('image/png');
+    const bgRoot = document.getElementById('drawing-bg-root');
+    if (bgRoot) {
+      bgRoot.innerHTML = '';
+      const img = new Image();
+      img.src = dataUrl;
+      img.className = 'w-full h-full object-cover';
+      bgRoot.appendChild(img);
+      alert('Drawing applied to background!');
+    }
+  };
+
   const save = (format: 'png' | 'jpg') => {
     if (signaturePadRef.current?.isEmpty()) return alert('Canvas is empty');
     
@@ -347,6 +364,7 @@ export default function DrawContent() {
                 <button onClick={() => save('png')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">PNG</button>
                 <button onClick={() => save('jpg')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">JPG</button>
                 <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">SVG</button>
+                <button onClick={applyToBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all border border-primary-500/30">Apply to background</button>
               </div>
               <div className="w-px h-3 bg-gray-300" />
               <div className="flex items-center gap-4 text-[10px] text-gray-400">

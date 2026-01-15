@@ -61,6 +61,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
       <body className="bg-white text-black antialiased dark:bg-black dark:text-white selection:bg-primary-500 selection:text-white">
+        <div id="drawing-bg-root" className="fixed inset-0 pointer-events-none z-[-1] opacity-50" />
         <DisableContextMenu />
         <ThemeProvider
           attribute="class"
