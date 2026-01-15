@@ -24,12 +24,15 @@ export default function Spider() {
     const rightLegs = container.querySelectorAll('.leg-right');
     const mouth = mouthRef.current;
 
+    // Reset position before starting animation
+    gsap.set(spider, { top: '-350px' });
+
     // Initial drop animation
     gsap.to(spider, {
       top: '35%',
       duration: 4,
       ease: 'elastic.out(1, 0.3)',
-      delay: 0.5
+      delay: 0.1
     });
 
     const handleMouseMove = (e: MouseEvent) => {
