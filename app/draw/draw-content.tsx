@@ -222,11 +222,20 @@ export default function DrawContent() {
                   <button
                     key={option.value}
                     onClick={() => setBgColor(option.value)}
-                    className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border ${
+                    className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border shadow-sm ${
                       bgColor === option.value 
-                        ? 'bg-primary-500 border-primary-500 text-white' 
-                        : 'bg-white dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-400'
+                        ? 'ring-2 ring-primary-500 border-white' 
+                        : 'border-gray-200 dark:border-white/10'
                     }`}
+                    style={{ 
+                      backgroundColor: option.value === 'transparent' ? 'white' : option.value,
+                      backgroundImage: option.value === 'transparent' 
+                        ? 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)' 
+                        : 'none',
+                      backgroundSize: '4px 4px',
+                      backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
+                      color: option.value === 'transparent' || option.value === '#ffffff' || option.value === '#f8fafc' || option.value === '#fef08a' || option.value === '#fed7aa' || option.value === '#fecaca' || option.value === '#e9d5ff' || option.value === '#99f6e4' ? '#000' : '#fff'
+                    }}
                     title={option.title}
                   >
                     {option.label}
