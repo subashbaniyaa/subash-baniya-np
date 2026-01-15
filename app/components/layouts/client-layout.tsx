@@ -20,7 +20,13 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
     const updateBg = () => {
       if (typeof window !== 'undefined') {
         const savedBg = localStorage.getItem('persistent-drawing-bg');
-        setBgImage(savedBg);
+        const isActive = sessionStorage.getItem('drawing-bg-active') === 'true';
+        
+        if (isActive && savedBg) {
+          setBgImage(savedBg);
+        } else {
+          setBgImage(null);
+        }
       }
     };
 
