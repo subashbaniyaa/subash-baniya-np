@@ -47,7 +47,7 @@ export default function PopUpMessage() {
           </button>
           <div className="space-y-3 text-left">
             <div className="space-y-1">
-              <h3 className="font-bold text-xl leading-tight font-mono whitespace-nowrap tabular-nums">
+              <h3 className="font-bold text-xl leading-tight whitespace-nowrap tabular-nums">
                 {format(currentTime, 'pp')}
               </h3>
               <p className="text-sm font-medium text-white/90">
