@@ -158,6 +158,7 @@ export default function DrawContent() {
 
   return (
     <PageContainer>
+      <Header title="Draw" />
       <div className="font-poppins select-none">
         <div className="flex flex-col gap-4">
           {/* MS Paint Style Toolbar */}
