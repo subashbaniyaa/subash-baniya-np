@@ -30,18 +30,27 @@ export default function DrawContent() {
     '#ffffff', '#c3c3c3', '#b97a57', '#ffaec9', '#ffc90e', '#efe4b0', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7'
   ];
 
+  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+
   useEffect(() => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
       
       const updateCanvasSize = () => {
         const ratio = Math.max(window.devicePixelRatio || 1, 1);
-        const data = signaturePadRef.current?.toData();
         const parent = canvas.parentElement;
         if (parent) {
-          canvas.width = parent.offsetWidth * ratio;
-          canvas.height = parent.offsetHeight * ratio;
+          const width = parent.offsetWidth;
+          const height = parent.offsetHeight;
+          
+          const data = signaturePadRef.current?.toData();
+          
+          canvas.width = width * ratio;
+          canvas.height = height * ratio;
           canvas.getContext('2d')?.scale(ratio, ratio);
+          
+          setCanvasSize({ width, height });
+          
           if (data) signaturePadRef.current?.fromData(data);
         }
       };
@@ -330,7 +339,7 @@ export default function DrawContent() {
               <div className="flex items-center gap-4 text-[10px] text-gray-400">
                 <div className="flex items-center gap-1">
                   <IoHomeOutline />
-                  <span>1727 x 648px</span>
+                  <span>{canvasSize.width} x {canvasSize.height}px</span>
                 </div>
                 <span>100%</span>
               </div>
