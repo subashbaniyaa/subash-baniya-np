@@ -204,8 +204,6 @@ export default function DrawContent() {
             <div className="relative h-[65vh] w-full rounded-2xl overflow-hidden bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 transition-colors duration-500 mt-6" style={{ backgroundColor: bgColor }}>
               <canvas ref={canvasRef} className="h-full w-full cursor-crosshair touch-none" />
             </div>
-            {/* Bottom Blue Decorative Line */}
-            <div className="w-full border-b border-primary-500 mt-6" />
           </div>
 
           {/* Footer Navigation */}
