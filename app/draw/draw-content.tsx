@@ -216,7 +216,7 @@ export default function DrawContent() {
 
             {/* Background Group */}
             <div className="flex flex-col items-center justify-center px-4 border-r border-gray-300 dark:border-white/10 sm:min-h-[56px] py-1 sm:py-0">
-              <div className="flex gap-1">
+              <div className="flex items-center gap-1">
                 {/* Column 1: Two rows of 5 */}
                 <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
                   {[
