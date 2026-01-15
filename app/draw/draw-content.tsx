@@ -165,27 +165,17 @@ export default function DrawContent() {
             
             {/* Tools Group */}
             <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="flex gap-2">
-                <div className="flex flex-col gap-1">
-                  <button onClick={undo} disabled={undoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
-                  <button onClick={redo} disabled={redoStack.length === 0} className="p-1 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
-                </div>
-                <div className="grid grid-cols-2 gap-1">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={16}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={16}/></button>
                   <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={16}/></button>
                 </div>
-              </div>
-              <span className="text-[9px] text-gray-500 font-medium">Tools</span>
-            </div>
-
-            {/* Brushes Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="flex gap-2">
-                <button onClick={() => clear()} className="p-2 hover:bg-white dark:hover:bg-white/5 rounded-md transition-all flex flex-col items-center gap-1 text-red-500">
-                  <IoTrash size={20} />
-                  <span className="text-[10px]">Reset</span>
-                </button>
+                <div className="flex items-center justify-center gap-2">
+                  <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30" title="Undo"><FaRotateLeft size={16}/></button>
+                  <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded disabled:opacity-30" title="Redo"><FaRotateRight size={16}/></button>
+                  <button onClick={() => clear()} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded text-red-500 transition-all" title="Reset"><IoTrash size={16}/></button>
+                </div>
               </div>
               <span className="text-[9px] text-gray-500 font-medium">Tools</span>
             </div>
