@@ -8,11 +8,18 @@ export default function PopUpMessage() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const showTimer = setTimeout(() => {
       setIsVisible(true);
     }, 5000);
 
-    return () => clearTimeout(timer);
+    const hideTimer = setTimeout(() => {
+      setIsVisible(false);
+    }, 15000); // 5s wait + 10s show = 15s total
+
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
   }, []);
 
   if (!isVisible) return null;
