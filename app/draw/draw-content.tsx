@@ -209,8 +209,6 @@ export default function DrawContent() {
             <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
               <div className="flex flex-col gap-1">
                 <div className="flex items-center justify-center gap-1">
-                  <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
-                  <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('rainbow'); }} className={`p-1.5 rounded-full ${activeTool === 'rainbow' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Rainbow"><IoColorPaletteOutline size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('pixel'); }} className={`p-1.5 rounded-full ${activeTool === 'pixel' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pixel"><IoGridOutline size={14}/></button>
                   <button onClick={() => { setIsEraser(false); setActiveTool('mesh'); }} className={`p-1.5 rounded-full ${activeTool === 'mesh' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Mesh"><FaCloud size={14}/></button>
