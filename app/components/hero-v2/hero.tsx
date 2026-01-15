@@ -94,9 +94,9 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="h-14 border-l border-gray-300" />
-                <div className="flex flex-wrap space-x-3 space-y-1 items-center">
-                  <Link href="/articles" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full", poppins.className)}>articles</Link>
-                  <Link href="/archive" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full", poppins.className)}>archive</Link>
+                <div className="flex space-x-3 items-center">
+                  <Link href="/articles" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>articles</Link>
+                  <Link href="/archive" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>archive</Link>
                 </div>
               </section>
               <div className="select-none pointer-events-none">
