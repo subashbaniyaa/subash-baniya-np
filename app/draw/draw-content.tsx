@@ -205,8 +205,8 @@ export default function DrawContent() {
             </div>
 
             {/* Background Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
-              <div className="grid grid-cols-5 gap-1 pt-1">
+            <div className="flex flex-col items-center justify-center px-2 border-r border-gray-300 dark:border-white/10 min-h-[56px]">
+              <div className="grid grid-cols-5 gap-1">
                 {[
                   { label: 'T', value: 'transparent', title: 'Transparent' },
                   { label: 'W', value: '#ffffff', title: 'White' },
@@ -236,9 +236,9 @@ export default function DrawContent() {
             </div>
 
             {/* Colors Group */}
-            <div className="flex flex-col items-center gap-1 px-2 border-r border-gray-300 dark:border-white/10">
+            <div className="flex flex-col items-center justify-center px-2 flex-1 min-h-[56px]">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: penColor }} />
+                <div className="w-8 h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
                 <div className="grid grid-cols-10 gap-1">
                   {colors.map(color => (
                     <button
@@ -263,8 +263,8 @@ export default function DrawContent() {
           </div>
 
           {/* Canvas Area */}
-          <div className="relative group/canvas">
-            <div className="w-full h-[75vh] flex items-center justify-center p-4">
+          <div className="relative group/canvas w-full px-2">
+            <div className="w-full h-[75vh] flex items-center justify-center py-4">
                <div className="w-full h-full relative border-2 border-dashed border-gray-300 dark:border-white/20 rounded-lg overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <canvas 
                     ref={canvasRef} 
