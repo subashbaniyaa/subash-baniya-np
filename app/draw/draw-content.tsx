@@ -79,10 +79,24 @@ export default function DrawContent() {
         setIsEmpty(false);
         const data = signaturePadRef.current?.toData();
         if (data) {
+          localStorage.setItem('persistent-canvas-data', JSON.stringify(data));
           setUndoStack(prev => [...prev, JSON.stringify(data)]);
           setRedoStack([]);
         }
       });
+
+      // Restore drawing if exists
+      const savedCanvasData = localStorage.getItem('persistent-canvas-data');
+      if (savedCanvasData) {
+        try {
+          const parsedData = JSON.parse(savedCanvasData);
+          signaturePadRef.current.fromData(parsedData);
+          setIsEmpty(false);
+          setUndoStack([savedCanvasData]);
+        } catch (e) {
+          console.error('Error restoring canvas data', e);
+        }
+      }
 
       return () => {
         window.removeEventListener('resize', updateCanvasSize);
@@ -130,9 +144,12 @@ export default function DrawContent() {
       setRedoStack(prev => [...prev, current]);
       
       if (newUndo.length > 0) {
-        signaturePadRef.current?.fromData(JSON.parse(newUndo[newUndo.length - 1]));
+        const lastData = newUndo[newUndo.length - 1];
+        signaturePadRef.current?.fromData(JSON.parse(lastData));
+        localStorage.setItem('persistent-canvas-data', lastData);
       } else {
         signaturePadRef.current?.clear();
+        localStorage.removeItem('persistent-canvas-data');
       }
     }
   };
@@ -143,6 +160,7 @@ export default function DrawContent() {
       setRedoStack(prev => prev.slice(0, -1));
       setUndoStack(prev => [...prev, next]);
       signaturePadRef.current?.fromData(JSON.parse(next));
+      localStorage.setItem('persistent-canvas-data', next);
     }
   };
 
@@ -151,6 +169,7 @@ export default function DrawContent() {
     setUndoStack([]);
     setRedoStack([]);
     setIsEmpty(true);
+    localStorage.removeItem('persistent-canvas-data');
   };
 
   const applyToBackground = () => {
