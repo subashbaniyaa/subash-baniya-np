@@ -264,9 +264,17 @@ export default function DrawContent() {
               </div>
             </div>
 
-            <div className={`relative h-[70vh] w-full bg-[#f0f0f0] dark:bg-black/40 rounded-lg p-4 overflow-hidden border border-gray-200 dark:border-white/10 shadow-inner ${isEraser ? 'cursor-[url("/eraser-cursor.png"),_auto]' : 'cursor-[url("/pencil-cursor.png"),_auto]'}`}>
+            <div className="relative h-[70vh] w-full bg-[#f0f0f0] dark:bg-black/40 rounded-lg p-4 overflow-hidden border border-gray-200 dark:border-white/10 shadow-inner">
                <div className="w-full h-full bg-white shadow-lg relative mx-auto" style={{ backgroundColor: bgColor }}>
-                  <canvas ref={canvasRef} className={`w-full h-full touch-none ${isEraser ? 'cursor-[url("https://api.iconify.design/fa6-solid:eraser.svg?color=black&width=24&height=24"),_auto]' : 'cursor-[url("https://api.iconify.design/fa6-solid:pencil.svg?color=black&width=24&height=24"),_auto]'}`} />
+                  <canvas 
+                    ref={canvasRef} 
+                    className="w-full h-full touch-none" 
+                    style={{ 
+                      cursor: isEraser 
+                        ? `url('data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="${eraserWidth}" height="${eraserWidth}" viewBox="0 0 ${eraserWidth} ${eraserWidth}"><rect x="0" y="0" width="${eraserWidth}" height="${eraserWidth}" fill="rgba(255,255,255,0.5)" stroke="black" stroke-width="1"/></svg>`)}') ${eraserWidth/2} ${eraserWidth/2}, auto`
+                        : `url('data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`)}') 2 22, auto`
+                    }}
+                  />
                </div>
             </div>
           </div>
