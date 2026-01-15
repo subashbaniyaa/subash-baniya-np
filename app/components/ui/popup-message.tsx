@@ -54,11 +54,6 @@ export default function PopUpMessage() {
                 {format(currentTime, 'EEEE, MMMM do, yyyy')}
               </p>
             </div>
-            <div className="pt-2 border-t border-white/20">
-              <p className="text-xs text-white/80 leading-relaxed">
-                Your home feed is personalizing based on current activity.
-              </p>
-            </div>
           </div>
         </motion.div>
       )}
