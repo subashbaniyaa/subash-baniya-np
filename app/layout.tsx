@@ -1,15 +1,9 @@
-import Analytics from 'app/components/analytics/analytics';
-import LenisProvider from 'app/components/providers/LenisProvider';
-import ThemeProvider from 'app/components/providers/ThemeProvider';
-import SpotifyPlayer from 'app/components/spotify-player';
-import { SpotifyPlayerProvider } from 'app/components/contexts/spotify-player-context';
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
-import ThemeSwitch from './components/layouts/theme-switch/theme-switch';
-import { usePathname } from 'next/navigation';
 import { mukta, beVietnamPro, boringSans, boringSansWithNumberFallback, poppins } from './fonts';
 import DisableContextMenu from './components/disable-context-menu';
 import './tailwind.css';
+import ClientLayout from './components/layouts/client-layout';
 
 export const metadata: Metadata = {
   title: {
@@ -37,13 +31,6 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  return <LayoutContent>{children}</LayoutContent>;
-}
-
-function LayoutContent({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  const showBackground = pathname === '/' || pathname === '/draw';
-
   return (
     <html lang="en" suppressHydrationWarning className={`${mukta.className} ${beVietnamPro.variable} ${boringSans.variable} ${boringSansWithNumberFallback.variable} ${poppins.variable}`}>
       <head>
@@ -69,23 +56,9 @@ function LayoutContent({ children }: { children: ReactNode }) {
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
       <body className="bg-white text-black antialiased dark:bg-black dark:text-white selection:bg-primary-500 selection:text-white">
-        {showBackground && <div id="drawing-bg-root" className="fixed inset-0 pointer-events-none z-[-1] opacity-50" />}
-        <DisableContextMenu />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          themes={['dark', 'light']}
-        >
-          <SpotifyPlayerProvider>
-            <LenisProvider>
-              <ThemeSwitch />
-              {children}
-              <SpotifyPlayer />
-            </LenisProvider>
-          </SpotifyPlayerProvider>
-          {process.env.NODE_ENV === 'production' && <Analytics />}
-        </ThemeProvider>
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   );
