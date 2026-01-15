@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx'],
   transpilePackages: ['next-mdx-remote'],
-  allowedDevOrigins: ['*.replit.dev', '*.repl.co', 'localhost:5000'],
+  allowedDevOrigins: ['*'],
   experimental: {
     serverActions: {
       allowedOrigins: ['*'],
