@@ -11,9 +11,9 @@ export default function Home() {
         <Image 
           src="/hero-bg.png" 
           alt="Background" 
-          width={1200} 
-          height={800} 
-          className="opacity-30 w-full max-w-[90vw] h-auto object-contain"
+          width={600} 
+          height={400} 
+          className="opacity-30 w-full max-w-[50vw] md:max-w-[30vw] h-auto object-contain"
           priority
         />
       </div>
