@@ -24,7 +24,13 @@ export default function Spider() {
     gsap.set(spider, { top: '-350px' });
 
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    const targetTop = isMobile ? '55%' : '35%';
+    const targetTop = isMobile ? '70%' : '35%';
+
+    if (isMobile) {
+      gsap.set(container, { left: '50%' });
+    } else {
+      gsap.set(container, { left: '75%' });
+    }
 
     // Initial drop animation
     gsap.to(spider, {
@@ -105,8 +111,14 @@ export default function Spider() {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         const isMobileVis = window.matchMedia('(max-width: 767px)').matches;
-        const targetTopVis = isMobileVis ? '55%' : '35%';
+        const targetTopVis = isMobileVis ? '70%' : '35%';
         
+        if (isMobileVis) {
+          gsap.set(container, { left: '50%' });
+        } else {
+          gsap.set(container, { left: '75%' });
+        }
+
         gsap.killTweensOf(spider);
         gsap.set(spider, { top: '-350px' });
         gsap.to(spider, {
