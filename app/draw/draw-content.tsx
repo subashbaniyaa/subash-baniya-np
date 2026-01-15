@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
-import { IoBrush, IoHomeOutline, IoImage, IoSearch, IoTrash } from 'react-icons/io5';
-import { FaPencil, FaEraser, FaRotateLeft, FaRotateRight } from "react-icons/fa6";
+import { IoHomeOutline, IoImage, IoSearch, IoTrash } from 'react-icons/io5';
+import { FaPencil, FaEraser, FaRotateLeft, FaRotateRight, FaBrush } from "react-icons/fa6";
 import { LuLayers } from "react-icons/lu";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { BsStars } from "react-icons/bs";
@@ -172,7 +172,7 @@ export default function DrawContent() {
                 </div>
                 <div className="grid grid-cols-2 gap-1">
                   <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={16}/></button>
-                  <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><IoBrush size={16}/></button>
+                  <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={16}/></button>
                   <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={16}/></button>
                 </div>
               </div>
