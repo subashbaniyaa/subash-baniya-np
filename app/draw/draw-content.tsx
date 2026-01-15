@@ -209,14 +209,8 @@ export default function DrawContent() {
           </div>
 
           {/* Footer Navigation */}
-          <div className="mt-8 flex justify-start">
-            <Link 
-              href="/" 
-              className="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary-500 transition-colors group"
-            >
-              <IoHomeOutline className="group-hover:-translate-x-1 transition-transform" />
-              Return to homepage
-            </Link>
+          <div className="mt-12 pt-8 border-t border-primary-500">
+            <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none">Return to homepage</Link>
           </div>
         </div>
       </div>
