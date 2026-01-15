@@ -14,7 +14,7 @@ export default function ThoughtsPage() {
 
   return (
     <PageContainer>
-      <Header title="" />
+      <Header title="Articles" />
       <Blogs posts={posts} />
       <div className="mt-12 pt-8 border-t border-primary-500">
         <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none">Return to homepage</Link>

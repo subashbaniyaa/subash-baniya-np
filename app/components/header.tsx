@@ -23,14 +23,24 @@ export default function Header({ title }: { title: string }) {
       )}
       {!title && <div className="w-full border-b border-primary-500" />}
       {title && (
-        <span
-          className={classNames(
-            'text-black dark:text-white text-lg md:text-4xl font-bold',
-            boringSans.className,
+        <div className="flex items-center gap-4">
+          <span
+            className={classNames(
+              'text-black dark:text-white text-lg md:text-4xl font-bold',
+              boringSans.className,
+            )}
+          >
+            {title}
+          </span>
+          {title === 'Articles' && (
+            <Link 
+              href="/archive" 
+              className="text-primary-500 hover:underline text-sm md:text-base font-medium"
+            >
+              Archive
+            </Link>
           )}
-        >
-          {title}
-        </span>
+        </div>
       )}
     </div>
   );
