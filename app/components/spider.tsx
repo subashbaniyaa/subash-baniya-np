@@ -26,8 +26,8 @@ export default function Spider() {
     // Initial drop animation
     gsap.to(spider, {
       top: '35%',
-      duration: 3.5,
-      ease: 'power3.out',
+      duration: 4,
+      ease: 'elastic.out(1, 0.3)',
       delay: 0.1,
       force3D: true,
     });
@@ -105,8 +105,8 @@ export default function Spider() {
         gsap.set(spider, { top: '-350px' });
         gsap.to(spider, {
           top: '35%',
-          duration: 3.5,
-          ease: 'power3.out',
+          duration: 4,
+          ease: 'elastic.out(1, 0.3)',
           delay: 0.05,
           force3D: true,
         });
