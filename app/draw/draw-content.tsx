@@ -32,7 +32,15 @@ export default function DrawContent() {
 
   const [isEmpty, setIsEmpty] = useState(true);
 
+  const [isBgApplied, setIsBgApplied] = useState(false);
+
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsBgApplied(sessionStorage.getItem('drawing-bg-active') === 'true');
+    }
+  }, []);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -153,6 +161,7 @@ export default function DrawContent() {
     const dataUrl = canvas.toDataURL('image/png');
     localStorage.setItem('persistent-drawing-bg', dataUrl);
     sessionStorage.setItem('drawing-bg-active', 'true');
+    setIsBgApplied(true);
     
     // Dispatch a custom event to notify the layout to update immediately
     window.dispatchEvent(new Event('drawing-bg-updated'));
@@ -170,6 +179,7 @@ export default function DrawContent() {
   const resetBackground = () => {
     localStorage.removeItem('persistent-drawing-bg');
     sessionStorage.removeItem('drawing-bg-active');
+    setIsBgApplied(false);
     window.dispatchEvent(new Event('drawing-bg-updated'));
     const bgRoot = document.getElementById('drawing-bg-root');
     if (bgRoot) {
@@ -385,7 +395,9 @@ export default function DrawContent() {
               {!isEmpty && (
                 <button onClick={applyToBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Apply to background</button>
               )}
-              <button onClick={resetBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Reset BG</button>
+              {isBgApplied && (
+                <button onClick={resetBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Reset BG</button>
+              )}
             </div>
             <div className="flex items-center gap-4 text-[10px] text-gray-400">
               <div className="flex items-center gap-1">
