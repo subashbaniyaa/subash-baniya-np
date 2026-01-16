@@ -17,8 +17,8 @@ export default function ArchivePage() {
           <Image 
             src="/assets/archive-bottom-middle.png" 
             alt="Archive Bottom Illustration" 
-            width={120} 
-            height={120}
+            width={80} 
+            height={80}
             className="opacity-50 dark:invert transition-all hover:opacity-100"
           />
         </div>
