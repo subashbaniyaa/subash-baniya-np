@@ -28,11 +28,12 @@ export default async function Blog(props: {
     <section>
       <div className="md:max-w-5xl">
         <PageTitle>{metadata.title}</PageTitle>
-        <div className="flex justify-between items-center mt-4 mb-12 text-sm">
-          <p className={`text-sm text-neutral-600 dark:text-neutral-400 border-b border-gray-400 dark:border-gray-500 font-serif italic`}>
+        <div className="flex justify-between items-center mt-4 mb-4 text-sm">
+          <p className={`text-sm text-neutral-600 dark:text-neutral-400 font-serif italic`}>
             {formatDate(metadata.publishedAt)}
           </p>
         </div>
+        <div className="h-px w-full bg-blue-500 mb-12" />
         <article>{content}</article>
       </div>
       <div className="mt-12 pt-8 border-t border-primary-500 flex flex-col gap-8">
