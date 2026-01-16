@@ -343,8 +343,28 @@ export default function DrawContent() {
             {/* Horizontal Separator for Mobile between Size and Background groups */}
             <div className="w-full h-px bg-gray-300 dark:bg-white/10 my-1 sm:hidden" />
 
-            {/* Background & Colors Container */}
+            {/* Colors & Background Container */}
             <div className="flex flex-col sm:flex-row items-center justify-center flex-1 sm:min-h-[56px] min-w-fit">
+              {/* Colors Group */}
+              <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
+                  <div className="grid grid-cols-10 gap-0.5 sm:gap-1">
+                    {colors.map(color => (
+                      <button
+                        key={color}
+                        onClick={() => setPenColor(color)}
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-gray-300 dark:border-white/10 transition-transform hover:scale-125"
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Horizontal Separator for Mobile, Vertical for Desktop */}
+              <div className="w-full h-px sm:w-px sm:h-8 bg-gray-300 dark:bg-white/10 my-1 sm:my-0 sm:mx-2" />
+
               {/* Background Group */}
               <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
                 <div className="flex items-center gap-1">
@@ -413,26 +433,6 @@ export default function DrawContent() {
                       >
                         {option.label}
                       </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Horizontal Separator for Mobile, Vertical for Desktop */}
-              <div className="w-full h-px sm:w-px sm:h-8 bg-gray-300 dark:bg-white/10 my-1 sm:my-0 sm:mx-2" />
-
-              {/* Colors Group */}
-              <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
-                  <div className="grid grid-cols-10 gap-0.5 sm:gap-1">
-                    {colors.map(color => (
-                      <button
-                        key={color}
-                        onClick={() => setPenColor(color)}
-                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-gray-300 dark:border-white/10 transition-transform hover:scale-125"
-                        style={{ backgroundColor: color }}
-                      />
                     ))}
                   </div>
                 </div>
