@@ -15,7 +15,7 @@ export default function ArchivePage() {
       <div className="relative h-svh w-screen flex flex-col overflow-hidden">
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
           <Image 
-            src="/assets/archive-bottom-middle.png" 
+            src="/static/images/archive-bottom-middle.png" 
             alt="Archive Bottom Illustration" 
             width={80} 
             height={80}

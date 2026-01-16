@@ -255,7 +255,7 @@ export default function DrawContent() {
                     >
                       {!imageErrors.pencil ? (
                         <Image 
-                          src="/assets/pencil-icon.png" 
+                          src="/static/images/pencil-icon.png" 
                           alt="Pencil" 
                           width={16} 
                           height={16} 
@@ -273,7 +273,7 @@ export default function DrawContent() {
                     >
                       {!imageErrors.brush ? (
                         <Image 
-                          src="/assets/brush-icon.png" 
+                          src="/static/images/brush-icon.png" 
                           alt="Brush" 
                           width={16} 
                           height={16} 
@@ -291,7 +291,7 @@ export default function DrawContent() {
                     >
                       {!imageErrors.eraser ? (
                         <Image 
-                          src="/assets/eraser-icon.png" 
+                          src="/static/images/eraser-icon.png" 
                           alt="Eraser" 
                           width={16} 
                           height={16} 
