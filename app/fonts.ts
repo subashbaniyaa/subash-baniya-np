@@ -5,7 +5,7 @@ export const mukta = Mukta({
   weight: ['200', '300', '400', '500', '600', '700'],
   variable: '--font-mukta',
   subsets: ['latin'],
-  display: 'swap',
+  display: 'block',
   preload: true,
 });
 
@@ -13,7 +13,7 @@ export const copse = Copse({
   weight: '400',
   variable: '--font-copse-swash',
   subsets: ['latin'],
-  display: 'swap',
+  display: 'block',
   preload: true,
 });
 
@@ -21,7 +21,7 @@ export const dmMono = DM_Mono({
   weight: ['300', '400', '500'],
   variable: '--font-dm-mono',
   subsets: ['latin'],
-  display: 'swap',
+  display: 'block',
   preload: true,
 });
 
@@ -29,7 +29,7 @@ export const merryWeather = Merriweather({
   weight: ['300', '400', '700', '900'],
   variable: '--font-merriweather',
   subsets: ['latin'],
-  display: 'swap',
+  display: 'block',
   preload: true,
 });
 
@@ -37,7 +37,7 @@ export const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-poppins',
   subsets: ['latin'],
-  display: 'swap',
+  display: 'block',
   preload: true,
 });
 
@@ -95,7 +95,7 @@ export const beVietnamPro = localFont({
     },
   ],
   variable: '--font-be-vietnam-pro',
-  display: 'swap',
+  display: 'block',
 });
 
 export const boringSans = localFont({
@@ -152,7 +152,7 @@ export const boringSans = localFont({
     },
   ],
   variable: '--font-boring-sans',
-  display: 'swap',
+  display: 'block',
   fallback: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 });
 
@@ -160,13 +160,13 @@ export const boringSans = localFont({
 export const gistesy = localFont({
   src: '../public/fonts/Gistesy.ttf',
   variable: '--font-gistesy',
-  display: 'swap',
+  display: 'block',
 });
 
 export const pinkSunset = localFont({
   src: '../public/fonts/pink-sunset/PinkSunset/OpenType-PS/PinkSunset-Regular.otf',
   variable: '--font-pink-sunset',
-  display: 'swap',
+  display: 'block',
 });
 
 export const boringSansWithNumberFallback = localFont({
@@ -198,6 +198,6 @@ export const boringSansWithNumberFallback = localFont({
     },
   ],
   variable: '--font-boring-sans-numbers',
-  display: 'swap',
+  display: 'block',
   fallback: ['JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
 });

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
-import { mukta, beVietnamPro, boringSans, boringSansWithNumberFallback, poppins } from './fonts';
+import { mukta, beVietnamPro, boringSans, boringSansWithNumberFallback, poppins, gistesy, merryWeather, copse, dmMono, pinkSunset } from './fonts';
 import DisableContextMenu from './components/disable-context-menu';
 import './tailwind.css';
 import ClientLayout from './components/layouts/client-layout';
@@ -32,7 +32,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${mukta.className} ${beVietnamPro.variable} ${boringSans.variable} ${boringSansWithNumberFallback.variable} ${poppins.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${mukta.variable} ${beVietnamPro.variable} ${boringSans.variable} ${boringSansWithNumberFallback.variable} ${poppins.variable} ${gistesy.variable} ${merryWeather.variable} ${copse.variable} ${dmMono.variable} ${pinkSunset.variable}`}>
       <head>
         <link
           rel="apple-touch-icon"
