@@ -204,9 +204,13 @@ export default function TeamCarousel() {
                   onClick={() => handleCardClick(i)}
                   data-index={i}
                 >
-                  <img
+                  <Image
                     src={`https://ik.imagekit.io/gopichakradhar/luffy/o${i + 1}.jpeg?updatedAt=1754289569411`}
                     alt={`Card ${i + 1}`}
+                    width={400}
+                    height={600}
+                    priority={i < 3}
+                    loading={i >= 3 ? "lazy" : undefined}
                   />
                 </div>
               ))}

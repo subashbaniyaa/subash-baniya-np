@@ -19,6 +19,7 @@ export default function ArchivePage() {
             alt="Archive Bottom Illustration" 
             width={80} 
             height={80}
+            priority
             className="opacity-50 dark:invert transition-all hover:opacity-100"
           />
         </div>
