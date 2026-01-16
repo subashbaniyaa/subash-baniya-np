@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { formatDate, getPostFromSlug } from '../utils';
 import PageTitle from './page-title';
 import { beVietnamPro, boringSans, mukta } from '../../fonts';
+import { BsArrowLeftCircleFill } from "react-icons/bs";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
@@ -25,7 +26,15 @@ export default async function Blog(props: {
 
   return (
     <section>
-      <BackNavigation />
+      <div className="mb-8">
+        <Link 
+          href="/articles" 
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors group"
+          aria-label="Back to articles"
+        >
+          <BsArrowLeftCircleFill size={32} className="transition-transform group-hover:-translate-x-1" />
+        </Link>
+      </div>
       <div className="md:max-w-5xl">
         <PageTitle>{metadata.title}</PageTitle>
         <div className="flex justify-between items-center mt-4 mb-12 text-sm">
@@ -34,11 +43,6 @@ export default async function Blog(props: {
           </p>
         </div>
         <article>{content}</article>
-        <div className="mt-12 pt-8 border-t border-primary-500">
-          <Link href="/articles" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none">
-            Return to articles
-          </Link>
-        </div>
       </div>
     </section>
   );

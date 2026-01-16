@@ -3,6 +3,7 @@ import PageContainer from '../components/layouts/page-container';
 import { Blogs } from '../components/blogs';
 import Link from 'next/link';
 import { getPosts } from './utils';
+import { BsArrowLeftCircleFill } from "react-icons/bs";
 
 export const metadata = {
   title: 'Articles',
@@ -15,10 +16,16 @@ export default function ThoughtsPage() {
   return (
     <PageContainer>
       <Header title="" />
-      <Blogs posts={posts} />
-      <div className="mt-12 pt-8 border-t border-primary-500">
-        <Link href="/" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none">Return to homepage</Link>
+      <div className="mb-8">
+        <Link 
+          href="/" 
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors group"
+          aria-label="Back to home"
+        >
+          <BsArrowLeftCircleFill size={32} className="transition-transform group-hover:-translate-x-1" />
+        </Link>
       </div>
+      <Blogs posts={posts} />
     </PageContainer>
   );
 }
