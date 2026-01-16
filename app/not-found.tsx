@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { BackgroundGradientAnimation } from './components/background-gradient-animation';
 import SplashCursor from './components/splash-cursor';
-import { gistesy } from './fonts';
+import { gistesy, pinkSunset } from './fonts';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +19,7 @@ export default function FourZeroFour() {
         </div>
         <div className="relative z-10 min-h-svh flex items-center justify-center">
           <div className="flex flex-col items-center justify-center space-y-4 text-center px-8 pointer-events-auto">
-            <h1 className="text-4xl font-extrabold leading-10 tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl md:text-6xl font-be-vietnam-pro">
+            <h1 className={`text-8xl md:text-9xl font-extrabold leading-10 tracking-tight text-gray-900 dark:text-gray-100 ${pinkSunset.className}`}>
               404
             </h1>
             <p className={`text-3xl md:text-4xl leading-7 text-gray-500 dark:text-gray-400 ${gistesy.className}`}>

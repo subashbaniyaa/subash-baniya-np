@@ -163,6 +163,12 @@ export const gistesy = localFont({
   display: 'swap',
 });
 
+export const pinkSunset = localFont({
+  src: '../public/fonts/pink-sunset/PinkSunset/OpenType-PS/PinkSunset-Regular.otf',
+  variable: '--font-pink-sunset',
+  display: 'swap',
+});
+
 export const boringSansWithNumberFallback = localFont({
   src: [
     {
