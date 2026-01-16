@@ -249,7 +249,13 @@ export default function DrawContent() {
                     >
                       <Image src="/assets/pencil-icon.png" alt="Pencil" width={16} height={16} className="object-contain" />
                     </button>
-                    <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
+                    <button 
+                      onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
+                      className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} 
+                      title="Brush"
+                    >
+                      <Image src="/assets/brush-icon.png" alt="Brush" width={16} height={16} className="object-contain" />
+                    </button>
                     <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
                   </div>
                   <div className="flex items-center justify-center gap-1">
