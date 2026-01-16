@@ -266,9 +266,9 @@ export default function DrawContent() {
     <PageContainer>
       <div className="relative">
         {/* Smiley Icon - Positioned absolute relative to the page container */}
-        <div className="absolute -top-4 right-0 z-50 pointer-events-none">
+        <div className="absolute -top-4 right-0 z-50 pointer-events-none transition-all duration-300">
           <Image 
-            src="/assets/smiley-icon.png" 
+            src={isDarkMode ? "/assets/smiley-icon-white.png" : "/assets/smiley-icon.png"} 
             alt="Smiley" 
             width={45} 
             height={45} 
