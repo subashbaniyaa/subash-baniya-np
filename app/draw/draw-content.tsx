@@ -256,7 +256,13 @@ export default function DrawContent() {
                     >
                       <Image src="/assets/brush-icon.png" alt="Brush" width={16} height={16} className="object-contain" />
                     </button>
-                    <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
+                    <button 
+                      onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
+                      className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} 
+                      title="Eraser"
+                    >
+                      <Image src="/assets/eraser-icon.png" alt="Eraser" width={16} height={16} className="object-contain" />
+                    </button>
                   </div>
                   <div className="flex items-center justify-center gap-1">
                     <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white dark:hover:bg-white/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
