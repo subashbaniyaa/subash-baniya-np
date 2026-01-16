@@ -4,12 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
-import { IoHomeOutline, IoImage, IoSearch, IoTrash } from 'react-icons/io5';
-import { FaPencil, FaEraser, FaRotateLeft, FaRotateRight, FaBrush } from "react-icons/fa6";
-import { LuLayers } from "react-icons/lu";
-import { MdOutlinePhotoLibrary } from "react-icons/md";
-import { BsStars } from "react-icons/bs";
+import { IoHomeOutline, IoTrash } from 'react-icons/io5';
+import { FaEraser, FaRotateLeft, FaRotateRight, FaBrush } from "react-icons/fa6";
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function DrawContent() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -244,7 +242,13 @@ export default function DrawContent() {
               <div className="flex flex-col items-center gap-1 px-3 sm:border-r border-gray-300 dark:border-white/10 sm:min-h-[56px] justify-center">
                 <div className="flex flex-row sm:flex-col gap-1">
                   <div className="flex items-center justify-center gap-1">
-                    <button onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} className={`p-1.5 rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Pencil"><FaPencil size={14}/></button>
+                    <button 
+                      onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} 
+                      className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} 
+                      title="Pencil"
+                    >
+                      <Image src="/assets/pencil-icon.png" alt="Pencil" width={16} height={16} className="object-contain" />
+                    </button>
                     <button onClick={() => { setIsEraser(false); setActiveTool('brush'); }} className={`p-1.5 rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Brush"><FaBrush size={14}/></button>
                     <button onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} className={`p-1.5 rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} title="Eraser"><FaEraser size={14}/></button>
                   </div>
