@@ -36,9 +36,6 @@ export default async function Blog(props: {
         <article>{content}</article>
       </div>
       <div className="mt-12 pt-8 border-t border-primary-500 flex flex-col gap-8">
-        <Link href="/articles" className="underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none w-fit">
-          Return to articles
-        </Link>
         <Link 
           href="/articles" 
           className="inline-flex items-center gap-2 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-all group w-fit"
