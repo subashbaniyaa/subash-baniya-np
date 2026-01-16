@@ -5,7 +5,7 @@ import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
 import { IoHomeOutline, IoTrash } from 'react-icons/io5';
-import { FaEraser, FaRotateLeft, FaRotateRight, FaBrush } from "react-icons/fa6";
+import { FaEraser, FaRotateLeft, FaRotateRight, FaBrush, FaPencil } from "react-icons/fa6";
 import Image from 'next/image';
 
 export default function DrawContent() {
@@ -32,6 +32,12 @@ export default function DrawContent() {
   const [isBgApplied, setIsBgApplied] = useState(false);
 
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (toolId: string) => {
+    setImageErrors(prev => ({ ...prev, [toolId]: true }));
+  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -247,21 +253,54 @@ export default function DrawContent() {
                       className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'pencil' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} 
                       title="Pencil"
                     >
-                      <Image src="/assets/pencil-icon.png" alt="Pencil" width={16} height={16} className="object-contain" />
+                      {!imageErrors.pencil ? (
+                        <Image 
+                          src="/assets/pencil-icon.png" 
+                          alt="Pencil" 
+                          width={16} 
+                          height={16} 
+                          className="object-contain" 
+                          onError={() => handleImageError('pencil')}
+                        />
+                      ) : (
+                        <FaPencil size={14} />
+                      )}
                     </button>
                     <button 
                       onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
                       className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'brush' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} 
                       title="Brush"
                     >
-                      <Image src="/assets/brush-icon.png" alt="Brush" width={16} height={16} className="object-contain" />
+                      {!imageErrors.brush ? (
+                        <Image 
+                          src="/assets/brush-icon.png" 
+                          alt="Brush" 
+                          width={16} 
+                          height={16} 
+                          className="object-contain" 
+                          onError={() => handleImageError('brush')}
+                        />
+                      ) : (
+                        <FaBrush size={14} />
+                      )}
                     </button>
                     <button 
                       onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
                       className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'eraser' ? 'bg-white dark:bg-white/10 shadow-sm' : 'hover:bg-white/50'}`} 
                       title="Eraser"
                     >
-                      <Image src="/assets/eraser-icon.png" alt="Eraser" width={16} height={16} className="object-contain" />
+                      {!imageErrors.eraser ? (
+                        <Image 
+                          src="/assets/eraser-icon.png" 
+                          alt="Eraser" 
+                          width={16} 
+                          height={16} 
+                          className="object-contain" 
+                          onError={() => handleImageError('eraser')}
+                        />
+                      ) : (
+                        <FaEraser size={14} />
+                      )}
                     </button>
                   </div>
                   <div className="flex items-center justify-center gap-1">
