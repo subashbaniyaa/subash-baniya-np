@@ -66,7 +66,7 @@ export default function DrawContent() {
       window.addEventListener('resize', updateCanvasSize);
       updateCanvasSize();
 
-      signaturePadRef.current = new SignaturePad(canvas, {
+      signaturePadRef.current = new (SignaturePad as any)(canvas, {
         backgroundColor: bgColor,
         penColor: penColor,
         minWidth: minWidth,
