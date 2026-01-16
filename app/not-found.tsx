@@ -18,11 +18,11 @@ export default function FourZeroFour() {
           </BackgroundGradientAnimation>
         </div>
         <div className="relative z-10 min-h-svh flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center px-8 pointer-events-auto">
-            <h1 className={`text-8xl md:text-9xl font-extrabold leading-10 tracking-tight text-gray-900 dark:text-gray-100 ${pinkSunset.className}`}>
+          <div className="flex flex-col items-center justify-center space-y-2 text-center px-8 pointer-events-auto">
+            <h1 className={`text-6xl md:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 ${pinkSunset.className}`}>
               404
             </h1>
-            <p className={`text-3xl md:text-4xl leading-7 text-gray-500 dark:text-gray-400 ${gistesy.className}`}>
+            <p className={`text-3xl md:text-4xl leading-7 text-gray-500 dark:text-gray-400 mt-4 ${gistesy.className}`}>
               The page you&apos;re looking for doesn&apos;t exist.
             </p>
           </div>
