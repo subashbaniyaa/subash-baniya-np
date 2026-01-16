@@ -237,7 +237,17 @@ export default function DrawContent() {
   return (
     <PageContainer>
       <Header title="" />
-      <div className="font-poppins select-none">
+      <div className="font-poppins select-none relative">
+        {/* Top Right Smiley Icon */}
+        <div className="absolute top-0 right-0 z-10 hidden sm:block">
+          <Image 
+            src="/assets/smiley-icon.png" 
+            alt="Smiley" 
+            width={40} 
+            height={40} 
+            className="rounded-full"
+          />
+        </div>
         <div className="flex flex-col gap-4">
           {/* MS Paint Style Toolbar */}
           <div className="bg-[#f3f3f3] dark:bg-[#1e1e1e] border border-gray-200 dark:border-white/10 rounded-xl p-2 flex flex-wrap items-center justify-center sm:justify-start gap-0 shadow-sm">
