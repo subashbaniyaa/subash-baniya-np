@@ -6,7 +6,6 @@ import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
 import { IoHomeOutline, IoTrash } from 'react-icons/io5';
 import { FaEraser, FaRotateLeft, FaRotateRight, FaBrush } from "react-icons/fa6";
-import Link from 'next/link';
 import Image from 'next/image';
 
 export default function DrawContent() {
@@ -66,14 +65,15 @@ export default function DrawContent() {
       window.addEventListener('resize', updateCanvasSize);
       updateCanvasSize();
 
-      signaturePadRef.current = new (SignaturePad as any)(canvas, {
+      const signaturePad = new (SignaturePad as any)(canvas, {
         backgroundColor: bgColor,
         penColor: penColor,
         minWidth: minWidth,
         maxWidth: maxWidth
       });
+      signaturePadRef.current = signaturePad;
 
-      signaturePadRef.current.addEventListener('endStroke', () => {
+      signaturePad.addEventListener('endStroke', () => {
         setIsEmpty(false);
         const data = signaturePadRef.current?.toData();
         if (data) {
