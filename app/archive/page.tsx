@@ -22,6 +22,15 @@ export default function ArchivePage() {
             className="opacity-70 dark:invert transition-all hover:opacity-100"
           />
         </div>
+        <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
+          <Image 
+            src="/assets/archive-bottom-left.png" 
+            alt="King Illustration" 
+            width={100} 
+            height={100}
+            className="opacity-80 transition-all hover:opacity-100"
+          />
+        </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
           <Image 
             src="/assets/archive-bottom-middle.png" 
