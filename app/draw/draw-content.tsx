@@ -21,34 +21,6 @@ export default function DrawContent() {
   const [redoStack, setRedoStack] = useState<string[]>([]);
   const [eraserWidth, setEraserWidth] = useState(10);
   const [brushType, setBrushType] = useState<'marker'>('marker');
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const checkDarkMode = () => {
-      setIsDarkMode(document.documentElement.classList.contains('dark'));
-    };
-    checkDarkMode();
-    
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          checkDarkMode();
-        }
-      });
-    });
-    
-    observer.observe(document.documentElement, { attributes: true });
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    // When theme changes, if penColor was black/white, swap it to the opposite for the new theme
-    if (isDarkMode && penColor === '#000000') {
-      setPenColor('#ffffff');
-    } else if (!isDarkMode && penColor === '#ffffff') {
-      setPenColor('#000000');
-    }
-  }, [isDarkMode]);
 
   const colors = [
     '#000000', '#7f7f7f', '#880015', '#ed1c24', '#ff7f27', '#fff200', '#22b14c', '#00a2e8', '#3f48cc', '#a349a4',
@@ -264,19 +236,7 @@ export default function DrawContent() {
 
   return (
     <PageContainer>
-      <div className="relative">
-        {/* Smiley Icon - Positioned absolute relative to the page container */}
-        <div className="absolute -top-4 right-0 z-50 pointer-events-none transition-all duration-300">
-          <Image 
-            src={isDarkMode ? "/assets/smiley-icon-white.png" : "/assets/smiley-icon.png"} 
-            alt="Smiley" 
-            width={45} 
-            height={45} 
-            className="rounded-full opacity-80"
-          />
-        </div>
-        <Header title="" />
-      </div>
+      <Header title="" />
       <div className="font-poppins select-none">
         <div className="flex flex-col gap-4">
           {/* MS Paint Style Toolbar */}
