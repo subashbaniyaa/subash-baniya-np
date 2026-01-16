@@ -40,6 +40,15 @@ export default function ArchivePage() {
             className="opacity-50 dark:invert transition-all hover:opacity-100"
           />
         </div>
+        <div className="absolute top-20 right-4 z-20 pointer-events-none">
+          <Image 
+            src="/assets/archive-top-right.png" 
+            alt="Smiley Illustration" 
+            width={70} 
+            height={70}
+            className="opacity-70 transition-all hover:opacity-100"
+          />
+        </div>
         <div className="absolute inset-0 z-0">
           <BackgroundGradientAnimation interactive={false}>
             <div />
