@@ -16,16 +16,16 @@ export default function ThoughtsPage() {
   return (
     <PageContainer>
       <Header title="" />
-      <div className="mb-8">
+      <Blogs posts={posts} />
+      <div className="mt-8">
         <Link 
           href="/" 
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors group"
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-all group"
           aria-label="Back to home"
         >
-          <BsArrowLeftCircleFill size={32} className="transition-transform group-hover:-translate-x-1" />
+          <BsArrowLeftCircleFill size={32} className="transition-transform group-hover:scale-125 duration-200" />
         </Link>
       </div>
-      <Blogs posts={posts} />
     </PageContainer>
   );
 }

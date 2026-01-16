@@ -26,15 +26,6 @@ export default async function Blog(props: {
 
   return (
     <section>
-      <div className="mb-8">
-        <Link 
-          href="/articles" 
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors group"
-          aria-label="Back to articles"
-        >
-          <BsArrowLeftCircleFill size={32} className="transition-transform group-hover:-translate-x-1" />
-        </Link>
-      </div>
       <div className="md:max-w-5xl">
         <PageTitle>{metadata.title}</PageTitle>
         <div className="flex justify-between items-center mt-4 mb-12 text-sm">
@@ -43,6 +34,15 @@ export default async function Blog(props: {
           </p>
         </div>
         <article>{content}</article>
+      </div>
+      <div className="mt-8">
+        <Link 
+          href="/articles" 
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-all group"
+          aria-label="Back to articles"
+        >
+          <BsArrowLeftCircleFill size={32} className="transition-transform group-hover:scale-125 duration-200" />
+        </Link>
       </div>
     </section>
   );
