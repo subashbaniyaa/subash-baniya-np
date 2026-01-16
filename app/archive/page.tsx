@@ -22,6 +22,15 @@ export default function ArchivePage() {
             className="opacity-70 dark:invert transition-all hover:opacity-100"
           />
         </div>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
+          <Image 
+            src="/assets/archive-bottom-middle.png" 
+            alt="Archive Bottom Illustration" 
+            width={120} 
+            height={120}
+            className="opacity-50 dark:invert transition-all hover:opacity-100"
+          />
+        </div>
         <div className="absolute inset-0 z-0">
           <BackgroundGradientAnimation interactive={false}>
             <div />
