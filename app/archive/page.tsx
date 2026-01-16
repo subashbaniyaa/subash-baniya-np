@@ -2,6 +2,7 @@ import Link from 'next/link';
 import TeamCarousel from '../components/carousel/TeamCarousel';
 import { BackgroundGradientAnimation } from '../components/background-gradient-animation';
 import SplashCursor from '../components/splash-cursor';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Archive',
@@ -12,6 +13,15 @@ export default function ArchivePage() {
   return (
     <SplashCursor containerClassName="h-svh w-screen overflow-hidden" usePrimaryColors={true}>
       <div className="relative h-svh w-screen flex flex-col overflow-hidden">
+        <div className="absolute top-4 left-4 z-20 pointer-events-none">
+          <Image 
+            src="/assets/archive-top-left.png" 
+            alt="Archive Illustration" 
+            width={80} 
+            height={80}
+            className="opacity-70 dark:invert transition-all hover:opacity-100"
+          />
+        </div>
         <div className="absolute inset-0 z-0">
           <BackgroundGradientAnimation interactive={false}>
             <div />
