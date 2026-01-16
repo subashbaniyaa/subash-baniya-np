@@ -20,8 +20,8 @@ const song: Song = {
   id: 1,
   title: "Knockin' On Heaven's Door",
   artist: "Guns N' Roses",
-  src: "/Knockin'OnHeaven'sDoor.mp3",
-  cover: "/GunsNRoses.jpg"
+  src: "/static/music/Knockin'OnHeaven'sDoor.mp3",
+  cover: "/static/images/GunsNRoses.jpg"
 };
 
 function MusicWaveform({ isPlaying, size = 'small' }: { isPlaying: boolean; size?: 'small' | 'medium' | 'large' }) {

@@ -9,7 +9,7 @@ export default function Home() {
     <ScrollProvider>
       <div className="fixed inset-0 z-[-1] pointer-events-none flex items-center justify-center overflow-hidden">
         <Image 
-          src="/hero-bg.png" 
+          src="/static/images/hero-bg.png" 
           alt="Background" 
           width={600} 
           height={400} 

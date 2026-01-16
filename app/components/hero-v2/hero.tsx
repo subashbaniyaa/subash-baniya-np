@@ -101,7 +101,7 @@ export default function Hero() {
               </section>
               <div className="select-none pointer-events-none">
                 <Image 
-                  src="/OnePiece.gif" 
+                  src="/static/gifs/OnePiece.gif" 
                   alt="One Piece" 
                   width={200} 
                   height={150} 
