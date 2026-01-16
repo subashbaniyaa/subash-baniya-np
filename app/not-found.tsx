@@ -26,9 +26,6 @@ export default function FourZeroFour() {
               The page you&apos;re looking for doesn&apos;t exist.
             </p>
           </div>
-          <Link href="/" className="absolute bottom-8 left-8 z-20 underline-magical bg-black/10 dark:bg-white/10 px-1 rounded-none pointer-events-auto">
-            Return to homepage
-          </Link>
         </div>
       </div>
     </SplashCursor>
