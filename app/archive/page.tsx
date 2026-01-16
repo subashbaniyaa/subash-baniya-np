@@ -13,15 +13,6 @@ export default function ArchivePage() {
   return (
     <SplashCursor containerClassName="h-svh w-screen overflow-hidden" usePrimaryColors={true}>
       <div className="relative h-svh w-screen flex flex-col overflow-hidden">
-        <div className="absolute top-4 left-4 z-20 pointer-events-none">
-          <Image 
-            src="/assets/archive-top-left.png" 
-            alt="Archive Illustration" 
-            width={80} 
-            height={80}
-            className="opacity-70 dark:invert transition-all hover:opacity-100"
-          />
-        </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
           <Image 
             src="/assets/archive-bottom-middle.png" 
