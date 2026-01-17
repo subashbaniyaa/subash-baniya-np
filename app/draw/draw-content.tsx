@@ -56,7 +56,7 @@ export default function DrawContent() {
           
           setCanvasSize({ width, height });
           
-          if (data) signaturePadRef.current?.fromData(data);
+          if (data && signaturePadRef.current) signaturePadRef.current.fromData(data);
         }
       };
 
@@ -200,7 +200,7 @@ export default function DrawContent() {
           <div className="flex flex-col gap-8 max-w-4xl mx-auto">
           
           {/* Liquid Glass Toolbar */}
-          <div className="wrapper w-full">
+          <div className="wrapper w-full px-0 sm:px-0">
             <div className="liquidGlass-wrapper dock w-full">
               <div className="liquidGlass-effect"></div>
               <div className="liquidGlass-tint"></div>
@@ -462,7 +462,7 @@ export default function DrawContent() {
           </svg>
 
           {/* Canvas Area */}
-          <div className="w-full max-w-4xl mx-auto relative px-4 sm:px-0">
+          <div className="w-full max-w-4xl mx-auto relative px-0 sm:px-0">
             <div className="w-full h-[80vh] flex items-center justify-center relative z-10">
                <div className="w-full h-full relative border border-black/10 rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <canvas 
@@ -481,7 +481,7 @@ export default function DrawContent() {
           </div>
 
           {/* Footer Navigation */}
-          <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center px-4">
+          <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center px-0">
             <div className="flex gap-4">
               <button onClick={() => save('png')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">PNG</button>
               <button onClick={() => save('jpg')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">JPG</button>
