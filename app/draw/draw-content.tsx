@@ -543,6 +543,7 @@ export default function DrawContent() {
               <span>100%</span>
             </div>
           </div>
+          </div>
         </div>
       </div>
     </PageContainer>
