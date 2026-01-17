@@ -40,9 +40,28 @@ export default function DrawContent() {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsBgApplied(sessionStorage.getItem('drawing-bg-active') === 'true');
-    }
+    const updateBg = () => {
+      if (typeof window !== 'undefined') {
+        const savedBg = localStorage.getItem('persistent-drawing-bg');
+        const isActive = sessionStorage.getItem('drawing-bg-active') === 'true';
+        const bgRoot = document.getElementById('draw-page-bg-root');
+        if (bgRoot) {
+          if (isActive && savedBg) {
+            bgRoot.innerHTML = '';
+            const img = new Image();
+            img.src = savedBg;
+            img.className = 'w-full h-full object-cover';
+            bgRoot.appendChild(img);
+          } else {
+            bgRoot.innerHTML = '';
+          }
+        }
+      }
+    };
+
+    updateBg();
+    window.addEventListener('drawing-bg-updated', updateBg);
+    return () => window.removeEventListener('drawing-bg-updated', updateBg);
   }, []);
 
   useEffect(() => {
