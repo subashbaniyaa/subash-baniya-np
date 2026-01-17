@@ -48,7 +48,7 @@ export default function DrawContent() {
         if (bgRoot) {
           if (isActive && savedBg) {
             bgRoot.innerHTML = '';
-            const img = new Image();
+            const img = new (window as any).Image();
             img.src = savedBg;
             img.className = 'w-full h-full object-cover';
             bgRoot.appendChild(img);
@@ -91,11 +91,11 @@ export default function DrawContent() {
       updateCanvasSize();
 
       const signaturePad = new (SignaturePad as any)(canvas, {
-        backgroundColor: bgColor,
-        penColor: penColor,
-        minWidth: minWidth,
-        maxWidth: maxWidth
-      });
+      backgroundColor: bgColor,
+      penColor: penColor,
+      minWidth: minWidth,
+      maxWidth: maxWidth
+    });
       signaturePadRef.current = signaturePad;
 
       signaturePad.addEventListener('endStroke', () => {
@@ -144,8 +144,8 @@ export default function DrawContent() {
         // Marker Brush (default)
         signaturePadRef.current.penColor = penColor;
         signaturePadRef.current.compositeOperation = 'source-over';
-        signaturePadRef.current.minWidth = maxWidth * 0.9;
-        signaturePadRef.current.maxWidth = maxWidth;
+        signaturePadRef.current.minWidth = (maxWidth || 2.5) * 0.9;
+        signaturePadRef.current.maxWidth = maxWidth || 2.5;
       }
     }
   }, [penColor, isEraser, activeTool, bgColor, eraserWidth, minWidth, maxWidth, brushType]);
@@ -208,7 +208,7 @@ export default function DrawContent() {
     const tempCtx = tempCanvas.getContext('2d');
     if (!tempCtx) return;
 
-    const tempPad = new SignaturePad(tempCanvas, {
+    const tempPad = new (SignaturePad as any)(tempCanvas, {
       backgroundColor: 'rgba(0,0,0,0)',
       penColor: penColor
     });
