@@ -3,12 +3,31 @@ import { ScrollProvider } from './components/providers/ScrollProvider';
 import Oneko from './components/oneko';
 import Spider from './components/spider';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    // Reset animation on page load and tab switch
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        setKey(prev => prev + 1);
+      }
+    };
+
+    // Reset animation on navigation (client-side)
+    setKey(prev => prev + 1);
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
+
   return (
     <ScrollProvider>
       <div className="fixed inset-0 z-[-1] pointer-events-none flex items-center justify-center overflow-hidden">
         <Image 
+          key={key}
           src="/static/images/hero-bg.png" 
           alt="Background" 
           width={600} 
