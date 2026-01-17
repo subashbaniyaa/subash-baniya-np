@@ -6,21 +6,14 @@ import Oneko from './components/oneko';
 import Spider from './components/spider';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
 
 export default function Home() {
   const [key, setKey] = useState(0);
-  const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     // Trigger animation on component mount (navigation/initial load)
     setKey(prev => prev + 1);
   }, []);
-
-  // Use resolvedTheme to handle 'system' theme correctly
-  const isDark = mounted && (resolvedTheme === 'dark');
 
   return (
     <ScrollProvider>
@@ -31,7 +24,7 @@ export default function Home() {
           alt="Background" 
           width={600} 
           height={400} 
-          className={`opacity-0 animate-[fadeIn_2s_ease-in-out_forwards] w-full max-w-[50vw] md:max-w-[30vw] h-auto object-contain transition-all duration-500 ${isDark ? 'invert brightness-110' : ''}`}
+          className="opacity-0 animate-[fadeIn_2s_ease-in-out_forwards] w-full max-w-[50vw] md:max-w-[30vw] h-auto object-contain"
           priority
         />
       </div>
