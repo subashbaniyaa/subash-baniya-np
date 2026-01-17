@@ -11,18 +11,23 @@ export default function Home() {
   const [key, setKey] = useState(0);
 
   useEffect(() => {
-    // Reset animation on page load and tab switch
+    // Reset animation on page load, tab switch, and navigation
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         setKey(prev => prev + 1);
       }
     };
 
-    // Reset animation on navigation (client-side)
+    // Trigger animation on component mount (navigation/initial load)
     setKey(prev => prev + 1);
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleVisibilityChange);
+    };
   }, []);
 
   return (
