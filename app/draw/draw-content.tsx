@@ -272,7 +272,7 @@ export default function DrawContent() {
                         <div className="flex items-center justify-center gap-1.5">
                           <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white/10 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
                           <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white/10 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
-                          <button onClick={() => clear()} className="p-1.5 hover:bg-white/10 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={14}/></button>
+                          <button onClick={() => clear()} className="p-1.5 hover:bg-white/10 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={18}/></button>
                         </div>
                       </div>
                     </div>
