@@ -13,10 +13,16 @@ export default function Home() {
           alt="Background" 
           width={600} 
           height={400} 
-          className="opacity-30 w-full max-w-[50vw] md:max-w-[30vw] h-auto object-contain"
+          className="opacity-0 animate-[fadeIn_2s_ease-in-out_forwards] w-full max-w-[50vw] md:max-w-[30vw] h-auto object-contain"
           priority
         />
       </div>
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 0.3; }
+        }
+      `}</style>
       <Oneko />
       <Spider />
       <Hero />
