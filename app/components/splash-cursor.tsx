@@ -1448,6 +1448,23 @@ function SplashCursor({
                 container.addEventListener('touchmove', handleTouchMove, false);
                 container.addEventListener('touchend', handleTouchEnd);
 
+                const handleCatMove = (e: any) => {
+                  const { x, y, color } = e.detail;
+                  const pos = getRelativePosition(x, y);
+                  const posX = scaleByPixelRatio(pos.x);
+                  const posY = scaleByPixelRatio(pos.y);
+                  
+                  // Use a modified splat that doesn't require a pointer object
+                  const canvasEl = canvas as HTMLCanvasElement | null;
+                  if (!canvasEl) return;
+                  
+                  const dx = (Math.random() - 0.5) * 5;
+                  const dy = (Math.random() - 0.5) * 5;
+                  
+                  splat(posX / canvasEl.width, 1.0 - posY / canvasEl.height, dx, dy, color);
+                };
+                window.addEventListener('catMove', handleCatMove);
+
                 updateFrame();
 
                 // Cleanup
@@ -1457,6 +1474,7 @@ function SplashCursor({
                         container.removeEventListener('touchstart', handleTouchStart);
                         container.removeEventListener('touchmove', handleTouchMove);
                         container.removeEventListener('touchend', handleTouchEnd);
+                        window.removeEventListener('catMove', handleCatMove);
                 };
                 } catch {
                         setWebGLSupported(false);
