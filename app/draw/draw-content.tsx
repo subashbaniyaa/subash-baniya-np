@@ -340,13 +340,13 @@ export default function DrawContent() {
                             { label: 'T', value: 'transparent', title: 'Transparent' },
                             { label: 'W', value: '#f8fafc', title: 'Soft White' },
                             { label: 'K', value: '#1e293b', title: 'Soft Black' },
-                            { label: 'R', value: '#fff1f2', title: 'Soft Rose' },
-                            { label: 'G', value: '#f0fdf4', title: 'Soft Emerald' },
-                            { label: 'B', value: '#eff6ff', title: 'Soft Blue' },
-                            { label: 'Y', value: '#fffbeb', title: 'Soft Amber' },
-                            { label: 'P', value: '#faf5ff', title: 'Soft Purple' },
-                            { label: 'O', value: '#fff7ed', title: 'Soft Orange' },
-                            { label: 'M', value: '#fdf2f8', title: 'Soft Pink' }
+                            { label: 'R', value: '#f192bd', title: 'Soft Rose' },
+                            { label: 'G', value: '#a7f3d0', title: 'Soft Emerald' },
+                            { label: 'B', value: '#bfdbfe', title: 'Soft Blue' },
+                            { label: 'Y', value: '#fef08a', title: 'Soft Amber' },
+                            { label: 'P', value: '#e9d5ff', title: 'Soft Purple' },
+                            { label: 'O', value: '#fed7aa', title: 'Soft Orange' },
+                            { label: 'M', value: '#fbcfe8', title: 'Soft Pink' }
                           ].map((option) => (
                             <button
                               key={option.value}
