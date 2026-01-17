@@ -338,15 +338,15 @@ export default function DrawContent() {
                         <div className="grid grid-cols-5 gap-0.5 sm:gap-1 place-items-center">
                           {[
                             { label: 'T', value: 'transparent', title: 'Transparent' },
-                            { label: 'W', value: '#f9fafb', title: 'Soft White' },
-                            { label: 'B', value: '#111827', title: 'Soft Black' },
-                            { label: 'R', value: '#fee2e2', title: 'Soft Red' },
-                            { label: 'G', value: '#f0fdf4', title: 'Soft Green' },
+                            { label: 'W', value: '#f8fafc', title: 'Soft White' },
+                            { label: 'K', value: '#1e293b', title: 'Soft Black' },
+                            { label: 'R', value: '#fff1f2', title: 'Soft Rose' },
+                            { label: 'G', value: '#f0fdf4', title: 'Soft Emerald' },
                             { label: 'B', value: '#eff6ff', title: 'Soft Blue' },
-                            { label: 'Y', value: '#fefce8', title: 'Soft Yellow' },
+                            { label: 'Y', value: '#fffbeb', title: 'Soft Amber' },
                             { label: 'P', value: '#faf5ff', title: 'Soft Purple' },
                             { label: 'O', value: '#fff7ed', title: 'Soft Orange' },
-                            { label: 'P', value: '#fdf2f8', title: 'Soft Pink' }
+                            { label: 'M', value: '#fdf2f8', title: 'Soft Pink' }
                           ].map((option) => (
                             <button
                               key={option.value}
@@ -363,7 +363,7 @@ export default function DrawContent() {
                                   : 'none',
                                 backgroundSize: '4px 4px',
                                 backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
-                                color: ['transparent', '#ffffff', '#eab308', '#fef08a'].includes(option.value) ? '#000' : '#fff'
+                                color: ['#1e293b', '#111827'].includes(option.value) ? '#fff' : '#000'
                               }}
                               title={option.title}
                             >
