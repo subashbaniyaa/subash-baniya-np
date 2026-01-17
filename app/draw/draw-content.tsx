@@ -181,29 +181,20 @@ export default function DrawContent() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Create a temporary canvas to export only the drawing without background
-    const tempCanvas = document.createElement('canvas');
-    tempCanvas.width = canvas.width;
-    tempCanvas.height = canvas.height;
-    const ctx = tempCanvas.getContext('2d');
-    if (!ctx) return;
-
-    // We don't fill the background here, so it remains transparent
-    // We draw the original canvas content which contains the signature/drawing
-    // SignaturePad draws on the canvas directly. 
-    // If backgroundColor was set on SignaturePad, it might be part of the canvas.
-    // However, to get ONLY the drawing, we can temporarily set the background to transparent
-    // if we were using a library that supports it, but SignaturePad usually clears with the bg color.
-    
-    // Better approach: Since we want ONLY the drawing (PNG), 
-    // we should ensure we're capturing the strokes.
-    // SignaturePad's toDataURL() handles background color.
-    
     // To get transparent drawing regardless of current canvas bg:
+    // SignaturePad usually captures with its backgroundColor.
+    // We get the data without the background color by manually handling the extraction.
     const originalBg = signaturePadRef.current.backgroundColor;
-    signaturePadRef.current.backgroundColor = 'transparent';
+    
+    // Set to transparent for extraction
+    signaturePadRef.current.backgroundColor = 'rgba(0,0,0,0)';
+    
+    // We use toData() to get the strokes and then re-draw them on a transparent canvas if needed,
+    // but signature_pad's toDataURL() respects backgroundColor.
     const dataUrl = signaturePadRef.current.toDataURL('image/png');
-    signaturePadRef.current.backgroundColor = originalBg; // Restore original bg
+    
+    // Restore original bg for the UI
+    signaturePadRef.current.backgroundColor = originalBg;
 
     localStorage.setItem('persistent-drawing-bg', dataUrl);
     sessionStorage.setItem('drawing-bg-active', 'true');
