@@ -54,6 +54,11 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
       // Also apply after a short delay to ensure DOM is fully ready
       const timer = setTimeout(applyBg, 100);
       return () => clearTimeout(timer);
+    } else if (!showBackground) {
+      const bgRoot = document.getElementById('drawing-bg-root');
+      if (bgRoot) {
+        bgRoot.innerHTML = '';
+      }
     }
   }, [pathname, showBackground, bgImage]);
 

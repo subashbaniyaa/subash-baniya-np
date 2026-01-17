@@ -201,43 +201,27 @@ export default function DrawContent() {
     if (!canvas) return;
 
     // To capture ONLY the drawing without the background:
-    // 1. Get the current strokes data
     const data = signaturePadRef.current.toData();
-    
-    // 2. Create a temporary canvas of the same size
     const tempCanvas = document.createElement('canvas');
     tempCanvas.width = canvas.width;
     tempCanvas.height = canvas.height;
     const tempCtx = tempCanvas.getContext('2d');
     if (!tempCtx) return;
 
-    // 3. Create a temporary SignaturePad on the transparent tempCanvas
     const tempPad = new SignaturePad(tempCanvas, {
       backgroundColor: 'rgba(0,0,0,0)',
-      penColor: penColor // This will be overridden by fromData if data has colors
+      penColor: penColor
     });
 
-    // 4. Load the strokes into the temp pad (this draws them on the transparent canvas)
     tempPad.fromData(data);
-
-    // 5. Get the PNG data URL from the transparent temp canvas
     const dataUrl = tempCanvas.toDataURL('image/png');
 
     localStorage.setItem('persistent-drawing-bg', dataUrl);
     sessionStorage.setItem('drawing-bg-active', 'true');
     setIsBgApplied(true);
     
-    // Dispatch a custom event to notify the layout to update immediately
+    // Dispatch a custom event to notify the page to update
     window.dispatchEvent(new Event('drawing-bg-updated'));
-    
-    const bgRoot = document.getElementById('draw-page-bg-root');
-    if (bgRoot) {
-      bgRoot.innerHTML = '';
-      const img = new Image();
-      img.src = dataUrl;
-      img.className = 'w-full h-full object-cover';
-      bgRoot.appendChild(img);
-    }
   };
 
   const resetBackground = () => {
