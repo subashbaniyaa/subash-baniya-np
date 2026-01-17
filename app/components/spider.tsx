@@ -28,7 +28,7 @@ export default function Spider() {
 
     const targetTop = '35%';
 
-    gsap.set(container, { left: '75%' });
+    gsap.set(container, { left: '15%' });
 
     // Initial drop animation
     gsap.to(spider, {
@@ -114,7 +114,7 @@ export default function Spider() {
         if (isMobileVis) {
           gsap.set(container, { left: '50%' });
         } else {
-          gsap.set(container, { left: '75%' });
+          gsap.set(container, { left: '15%' });
         }
 
         gsap.killTweensOf(spider);
@@ -138,7 +138,7 @@ export default function Spider() {
   }, []);
 
   return (
-    <div ref={containerRef} className="fixed top-0 left-[75%] -translate-x-1/2 z-[0] opacity-100 pointer-events-none w-[200px] h-[400px]">
+    <div ref={containerRef} className="fixed top-0 left-[15%] -translate-x-1/2 z-[0] opacity-100 pointer-events-none w-[150px] h-[300px]">
       <div ref={spiderRef} className="relative -top-[350px] w-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
