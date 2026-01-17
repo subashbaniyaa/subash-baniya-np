@@ -47,7 +47,7 @@ export default function Oneko() {
     });
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    let mousePosX = window.innerWidth * 0.825;
+    let mousePosX = window.innerWidth * 0.8;
     let mousePosY = window.innerHeight / 2;
     let catPosX = mousePosX;
     let catPosY = mousePosY;
