@@ -237,12 +237,13 @@ export default function DrawContent() {
   return (
     <PageContainer>
       <div className="draw-page-bg min-h-screen">
-        <div className="font-poppins select-none px-4 pb-8 pt-4">
-          <div className="flex flex-col gap-4">
-            
-            {/* Liquid Glass Toolbar */}
-            <div className="wrapper sticky top-4 z-50">
-              <div className="liquidGlass-wrapper dock w-full max-w-4xl mx-auto">
+        <Header title="" />
+        <div className="font-poppins select-none px-4 pb-8">
+        <div className="flex flex-col gap-4">
+          
+          {/* Liquid Glass Toolbar */}
+          <div className="wrapper">
+            <div className="liquidGlass-wrapper dock w-full max-w-4xl mx-auto">
               <div className="liquidGlass-effect"></div>
               <div className="liquidGlass-tint"></div>
               <div className="liquidGlass-shine"></div>
