@@ -15,11 +15,11 @@ export default function DrawContent() {
   const [isEraser, setIsEraser] = useState(false);
   const [activeTool, setActiveTool] = useState('pencil');
   const [bgColor, setBgColor] = useState('#ffffff');
-  const [minWidth, setMinWidth] = useState(0.5);
-  const [maxWidth, setMaxWidth] = useState(3);
+  const [pencilWidth, setPencilWidth] = useState(3);
+  const [brushWidth, setBrushWidth] = useState(3);
+  const [eraserWidth, setEraserWidth] = useState(3);
   const [undoStack, setUndoStack] = useState<string[]>([]);
   const [redoStack, setRedoStack] = useState<string[]>([]);
-  const [eraserWidth, setEraserWidth] = useState(3);
   const [brushType, setBrushType] = useState<'marker'>('marker');
 
   const colors = [
@@ -66,8 +66,8 @@ export default function DrawContent() {
       const signaturePad = new (SignaturePad as any)(canvas, {
       backgroundColor: bgColor,
       penColor: penColor,
-      minWidth: minWidth,
-      maxWidth: maxWidth
+      minWidth: activeTool === 'pencil' ? pencilWidth / 3 : activeTool === 'brush' ? brushWidth * 0.9 : eraserWidth / 3,
+      maxWidth: activeTool === 'pencil' ? pencilWidth : activeTool === 'brush' ? brushWidth : eraserWidth
     });
       signaturePadRef.current = signaturePad;
 
@@ -111,17 +111,17 @@ export default function DrawContent() {
       } else if (activeTool === 'pencil') {
         signaturePadRef.current.penColor = penColor;
         signaturePadRef.current.compositeOperation = 'source-over';
-        signaturePadRef.current.minWidth = (maxWidth || 1.5) / 3;
-        signaturePadRef.current.maxWidth = maxWidth || 1.5;
+        signaturePadRef.current.minWidth = pencilWidth / 3;
+        signaturePadRef.current.maxWidth = pencilWidth;
       } else {
         // Marker Brush (default)
         signaturePadRef.current.penColor = penColor;
         signaturePadRef.current.compositeOperation = 'source-over';
-        signaturePadRef.current.minWidth = (maxWidth || 2.5) * 0.9;
-        signaturePadRef.current.maxWidth = maxWidth || 2.5;
+        signaturePadRef.current.minWidth = brushWidth * 0.9;
+        signaturePadRef.current.maxWidth = brushWidth;
       }
     }
-  }, [penColor, isEraser, activeTool, bgColor, eraserWidth, minWidth, maxWidth, brushType]);
+  }, [penColor, isEraser, activeTool, bgColor, eraserWidth, pencilWidth, brushWidth, brushType]);
 
   useEffect(() => {
     if (signaturePadRef.current) {
@@ -215,7 +215,7 @@ export default function DrawContent() {
                       <div className="flex flex-row sm:flex-col gap-1.5">
                         <div className="flex items-center justify-center gap-1.5">
                           <button 
-                            onClick={() => { setIsEraser(false); setActiveTool('pencil'); setMaxWidth(3); setMinWidth(1); }} 
+                            onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} 
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Pencil"
                           >
@@ -233,7 +233,7 @@ export default function DrawContent() {
                             )}
                           </button>
                           <button 
-                            onClick={() => { setIsEraser(false); setActiveTool('brush'); setMaxWidth(3); setMinWidth(1); }} 
+                            onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'brush' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Brush"
                           >
@@ -251,7 +251,7 @@ export default function DrawContent() {
                             )}
                           </button>
                           <button 
-                            onClick={() => { setIsEraser(true); setActiveTool('eraser'); setEraserWidth(3); }} 
+                            onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Eraser"
                           >
@@ -289,19 +289,20 @@ export default function DrawContent() {
                           max={isEraser ? "100" : "50"}
                           step="0.5"
                           disabled={false}
-                          value={isEraser ? eraserWidth : maxWidth} 
+                          value={isEraser ? eraserWidth : activeTool === 'pencil' ? pencilWidth : brushWidth} 
                           onChange={(e) => {
                             const val = parseFloat(e.target.value);
                             if (isEraser) {
                               setEraserWidth(val);
+                            } else if (activeTool === 'pencil') {
+                              setPencilWidth(val);
                             } else {
-                              setMaxWidth(val);
-                              setMinWidth(val / 3);
+                              setBrushWidth(val);
                             }
                           }}
                           className={`w-18 sm:w-22 accent-black appearance-none cursor-pointer bg-black/10 rounded-full h-1`}
                         />
-                        <span className="text-[9px] sm:text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
+                        <span className="text-[9px] sm:text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : activeTool === 'pencil' ? pencilWidth : brushWidth)}px</span>
                       </div>
                     </div>
                   </div>
