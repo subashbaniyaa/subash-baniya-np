@@ -7,11 +7,6 @@ import SplashCursor from '../components/splash-cursor';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-export const metadata = {
-  title: 'Archive',
-  description: 'Archive - Subash',
-};
-
 export default function ArchivePage() {
   const decorations = [
     { src: '/static/images/archive-decorations/flower-1.png', className: 'top-[10%] left-[5%] w-12 md:w-16', delay: 0 },
