@@ -338,15 +338,15 @@ export default function DrawContent() {
                         <div className="grid grid-cols-5 gap-0.5 sm:gap-1 place-items-center">
                           {[
                             { label: 'T', value: 'transparent', title: 'Transparent' },
-                            { label: 'W', value: '#ffffff', title: 'White' },
-                            { label: 'B', value: '#000000', title: 'True Black' },
-                            { label: 'R', value: '#ef4444', title: 'Red' },
-                            { label: 'G', value: '#22c55e', title: 'Green' },
-                            { label: 'B', value: '#3b82f6', title: 'Blue' },
-                            { label: 'Y', value: '#eab308', title: 'Yellow' },
-                            { label: 'P', value: '#a855f7', title: 'Purple' },
-                            { label: 'O', value: '#f97316', title: 'Orange' },
-                            { label: 'P', value: '#ec4899', title: 'Pink' }
+                            { label: 'W', value: '#f9fafb', title: 'Soft White' },
+                            { label: 'B', value: '#111827', title: 'Soft Black' },
+                            { label: 'R', value: '#fee2e2', title: 'Soft Red' },
+                            { label: 'G', value: '#f0fdf4', title: 'Soft Green' },
+                            { label: 'B', value: '#eff6ff', title: 'Soft Blue' },
+                            { label: 'Y', value: '#fefce8', title: 'Soft Yellow' },
+                            { label: 'P', value: '#faf5ff', title: 'Soft Purple' },
+                            { label: 'O', value: '#fff7ed', title: 'Soft Orange' },
+                            { label: 'P', value: '#fdf2f8', title: 'Soft Pink' }
                           ].map((option) => (
                             <button
                               key={option.value}
