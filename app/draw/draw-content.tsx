@@ -196,11 +196,11 @@ export default function DrawContent() {
     <PageContainer>
       <div className="draw-page-bg min-h-screen">
         <Header title="" />
-        <div className="font-poppins select-none px-4 pb-8">
-          <div className="flex flex-col gap-8 max-w-4xl mx-auto">
+        <div className="font-poppins select-none px-2 sm:px-4 pb-8">
+          <div className="flex flex-col gap-6 max-w-4xl mx-auto">
           
           {/* Liquid Glass Toolbar */}
-          <div className="wrapper w-full px-0 sm:px-0">
+          <div className="wrapper w-full px-0">
             <div className="liquidGlass-wrapper dock w-full">
               <div className="liquidGlass-effect"></div>
               <div className="liquidGlass-tint"></div>
@@ -463,9 +463,9 @@ export default function DrawContent() {
           </svg>
 
           {/* Canvas Area */}
-          <div className="w-full max-w-4xl mx-auto relative px-0 sm:px-0">
+          <div className="w-full max-w-4xl mx-auto relative px-0">
             <div className="w-full h-[80vh] flex items-center justify-center relative z-10">
-               <div className="w-full h-full relative rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
+               <div className="w-full h-full relative rounded-2xl sm:rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <div className="absolute inset-0 pointer-events-none dot-border-clean text-black/20 dark:text-white/20" />
                   <canvas 
                     ref={canvasRef} 
