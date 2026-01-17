@@ -16,10 +16,10 @@ export default function DrawContent() {
   const [activeTool, setActiveTool] = useState('pencil');
   const [bgColor, setBgColor] = useState('#ffffff');
   const [minWidth, setMinWidth] = useState(0.5);
-  const [maxWidth, setMaxWidth] = useState(2.5);
+  const [maxWidth, setMaxWidth] = useState(3);
   const [undoStack, setUndoStack] = useState<string[]>([]);
   const [redoStack, setRedoStack] = useState<string[]>([]);
-  const [eraserWidth, setEraserWidth] = useState(10);
+  const [eraserWidth, setEraserWidth] = useState(3);
   const [brushType, setBrushType] = useState<'marker'>('marker');
 
   const colors = [
@@ -215,7 +215,7 @@ export default function DrawContent() {
                       <div className="flex flex-row sm:flex-col gap-1.5">
                         <div className="flex items-center justify-center gap-1.5">
                           <button 
-                            onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} 
+                            onClick={() => { setIsEraser(false); setActiveTool('pencil'); setMaxWidth(3); setMinWidth(1); }} 
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Pencil"
                           >
@@ -233,7 +233,7 @@ export default function DrawContent() {
                             )}
                           </button>
                           <button 
-                            onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
+                            onClick={() => { setIsEraser(false); setActiveTool('brush'); setMaxWidth(3); setMinWidth(1); }} 
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'brush' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Brush"
                           >
@@ -251,7 +251,7 @@ export default function DrawContent() {
                             )}
                           </button>
                           <button 
-                            onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
+                            onClick={() => { setIsEraser(true); setActiveTool('eraser'); setEraserWidth(3); }} 
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Eraser"
                           >
