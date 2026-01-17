@@ -191,6 +191,10 @@ input:-webkit-autofill:focus {
   pointer-events: none;
 }
 
+.dark .draw-page-bg::before {
+  filter: brightness(0.9);
+}
+
 #nprogress .bar {
   background: #de1d8d !important;
   height: 4px !important;
