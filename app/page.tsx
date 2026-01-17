@@ -3,7 +3,6 @@
 import Hero from './components/hero-v2/hero';
 import { ScrollProvider } from './components/providers/ScrollProvider';
 import Oneko from './components/oneko';
-import Spider from './components/spider';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -35,7 +34,6 @@ export default function Home() {
         }
       `}</style>
       <Oneko />
-      <Spider />
       <Hero />
     </ScrollProvider>
   );

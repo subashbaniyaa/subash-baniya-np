@@ -1,7 +1,12 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { BackgroundGradientAnimation } from './components/background-gradient-animation';
 import SplashCursor from './components/splash-cursor';
 import { gistesy, pinkSunset } from './fonts';
+
+export const metadata: Metadata = {
+  title: '404page',
+};
 
 export const dynamic = 'force-dynamic';
 

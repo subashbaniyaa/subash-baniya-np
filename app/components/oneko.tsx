@@ -47,10 +47,10 @@ export default function Oneko() {
     });
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    let catPosX = window.innerWidth / 2;
-    let catPosY = window.innerHeight * (isMobile ? 0.1 : 0.15);
-    let mousePosX = catPosX;
-    let mousePosY = catPosY;
+    let mousePosX = window.innerWidth;
+    let mousePosY = window.innerHeight / 2;
+    let catPosX = mousePosX;
+    let catPosY = mousePosY;
     let frameCount = 0;
     let idleTime = 0;
     let idleAnimation: string | null = null;
