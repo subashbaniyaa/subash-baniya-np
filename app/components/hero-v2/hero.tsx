@@ -99,17 +99,23 @@ export default function Hero() {
                   <Link href="/draw" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>draw</Link>
                 </div>
               </section>
-              <div className="select-none pointer-events-none">
+              <motion.div 
+                drag
+                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                dragElastic={0.5}
+                whileDrag={{ scale: 1.1 }}
+                className="cursor-grab active:cursor-grabbing w-fit"
+              >
                 <Image 
                   src="/static/gifs/OnePiece.gif" 
                   alt="One Piece" 
                   width={200} 
                   height={150} 
                   unoptimized 
-                  className="rounded-xl"
+                  className="rounded-xl select-none"
                   draggable={false}
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
       </main>
