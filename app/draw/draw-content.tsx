@@ -5,7 +5,8 @@ import SignaturePad from 'signature_pad';
 import Header from '../components/header';
 import PageContainer from '../components/layouts/page-container';
 import { IoHomeOutline, IoTrash } from 'react-icons/io5';
-import { FaEraser, FaRotateLeft, FaRotateRight, FaBrush, FaPencil } from "react-icons/fa6";
+import { LuPencil, LuEraser, LuHighlighter } from "react-icons/lu";
+import { FaRotateLeft, FaRotateRight } from "react-icons/fa6";
 import Image from 'next/image';
 
 export default function DrawContent() {
@@ -216,24 +217,24 @@ export default function DrawContent() {
                         <div className="flex items-center justify-center gap-1.5">
                           <button 
                             onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} 
-                            className={`p-1 w-[32px] h-[32px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
+                            className={`p-1 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-all duration-200 ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
                             title="Pencil"
                           >
-                            <FaPencil size={18} className="text-black dark:text-white" />
+                            <LuPencil size={16} className="text-black dark:text-white" />
                           </button>
                           <button 
                             onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
-                            className={`p-1 w-[32px] h-[32px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'brush' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
-                            title="Brush"
+                            className={`p-1 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-all duration-200 ${activeTool === 'brush' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
+                            title="Marker"
                           >
-                            <FaBrush size={18} className="text-black dark:text-white" />
+                            <LuHighlighter size={16} className="text-black dark:text-white" />
                           </button>
                           <button 
                             onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
-                            className={`p-1 w-[32px] h-[32px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
+                            className={`p-1 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-all duration-200 ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
                             title="Eraser"
                           >
-                            <FaEraser size={18} className="text-black dark:text-white" />
+                            <LuEraser size={16} className="text-black dark:text-white" />
                           </button>
                         </div>
                         <div className="flex items-center justify-center gap-1.5">
