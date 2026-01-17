@@ -189,6 +189,7 @@ input:-webkit-autofill:focus {
   animation: moveBackground 180s linear infinite;
   opacity: 1;
   pointer-events: none;
+  filter: brightness(0.9);
 }
 
 .dark .draw-page-bg::before {
