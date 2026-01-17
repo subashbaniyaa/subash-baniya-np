@@ -483,9 +483,9 @@ export default function DrawContent() {
           {/* Footer Navigation */}
           <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center px-0">
             <div className="flex gap-4">
-              <button onClick={() => save('png')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">PNG</button>
-              <button onClick={() => save('jpg')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">JPG</button>
-              <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">SVG</button>
+              <button onClick={() => save('png')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all">PNG</button>
+              <button onClick={() => save('jpg')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all">JPG</button>
+              <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all">SVG</button>
             </div>
             <div className="flex items-center gap-4 text-[10px] text-gray-400">
               <div className="flex items-center gap-1">
