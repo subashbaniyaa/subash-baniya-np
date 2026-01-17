@@ -181,20 +181,28 @@ export default function DrawContent() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // To get transparent drawing regardless of current canvas bg:
-    // SignaturePad usually captures with its backgroundColor.
-    // We get the data without the background color by manually handling the extraction.
-    const originalBg = signaturePadRef.current.backgroundColor;
+    // To capture ONLY the drawing without the background:
+    // 1. Get the current strokes data
+    const data = signaturePadRef.current.toData();
     
-    // Set to transparent for extraction
-    signaturePadRef.current.backgroundColor = 'rgba(0,0,0,0)';
-    
-    // We use toData() to get the strokes and then re-draw them on a transparent canvas if needed,
-    // but signature_pad's toDataURL() respects backgroundColor.
-    const dataUrl = signaturePadRef.current.toDataURL('image/png');
-    
-    // Restore original bg for the UI
-    signaturePadRef.current.backgroundColor = originalBg;
+    // 2. Create a temporary canvas of the same size
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    const tempCtx = tempCanvas.getContext('2d');
+    if (!tempCtx) return;
+
+    // 3. Create a temporary SignaturePad on the transparent tempCanvas
+    const tempPad = new SignaturePad(tempCanvas, {
+      backgroundColor: 'rgba(0,0,0,0)',
+      penColor: penColor // This will be overridden by fromData if data has colors
+    });
+
+    // 4. Load the strokes into the temp pad (this draws them on the transparent canvas)
+    tempPad.fromData(data);
+
+    // 5. Get the PNG data URL from the transparent temp canvas
+    const dataUrl = tempCanvas.toDataURL('image/png');
 
     localStorage.setItem('persistent-drawing-bg', dataUrl);
     sessionStorage.setItem('drawing-bg-active', 'true');
