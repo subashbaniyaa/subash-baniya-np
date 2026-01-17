@@ -99,26 +99,25 @@ export default function Hero() {
                   <Link href="/draw" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>draw</Link>
                 </div>
               </section>
-              <div className="relative w-[150px] h-[112px] md:w-[200px] md:h-[150px] overflow-hidden rounded-xl">
-                <motion.div 
-                  drag
-                  dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                  dragSnapToOrigin
-                  dragElastic={0.2}
-                  dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-                  whileDrag={{ scale: 1.1 }}
-                  className="cursor-grab active:cursor-grabbing w-full h-full relative z-10"
-                >
-                  <Image 
-                    src="/static/gifs/OnePiece.gif" 
-                    alt="One Piece" 
-                    fill
-                    unoptimized 
-                    className="rounded-xl select-none object-cover"
-                    draggable={false}
-                  />
-                </motion.div>
-              </div>
+              <motion.div 
+                drag
+                dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+                dragSnapToOrigin
+                dragElastic={0}
+                dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+                whileDrag={{ scale: 1.1 }}
+                className="cursor-grab active:cursor-grabbing w-fit relative z-10"
+              >
+                <Image 
+                  src="/static/gifs/OnePiece.gif" 
+                  alt="One Piece" 
+                  width={200} 
+                  height={150} 
+                  unoptimized 
+                  className="rounded-xl select-none w-[150px] md:w-[200px]"
+                  draggable={false}
+                />
+              </motion.div>
             </div>
           </div>
       </main>
