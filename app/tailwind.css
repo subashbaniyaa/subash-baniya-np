@@ -185,22 +185,6 @@ input:-webkit-autofill:focus {
   min-height: 100vh;
 }
 
-.draw-page-bg::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background: url("https://media.istockphoto.com/id/1430511443/vector/christmas-mistletoe-foliage-and-berries-vector-seamless-pattern.jpg?s=612x612&w=0&k=20&c=oqxlH7ytgd5yjBQroACirJ1gH7Au1tq8gmsdeGd-Crk=")
-    center center;
-  background-size: 500px;
-  background-attachment: fixed;
-  opacity: 1;
-  pointer-events: none;
-  filter: brightness(0.9);
-  transform: translateZ(0);
-  will-change: transform;
-}
-
 #drawing-bg-root {
   z-index: -1 !important;
 }
