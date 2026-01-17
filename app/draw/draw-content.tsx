@@ -470,11 +470,11 @@ export default function DrawContent() {
           {/* Footer Navigation */}
           <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center px-1.5 sm:px-0">
             <div className="flex gap-4">
-              <button onClick={() => save('png')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all">PNG</button>
-              <button onClick={() => save('jpg')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all">JPG</button>
-              <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all">SVG</button>
+              <button onClick={() => save('png')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all font-poppins">PNG</button>
+              <button onClick={() => save('jpg')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all font-poppins">JPG</button>
+              <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all font-poppins">SVG</button>
             </div>
-            <div className="flex items-center gap-4 text-[10px] text-gray-400">
+            <div className="flex items-center gap-4 text-[10px] text-gray-400 font-poppins">
               <div className="flex items-center gap-1">
                 <IoHomeOutline />
                 <span>{canvasSize.width} x {canvasSize.height}px</span>
