@@ -112,7 +112,7 @@ export default function Hero() {
                   width={200} 
                   height={150} 
                   unoptimized 
-                  className="rounded-xl select-none"
+                  className="rounded-xl select-none w-[150px] md:w-[200px]"
                   draggable={false}
                 />
               </motion.div>

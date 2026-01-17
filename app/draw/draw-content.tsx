@@ -29,8 +29,6 @@ export default function DrawContent() {
 
   const [isEmpty, setIsEmpty] = useState(true);
 
-  const [isBgApplied, setIsBgApplied] = useState(false);
-
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
@@ -38,31 +36,6 @@ export default function DrawContent() {
   const handleImageError = (toolId: string) => {
     setImageErrors(prev => ({ ...prev, [toolId]: true }));
   };
-
-  useEffect(() => {
-    const updateBg = () => {
-      if (typeof window !== 'undefined') {
-        const savedBg = localStorage.getItem('persistent-drawing-bg');
-        const isActive = sessionStorage.getItem('drawing-bg-active') === 'true';
-        const bgRoot = document.getElementById('draw-page-bg-root');
-        if (bgRoot) {
-          if (isActive && savedBg) {
-            bgRoot.innerHTML = '';
-            const img = new (window as any).Image();
-            img.src = savedBg;
-            img.className = 'w-full h-full object-cover';
-            bgRoot.appendChild(img);
-          } else {
-            bgRoot.innerHTML = '';
-          }
-        }
-      }
-    };
-
-    updateBg();
-    window.addEventListener('drawing-bg-updated', updateBg);
-    return () => window.removeEventListener('drawing-bg-updated', updateBg);
-  }, []);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -195,46 +168,6 @@ export default function DrawContent() {
     localStorage.removeItem('persistent-canvas-data');
   };
 
-  const applyToBackground = () => {
-    if (signaturePadRef.current?.isEmpty()) return alert('Canvas is empty');
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    // To capture ONLY the drawing without the background:
-    const data = signaturePadRef.current.toData();
-    const tempCanvas = document.createElement('canvas');
-    tempCanvas.width = canvas.width;
-    tempCanvas.height = canvas.height;
-    const tempCtx = tempCanvas.getContext('2d');
-    if (!tempCtx) return;
-
-    const tempPad = new (SignaturePad as any)(tempCanvas, {
-      backgroundColor: 'rgba(0,0,0,0)',
-      penColor: penColor
-    });
-
-    tempPad.fromData(data);
-    const dataUrl = tempCanvas.toDataURL('image/png');
-
-    localStorage.setItem('persistent-drawing-bg', dataUrl);
-    sessionStorage.setItem('drawing-bg-active', 'true');
-    setIsBgApplied(true);
-    
-    // Dispatch a custom event to notify the page to update
-    window.dispatchEvent(new Event('drawing-bg-updated'));
-  };
-
-  const resetBackground = () => {
-    localStorage.removeItem('persistent-drawing-bg');
-    sessionStorage.removeItem('drawing-bg-active');
-    setIsBgApplied(false);
-    window.dispatchEvent(new Event('drawing-bg-updated'));
-    const bgRoot = document.getElementById('draw-page-bg-root');
-    if (bgRoot) {
-      bgRoot.innerHTML = '';
-    }
-  };
-
   const save = (format: 'png' | 'jpg') => {
     if (signaturePadRef.current?.isEmpty()) return alert('Canvas is empty');
     
@@ -263,12 +196,12 @@ export default function DrawContent() {
     <PageContainer>
       <div className="draw-page-bg min-h-screen">
         <Header title="" />
-        <div className="font-poppins select-none px-0 pb-8">
-          <div className="flex flex-col gap-8">
+        <div className="font-poppins select-none px-4 pb-8">
+          <div className="flex flex-col gap-8 max-w-4xl mx-auto">
           
           {/* Liquid Glass Toolbar */}
-          <div className="wrapper">
-            <div className="liquidGlass-wrapper dock w-full max-w-4xl mx-auto">
+          <div className="wrapper w-full">
+            <div className="liquidGlass-wrapper dock w-full">
               <div className="liquidGlass-effect"></div>
               <div className="liquidGlass-tint"></div>
               <div className="liquidGlass-shine"></div>
@@ -530,9 +463,8 @@ export default function DrawContent() {
 
           {/* Canvas Area */}
           <div className="w-full max-w-4xl mx-auto relative px-4 sm:px-0">
-            <div id="draw-page-bg-root" className="fixed sm:absolute left-4 right-4 sm:left-0 sm:right-0 top-0 bottom-0 pointer-events-none z-0 rounded-[2rem] overflow-hidden opacity-30"></div>
             <div className="w-full h-[80vh] flex items-center justify-center relative z-10">
-               <div className="w-full h-full relative border-2 border-dashed border-gray-300 dark:border-white/20 rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
+               <div className="w-full h-full relative border border-black/10 rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <canvas 
                     ref={canvasRef} 
                     className="w-full h-full touch-none" 
@@ -554,12 +486,6 @@ export default function DrawContent() {
               <button onClick={() => save('png')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">PNG</button>
               <button onClick={() => save('jpg')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">JPG</button>
               <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">SVG</button>
-              {!isEmpty && (
-                <button onClick={applyToBackground} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">Apply to background</button>
-              )}
-              {isBgApplied && (
-                <button onClick={resetBackground} className="underline-magical bg-red-600 px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">Reset BG</button>
-              )}
             </div>
             <div className="flex items-center gap-4 text-[10px] text-gray-400">
               <div className="flex items-center gap-1">
