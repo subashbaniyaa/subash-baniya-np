@@ -14,7 +14,7 @@ export default function DrawContent() {
   const [penColor, setPenColor] = useState('#000000');
   const [isEraser, setIsEraser] = useState(false);
   const [activeTool, setActiveTool] = useState('pencil');
-  const [bgColor, setBgColor] = useState('#ffffff');
+  const [bgColor, setBgColor] = useState('#f8fafc');
   const [pencilWidth, setPencilWidth] = useState(3);
   const [brushWidth, setBrushWidth] = useState(3);
   const [eraserWidth, setEraserWidth] = useState(3);
