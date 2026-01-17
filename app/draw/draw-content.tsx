@@ -211,7 +211,7 @@ export default function DrawContent() {
     // Dispatch a custom event to notify the layout to update immediately
     window.dispatchEvent(new Event('drawing-bg-updated'));
     
-    const bgRoot = document.getElementById('drawing-bg-root');
+    const bgRoot = document.getElementById('draw-page-bg-root');
     if (bgRoot) {
       bgRoot.innerHTML = '';
       const img = new Image();
@@ -226,7 +226,7 @@ export default function DrawContent() {
     sessionStorage.removeItem('drawing-bg-active');
     setIsBgApplied(false);
     window.dispatchEvent(new Event('drawing-bg-updated'));
-    const bgRoot = document.getElementById('drawing-bg-root');
+    const bgRoot = document.getElementById('draw-page-bg-root');
     if (bgRoot) {
       bgRoot.innerHTML = '';
     }
@@ -526,8 +526,9 @@ export default function DrawContent() {
           </svg>
 
           {/* Canvas Area */}
-          <div className="w-full max-w-4xl mx-auto">
-            <div className="w-full h-[80vh] flex items-center justify-center">
+          <div className="w-full max-w-4xl mx-auto relative px-4 sm:px-0">
+            <div id="draw-page-bg-root" className="absolute left-4 right-4 sm:left-0 sm:right-0 top-0 bottom-0 pointer-events-none z-0 rounded-[2rem] overflow-hidden opacity-30"></div>
+            <div className="w-full h-[80vh] flex items-center justify-center relative z-10">
                <div className="w-full h-full relative border-2 border-dashed border-gray-300 dark:border-white/20 rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <canvas 
                     ref={canvasRef} 

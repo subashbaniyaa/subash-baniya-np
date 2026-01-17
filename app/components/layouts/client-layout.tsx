@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 
 export default function ClientLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const showBackground = pathname === '/' || pathname === '/draw';
+  const showBackground = pathname === '/';
   const [bgImage, setBgImage] = useState<string | null>(null);
 
   useEffect(() => {
