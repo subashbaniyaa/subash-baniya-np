@@ -55,9 +55,6 @@ export default function ArchivePage() {
           </BackgroundGradientAnimation>
         </div>
         <div className="relative z-10 flex-1 overflow-hidden flex flex-col pt-12">
-          <h1 className="text-center text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-600 dark:from-white dark:to-gray-400">
-            Archive
-          </h1>
           <div className="flex-1">
             <TeamCarousel />
           </div>
