@@ -196,11 +196,11 @@ export default function DrawContent() {
     <PageContainer>
       <div className="draw-page-bg min-h-screen">
         <Header title="" />
-        <div className="font-poppins select-none px-2 sm:px-4 pb-8">
+        <div className="font-poppins select-none px-0 sm:px-4 pb-8">
           <div className="flex flex-col gap-6 max-w-4xl mx-auto">
           
           {/* Liquid Glass Toolbar */}
-          <div className="wrapper w-full px-0">
+          <div className="wrapper w-full px-1.5 sm:px-0">
             <div className="liquidGlass-wrapper dock w-full">
               <div className="liquidGlass-effect"></div>
               <div className="liquidGlass-tint"></div>
@@ -463,9 +463,9 @@ export default function DrawContent() {
           </svg>
 
           {/* Canvas Area */}
-          <div className="w-full max-w-4xl mx-auto relative px-0">
+          <div className="w-full max-w-4xl mx-auto relative px-1.5 sm:px-0">
             <div className="w-full h-[80vh] flex items-center justify-center relative z-10">
-               <div className="w-full h-full relative rounded-2xl sm:rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
+               <div className="w-full h-full relative rounded-3xl sm:rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <div className="absolute inset-0 pointer-events-none dot-border-clean text-black/20 dark:text-white/20" />
                   <canvas 
                     ref={canvasRef} 
@@ -483,7 +483,7 @@ export default function DrawContent() {
           </div>
 
           {/* Footer Navigation */}
-          <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center px-0">
+          <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center px-1.5 sm:px-0">
             <div className="flex gap-4">
               <button onClick={() => save('png')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all">PNG</button>
               <button onClick={() => save('jpg')} className="underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap text-[10px] font-bold uppercase transition-all">JPG</button>
