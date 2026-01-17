@@ -25,7 +25,7 @@ export default function FourZeroFour() {
         </div>
         <Spider />
         <div className="relative z-10 min-h-svh flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center space-y-2 text-center px-8 pointer-events-auto">
+          <div className="flex flex-col items-center justify-center space-y-2 text-center px-4 md:px-8 pointer-events-auto w-full max-w-lg mx-auto">
             <h1 className={`text-6xl md:text-7xl font-extrabold tracking-[0.05em] text-gray-900 dark:text-gray-100 ${pinkSunset.className}`}>
               404
             </h1>
