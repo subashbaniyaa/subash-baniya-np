@@ -242,7 +242,7 @@ export default function DrawContent() {
           
           {/* Liquid Glass Toolbar */}
           <div className="wrapper">
-            <div className="liquidGlass-wrapper dock w-full max-w-4xl mx-auto">
+            <div className="liquidGlass-wrapper dock w-full max-w-2xl mx-auto">
               <div className="liquidGlass-effect"></div>
               <div className="liquidGlass-tint"></div>
               <div className="liquidGlass-shine"></div>
@@ -257,7 +257,7 @@ export default function DrawContent() {
                         <div className="flex items-center justify-center gap-1">
                           <button 
                             onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} 
-                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
+                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Pencil"
                           >
                             {!imageErrors.pencil ? (
@@ -275,7 +275,7 @@ export default function DrawContent() {
                           </button>
                           <button 
                             onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
-                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'brush' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
+                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'brush' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Brush"
                           >
                             {!imageErrors.brush ? (
@@ -293,7 +293,7 @@ export default function DrawContent() {
                           </button>
                           <button 
                             onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
-                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
+                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Eraser"
                           >
                             {!imageErrors.eraser ? (
