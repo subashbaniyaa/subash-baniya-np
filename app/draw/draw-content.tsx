@@ -181,7 +181,30 @@ export default function DrawContent() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const dataUrl = canvas.toDataURL('image/png');
+    // Create a temporary canvas to export only the drawing without background
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    const ctx = tempCanvas.getContext('2d');
+    if (!ctx) return;
+
+    // We don't fill the background here, so it remains transparent
+    // We draw the original canvas content which contains the signature/drawing
+    // SignaturePad draws on the canvas directly. 
+    // If backgroundColor was set on SignaturePad, it might be part of the canvas.
+    // However, to get ONLY the drawing, we can temporarily set the background to transparent
+    // if we were using a library that supports it, but SignaturePad usually clears with the bg color.
+    
+    // Better approach: Since we want ONLY the drawing (PNG), 
+    // we should ensure we're capturing the strokes.
+    // SignaturePad's toDataURL() handles background color.
+    
+    // To get transparent drawing regardless of current canvas bg:
+    const originalBg = signaturePadRef.current.backgroundColor;
+    signaturePadRef.current.backgroundColor = 'transparent';
+    const dataUrl = signaturePadRef.current.toDataURL('image/png');
+    signaturePadRef.current.backgroundColor = originalBg; // Restore original bg
+
     localStorage.setItem('persistent-drawing-bg', dataUrl);
     sessionStorage.setItem('drawing-bg-active', 'true');
     setIsBgApplied(true);
