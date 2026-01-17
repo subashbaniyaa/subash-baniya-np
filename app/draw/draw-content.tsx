@@ -247,73 +247,73 @@ export default function DrawContent() {
               <div className="liquidGlass-tint"></div>
               <div className="liquidGlass-shine"></div>
               <div className="liquidGlass-text w-full">
-                <div className="dock flex flex-wrap items-center justify-center gap-0 p-1">
+                <div className="dock flex flex-wrap items-center justify-center gap-0 p-1.5">
                   
                   {/* Tools & Size Container */}
-                  <div className="flex flex-col sm:flex-row items-center justify-center sm:min-h-[40px] min-w-fit">
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:min-h-[48px] min-w-fit">
                     {/* Tools Group */}
-                    <div className="flex flex-col items-center gap-1 px-2 sm:border-r border-black/10 sm:min-h-[40px] justify-center">
-                      <div className="flex flex-row sm:flex-col gap-1">
-                        <div className="flex items-center justify-center gap-1">
+                    <div className="flex flex-col items-center gap-1 px-3 sm:border-r border-black/10 sm:min-h-[48px] justify-center">
+                      <div className="flex flex-row sm:flex-col gap-1.5">
+                        <div className="flex items-center justify-center gap-1.5">
                           <button 
                             onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} 
-                            className={`p-1 w-[24px] h-[24px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
+                            className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Pencil"
                           >
                             {!imageErrors.pencil ? (
                               <Image 
                                 src="/static/images/pencil-icon.png" 
                                 alt="Pencil" 
-                                width={14} 
-                                height={14} 
+                                width={16} 
+                                height={16} 
                                 className="object-contain" 
                                 onError={() => handleImageError('pencil')}
                               />
                             ) : (
-                              <FaPencil size={12} />
+                              <FaPencil size={14} />
                             )}
                           </button>
                           <button 
                             onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
-                            className={`p-1 w-[24px] h-[24px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'brush' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
+                            className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'brush' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Brush"
                           >
                             {!imageErrors.brush ? (
                               <Image 
                                 src="/static/images/brush-icon.png" 
                                 alt="Brush" 
-                                width={14} 
-                                height={14} 
+                                width={16} 
+                                height={16} 
                                 className="object-contain" 
                                 onError={() => handleImageError('brush')}
                               />
                             ) : (
-                              <FaBrush size={12} />
+                              <FaBrush size={14} />
                             )}
                           </button>
                           <button 
                             onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
-                            className={`p-1 w-[24px] h-[24px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
+                            className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Eraser"
                           >
                             {!imageErrors.eraser ? (
                               <Image 
                                 src="/static/images/eraser-icon.png" 
                                 alt="Eraser" 
-                                width={14} 
-                                height={14} 
+                                width={16} 
+                                height={16} 
                                 className="object-contain" 
                                 onError={() => handleImageError('eraser')}
                               />
                             ) : (
-                              <FaEraser size={12} />
+                              <FaEraser size={14} />
                             )}
                           </button>
                         </div>
-                        <div className="flex items-center justify-center gap-1">
-                          <button onClick={undo} disabled={undoStack.length === 0} className="p-1 hover:bg-white/10 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={12}/></button>
-                          <button onClick={redo} disabled={redoStack.length === 0} className="p-1 hover:bg-white/10 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={12}/></button>
-                          <button onClick={() => clear()} className="p-1 hover:bg-white/10 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={12}/></button>
+                        <div className="flex items-center justify-center gap-1.5">
+                          <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white/10 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
+                          <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white/10 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
+                          <button onClick={() => clear()} className="p-1.5 hover:bg-white/10 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={14}/></button>
                         </div>
                       </div>
                     </div>
@@ -322,7 +322,7 @@ export default function DrawContent() {
                     <div className="w-full h-px bg-black/10 my-1 sm:hidden" />
 
                     {/* Size Group */}
-                    <div className="flex flex-col items-center justify-center px-3 sm:border-r border-black/10 sm:min-h-[40px] py-1 sm:py-0">
+                    <div className="flex flex-col items-center justify-center px-4 sm:border-r border-black/10 sm:min-h-[48px] py-1 sm:py-0">
                       <div className="flex flex-row sm:flex-col items-center justify-center gap-1">
                         <input 
                           type="range" 
@@ -340,9 +340,9 @@ export default function DrawContent() {
                               setMinWidth(val / 3);
                             }
                           }}
-                          className={`w-16 sm:w-20 accent-black appearance-none cursor-pointer bg-black/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
+                          className={`w-18 sm:w-22 accent-black appearance-none cursor-pointer bg-black/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
                         />
-                        <span className="text-[8px] sm:text-[9px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
+                        <span className="text-[9px] sm:text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
                       </div>
                     </div>
                   </div>
@@ -351,17 +351,17 @@ export default function DrawContent() {
                   <div className="w-full h-px bg-black/10 my-1 sm:hidden" />
 
                   {/* Colors & Background Container */}
-                  <div className="flex flex-col sm:flex-row items-center justify-center flex-1 sm:min-h-[40px] min-w-fit">
+                  <div className="flex flex-col sm:flex-row items-center justify-center flex-1 sm:min-h-[48px] min-w-fit">
                     {/* Colors Group */}
-                    <div className="flex flex-col items-center justify-center px-3 py-1 sm:py-0">
-                      <div className="flex items-center gap-1 sm:gap-2">
-                        <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
+                    <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
+                      <div className="flex items-center gap-1.5 sm:gap-2.5">
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
                         <div className="grid grid-cols-10 gap-0.5 sm:gap-1">
                           {colors.map(color => (
                             <button
                               key={color}
                               onClick={() => setPenColor(color)}
-                              className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border border-black/10 transition-transform hover:scale-125"
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-black/10 transition-transform hover:scale-125"
                               style={{ backgroundColor: color }}
                             />
                           ))}
@@ -370,11 +370,11 @@ export default function DrawContent() {
                     </div>
 
                     {/* Horizontal Separator for Mobile, Vertical for Desktop */}
-                    <div className="w-full h-px sm:w-px sm:h-6 bg-black/10 my-1 sm:my-0 sm:mx-1" />
+                    <div className="w-full h-px sm:w-px sm:h-7 bg-black/10 my-1 sm:my-0 sm:mx-2" />
 
                     {/* Background Group */}
-                    <div className="flex flex-col items-center justify-center px-3 py-1 sm:py-0">
-                      <div className="flex items-center gap-1">
+                    <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
+                      <div className="flex items-center gap-1.5">
                         <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
                           {[
                             { label: 'T', value: 'transparent', title: 'Transparent' },
@@ -391,7 +391,7 @@ export default function DrawContent() {
                             <button
                               key={option.value}
                               onClick={() => setBgColor(option.value)}
-                              className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded flex items-center justify-center text-[7px] sm:text-[8px] font-bold transition-all border shadow-sm ${
+                              className={`w-4 h-4 sm:w-4.5 sm:h-4.5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
                                 bgColor === option.value 
                                   ? 'ring-1 ring-black border-white' 
                                   : 'border-black/10'
@@ -427,7 +427,7 @@ export default function DrawContent() {
                             <button
                               key={option.value}
                               onClick={() => setBgColor(option.value)}
-                              className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded flex items-center justify-center text-[7px] sm:text-[8px] font-bold transition-all border shadow-sm ${
+                              className={`w-4 h-4 sm:w-4.5 sm:h-4.5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
                                 bgColor === option.value 
                                   ? 'ring-1 ring-black border-white' 
                                   : 'border-black/10'
