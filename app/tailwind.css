@@ -173,6 +173,13 @@ input:-webkit-autofill:focus {
   motion-safe:duration-300 dark:from-primary-500 dark:to-primary-500;
 }
 
+.dot-border-clean {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1.5px);
+  background-size: 8px 8px;
+  background-repeat: repeat;
+  border: none !important;
+}
+
 .draw-page-bg {
   position: relative;
   min-height: 100vh;

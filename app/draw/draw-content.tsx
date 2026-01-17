@@ -465,10 +465,11 @@ export default function DrawContent() {
           {/* Canvas Area */}
           <div className="w-full max-w-4xl mx-auto relative px-0 sm:px-0">
             <div className="w-full h-[80vh] flex items-center justify-center relative z-10">
-               <div className="w-full h-full relative border-2 border-dashed border-black dark:border-white rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
+               <div className="w-full h-full relative rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
+                  <div className="absolute inset-0 pointer-events-none dot-border-clean text-black/20 dark:text-white/20" />
                   <canvas 
                     ref={canvasRef} 
-                    className="w-full h-full touch-none" 
+                    className="w-full h-full touch-none relative z-10" 
                     style={{ 
                       cursor: isEraser 
                         ? `url('data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="${eraserWidth}" height="${eraserWidth}" viewBox="0 0 ${eraserWidth} ${eraserWidth}"><rect x="0" y="0" width="${eraserWidth}" height="${eraserWidth}" fill="rgba(255,255,255,0.5)" stroke="black" stroke-width="1"/></svg>`)}') ${eraserWidth/2} ${eraserWidth/2}, auto`
