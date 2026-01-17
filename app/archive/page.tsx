@@ -13,7 +13,6 @@ export default function ArchivePage() {
     { src: '/static/images/archive-decorations/flower-2.png', className: 'top-[15%] right-[10%] w-10 md:w-14', delay: 0.2 },
     { src: '/static/images/archive-decorations/flower-3.png', className: 'bottom-[20%] left-[8%] w-14 md:w-18', delay: 0.4 },
     { src: '/static/images/archive-decorations/flower-4.png', className: 'bottom-[15%] right-[5%] w-12 md:w-16', delay: 0.6 },
-    { src: '/static/images/archive-decorations/shield.png', className: 'top-[5%] left-1/2 -translate-x-1/2 w-8 md:w-12', delay: 0.8 },
   ];
 
   return (
@@ -54,8 +53,8 @@ export default function ArchivePage() {
             <div />
           </BackgroundGradientAnimation>
         </div>
-        <div className="relative z-10 flex-1 overflow-hidden flex flex-col pt-12">
-          <div className="flex-1">
+        <div className="relative z-10 flex-1 overflow-hidden flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center">
             <TeamCarousel />
           </div>
         </div>
