@@ -101,10 +101,10 @@ export default function Hero() {
               </section>
               <motion.div 
                 drag
-                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                dragElastic={0.5}
+                dragConstraints={{ left: -100, right: 100, top: -50, bottom: 50 }}
+                dragElastic={0.05}
                 whileDrag={{ scale: 1.1 }}
-                className="cursor-grab active:cursor-grabbing w-fit"
+                className="cursor-grab active:cursor-grabbing w-fit relative z-10"
               >
                 <Image 
                   src="/static/gifs/OnePiece.gif" 
