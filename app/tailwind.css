@@ -148,7 +148,7 @@ input:-webkit-autofill:focus {
   justify-content: center;
   gap: 8px;
   border-radius: 2rem;
-  padding: 0.6rem;
+  padding: 0.25rem;
 }
 
 .dock,
