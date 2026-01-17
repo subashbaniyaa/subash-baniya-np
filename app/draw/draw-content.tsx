@@ -194,7 +194,7 @@ export default function DrawContent() {
 
   return (
     <PageContainer>
-      <div className="draw-page-bg min-h-screen">
+      <div className="draw-page-bg min-h-screen bg-white dark:bg-zinc-950">
         <Header title="" />
         <div className="font-poppins select-none px-4 pb-8">
           <div className="flex flex-col gap-8 max-w-4xl mx-auto">

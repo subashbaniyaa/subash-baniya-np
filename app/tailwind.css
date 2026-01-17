@@ -186,7 +186,6 @@ input:-webkit-autofill:focus {
   background: url("https://media.istockphoto.com/id/1430511443/vector/christmas-mistletoe-foliage-and-berries-vector-seamless-pattern.jpg?s=612x612&w=0&k=20&c=oqxlH7ytgd5yjBQroACirJ1gH7Au1tq8gmsdeGd-Crk=")
     center center;
   background-size: 500px;
-  animation: moveBackground 180s linear infinite;
   opacity: 1;
   pointer-events: none;
   filter: brightness(0.9);
