@@ -101,8 +101,10 @@ export default function Hero() {
               </section>
               <motion.div 
                 drag
-                dragConstraints={{ left: -100, right: 100, top: -50, bottom: 50 }}
-                dragElastic={0.05}
+                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                dragSnapToOrigin
+                dragElastic={1}
+                dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
                 whileDrag={{ scale: 1.1 }}
                 className="cursor-grab active:cursor-grabbing w-fit relative z-10"
               >
