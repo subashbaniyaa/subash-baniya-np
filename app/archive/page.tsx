@@ -7,6 +7,11 @@ import SplashCursor from '../components/splash-cursor';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
+export const metadata = {
+  title: 'Archive',
+  description: 'Archive - Subash',
+};
+
 export default function ArchivePage() {
   const decorations = [
     { src: '/static/images/archive-decorations/flower-1.png', className: 'top-[10%] left-[5%] w-12 md:w-16', delay: 0 },
@@ -54,8 +59,13 @@ export default function ArchivePage() {
             <div />
           </BackgroundGradientAnimation>
         </div>
-        <div className="relative z-10 flex-1 overflow-hidden">
-          <TeamCarousel />
+        <div className="relative z-10 flex-1 overflow-hidden flex flex-col pt-12">
+          <h1 className="text-center text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-600 dark:from-white dark:to-gray-400">
+            Archive
+          </h1>
+          <div className="flex-1">
+            <TeamCarousel />
+          </div>
         </div>
       </div>
     </SplashCursor>
