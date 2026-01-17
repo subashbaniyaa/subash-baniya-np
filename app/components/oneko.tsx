@@ -133,16 +133,6 @@ export default function Oneko() {
       catEl.style.top = `${catPosY - 16}px`;
 
       setSprite(direction, frameCount);
-
-      // Trigger fluid simulation splat at cat's position
-      const event = new CustomEvent('catMove', {
-        detail: {
-          x: catPosX,
-          y: catPosY,
-          color: { r: Math.random(), g: Math.random(), b: Math.random() }
-        }
-      });
-      window.dispatchEvent(event);
     }
 
     const onMouseMove = (event: MouseEvent) => {
