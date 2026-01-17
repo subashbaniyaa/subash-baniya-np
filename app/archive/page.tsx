@@ -9,11 +9,11 @@ import { motion } from 'framer-motion';
 
 export default function ArchivePage() {
   const decorations = [
-    { src: '/static/images/archive-decorations/flower-1.png', className: 'top-[10%] left-[5%] w-24 md:w-32', delay: 0 },
-    { src: '/static/images/archive-decorations/flower-2.png', className: 'top-[15%] right-[10%] w-20 md:w-28', delay: 0.2 },
-    { src: '/static/images/archive-decorations/flower-3.png', className: 'bottom-[20%] left-[8%] w-28 md:w-36', delay: 0.4 },
-    { src: '/static/images/archive-decorations/flower-4.png', className: 'bottom-[15%] right-[5%] w-24 md:w-32', delay: 0.6 },
-    { src: '/static/images/archive-decorations/shield.png', className: 'top-[5%] left-1/2 -translate-x-1/2 w-16 md:w-24', delay: 0.8 },
+    { src: '/static/images/archive-decorations/flower-1.png', className: 'top-[10%] left-[5%] w-12 md:w-16', delay: 0 },
+    { src: '/static/images/archive-decorations/flower-2.png', className: 'top-[15%] right-[10%] w-10 md:w-14', delay: 0.2 },
+    { src: '/static/images/archive-decorations/flower-3.png', className: 'bottom-[20%] left-[8%] w-14 md:w-18', delay: 0.4 },
+    { src: '/static/images/archive-decorations/flower-4.png', className: 'bottom-[15%] right-[5%] w-12 md:w-16', delay: 0.6 },
+    { src: '/static/images/archive-decorations/shield.png', className: 'top-[5%] left-1/2 -translate-x-1/2 w-8 md:w-12', delay: 0.8 },
   ];
 
   return (
