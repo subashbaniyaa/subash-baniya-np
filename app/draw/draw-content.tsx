@@ -465,7 +465,7 @@ export default function DrawContent() {
           {/* Canvas Area */}
           <div className="w-full max-w-4xl mx-auto relative px-0 sm:px-0">
             <div className="w-full h-[80vh] flex items-center justify-center relative z-10">
-               <div className="w-full h-full relative border border-black/10 rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
+               <div className="w-full h-full relative border-2 border-dashed border-gray-300 dark:border-white/20 rounded-[2rem] overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <canvas 
                     ref={canvasRef} 
                     className="w-full h-full touch-none" 
