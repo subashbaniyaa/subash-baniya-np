@@ -236,8 +236,9 @@ export default function DrawContent() {
 
   return (
     <PageContainer>
-      <Header title="" />
-      <div className="font-poppins select-none">
+      <div className="draw-page-bg min-h-screen">
+        <Header title="" />
+        <div className="font-poppins select-none px-4 pb-8">
         <div className="flex flex-col gap-4">
           
           {/* Liquid Glass Toolbar */}
