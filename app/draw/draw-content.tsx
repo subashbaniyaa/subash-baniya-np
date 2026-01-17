@@ -311,12 +311,12 @@ export default function DrawContent() {
                   <div className="w-full h-px bg-black/10 my-1 sm:hidden" />
 
                   {/* Colors & Background Container */}
-                  <div className="flex flex-col sm:flex-row items-center justify-center flex-1 sm:min-h-[48px] min-w-fit">
+                  <div className="flex flex-col sm:flex-row items-center justify-center flex-1 sm:min-h-[48px] min-w-fit w-full">
                     {/* Colors Group */}
-                    <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
-                      <div className="flex items-center gap-1.5 sm:gap-2.5">
+                    <div className="flex flex-col items-center justify-center px-4 py-2 sm:py-0 w-full">
+                      <div className="flex items-center justify-center gap-1.5 sm:gap-2.5 w-full">
                         <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
-                        <div className="grid grid-cols-10 gap-0.5 sm:gap-1">
+                        <div className="grid grid-cols-10 gap-0.5 sm:gap-1 place-items-center">
                           {colors.map(color => (
                             <button
                               key={color}
@@ -330,12 +330,12 @@ export default function DrawContent() {
                     </div>
 
                     {/* Horizontal Separator for Mobile, Vertical for Desktop */}
-                    <div className="w-full h-px sm:w-px sm:h-7 bg-black/10 my-1 sm:my-0 sm:mx-2" />
+                    <div className="w-[90%] h-px sm:w-px sm:h-7 bg-black/10 my-1 sm:my-0 sm:mx-2 mx-auto" />
 
                     {/* Background Group */}
-                    <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
-                      <div className="flex items-center gap-1.5">
-                        <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
+                    <div className="flex flex-col items-center justify-center px-4 py-2 sm:py-0 w-full">
+                      <div className="flex items-center justify-center gap-1.5 w-full">
+                        <div className="grid grid-cols-5 gap-0.5 sm:gap-1 place-items-center">
                           {[
                             { label: 'T', value: 'transparent', title: 'Transparent' },
                             { label: 'W', value: '#ffffff', title: 'White' },
@@ -371,7 +371,7 @@ export default function DrawContent() {
                             </button>
                           ))}
                         </div>
-                        <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
+                        <div className="grid grid-cols-5 gap-0.5 sm:gap-1 place-items-center">
                           {[
                             { label: 'S', value: '#f8fafc', title: 'Soft Gray' },
                             { label: 'D', value: '#1e293b', title: 'Deep Slate' },
