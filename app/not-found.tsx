@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { BackgroundGradientAnimation } from './components/background-gradient-animation';
 import SplashCursor from './components/splash-cursor';
+import Spider from './components/spider';
 import { gistesy, pinkSunset } from './fonts';
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function FourZeroFour() {
             <div />
           </BackgroundGradientAnimation>
         </div>
+        <Spider />
         <div className="relative z-10 min-h-svh flex items-center justify-center">
           <div className="flex flex-col items-center justify-center space-y-2 text-center px-8 pointer-events-auto">
             <h1 className={`text-6xl md:text-7xl font-extrabold tracking-[0.05em] text-gray-900 dark:text-gray-100 ${pinkSunset.className}`}>
