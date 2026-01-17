@@ -6,7 +6,7 @@ import Spider from './components/spider';
 import { gistesy, pinkSunset } from './fonts';
 
 export const metadata: Metadata = {
-  title: '404page',
+  title: '404',
 };
 
 export const dynamic = 'force-dynamic';
