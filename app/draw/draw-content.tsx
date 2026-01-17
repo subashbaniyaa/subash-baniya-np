@@ -219,54 +219,39 @@ export default function DrawContent() {
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Pencil"
                           >
-                            {!imageErrors.pencil ? (
-                              <Image 
-                                src="/static/images/pencil-icon.png" 
-                                alt="Pencil" 
-                                width={16} 
-                                height={16} 
-                                className="object-contain" 
-                                onError={() => handleImageError('pencil')}
-                              />
-                            ) : (
-                              <FaPencil size={14} />
-                            )}
+                            <Image 
+                              src="https://win98icons.alexmeub.com/icons/png/paint_file-1.png" 
+                              alt="Pencil" 
+                              width={16} 
+                              height={16} 
+                              className="object-contain" 
+                            />
                           </button>
                           <button 
                             onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'brush' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Brush"
                           >
-                            {!imageErrors.brush ? (
-                              <Image 
-                                src="/static/images/brush-icon.png" 
-                                alt="Brush" 
-                                width={16} 
-                                height={16} 
-                                className="object-contain" 
-                                onError={() => handleImageError('brush')}
-                              />
-                            ) : (
-                              <FaBrush size={14} />
-                            )}
+                            <Image 
+                              src="https://win98icons.alexmeub.com/icons/png/paint_file-2.png" 
+                              alt="Brush" 
+                              width={16} 
+                              height={16} 
+                              className="object-contain" 
+                            />
                           </button>
                           <button 
                             onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
                             className={`p-1.5 w-[28px] h-[28px] flex items-center justify-center rounded-full transition-transform duration-200 ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm scale-125' : 'hover:bg-white/10 hover:scale-110'}`} 
                             title="Eraser"
                           >
-                            {!imageErrors.eraser ? (
-                              <Image 
-                                src="/static/images/eraser-icon.png" 
-                                alt="Eraser" 
-                                width={16} 
-                                height={16} 
-                                className="object-contain" 
-                                onError={() => handleImageError('eraser')}
-                              />
-                            ) : (
-                              <FaEraser size={14} />
-                            )}
+                            <Image 
+                              src="https://win98icons.alexmeub.com/icons/png/eraser-0.png" 
+                              alt="Eraser" 
+                              width={16} 
+                              height={16} 
+                              className="object-contain" 
+                            />
                           </button>
                         </div>
                         <div className="flex items-center justify-center gap-1.5">
