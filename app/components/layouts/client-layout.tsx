@@ -61,7 +61,7 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
     <>
       <div 
         id="drawing-bg-root" 
-        className={`fixed inset-0 pointer-events-none z-[-1] opacity-50 transition-opacity duration-300 ${showBackground ? 'visible' : 'invisible'}`} 
+        className={`fixed inset-0 pointer-events-none z-[-1] transition-opacity duration-300 ${showBackground ? 'opacity-100 visible' : 'opacity-0 invisible'}`} 
       />
       <DisableContextMenu />
       <ThemeProvider
