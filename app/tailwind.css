@@ -155,14 +155,6 @@ input:-webkit-autofill:focus {
   border-radius: 2rem;
 }
 
-.dock:hover {
-  padding: 0.8rem;
-  border-radius: 2.5rem;
-}
-.dock:hover > div {
-  border-radius: 2.5rem;
-}
-
 @keyframes moveBackground {
   from {
     background-position: 0% 0%;

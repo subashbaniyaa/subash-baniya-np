@@ -242,155 +242,206 @@ export default function DrawContent() {
           
           {/* Liquid Glass Toolbar */}
           <div className="wrapper">
-            <div className="liquidGlass-wrapper dock w-full max-w-4xl mx-auto">
+            <div className="liquidGlass-wrapper dock w-full max-w-5xl mx-auto">
               <div className="liquidGlass-effect"></div>
               <div className="liquidGlass-tint"></div>
               <div className="liquidGlass-shine"></div>
               <div className="liquidGlass-text w-full">
-                <div className="dock flex flex-wrap items-center justify-center gap-2 sm:gap-4 p-4">
+                <div className="dock flex flex-wrap items-center justify-center gap-0 p-2">
                   
                   {/* Tools & Size Container */}
-                  <div className="flex flex-row items-center gap-4">
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:min-h-[56px] min-w-fit">
                     {/* Tools Group */}
-                    <div className="flex items-center gap-1 px-3 border-r border-black/10">
-                      <div className="flex items-center gap-1">
-                        <button 
-                          onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} 
-                          className={`p-1.5 w-8 h-8 flex items-center justify-center rounded-full transition-all ${activeTool === 'pencil' ? 'bg-black/10 shadow-inner' : 'hover:bg-black/5'}`} 
-                          title="Pencil"
-                        >
-                          {!imageErrors.pencil ? (
-                            <Image 
-                              src="/static/images/pencil-icon.png" 
-                              alt="Pencil" 
-                              width={18} 
-                              height={18} 
-                              className="object-contain" 
-                              onError={() => handleImageError('pencil')}
-                            />
-                          ) : (
-                            <FaPencil size={16} />
-                          )}
-                        </button>
-                        <button 
-                          onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
-                          className={`p-1.5 w-8 h-8 flex items-center justify-center rounded-full transition-all ${activeTool === 'brush' ? 'bg-black/10 shadow-inner' : 'hover:bg-black/5'}`} 
-                          title="Brush"
-                        >
-                          {!imageErrors.brush ? (
-                            <Image 
-                              src="/static/images/brush-icon.png" 
-                              alt="Brush" 
-                              width={18} 
-                              height={18} 
-                              className="object-contain" 
-                              onError={() => handleImageError('brush')}
-                            />
-                          ) : (
-                            <FaBrush size={16} />
-                          )}
-                        </button>
-                        <button 
-                          onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
-                          className={`p-1.5 w-8 h-8 flex items-center justify-center rounded-full transition-all ${activeTool === 'eraser' ? 'bg-black/10 shadow-inner' : 'hover:bg-black/5'}`} 
-                          title="Eraser"
-                        >
-                          {!imageErrors.eraser ? (
-                            <Image 
-                              src="/static/images/eraser-icon.png" 
-                              alt="Eraser" 
-                              width={18} 
-                              height={18} 
-                              className="object-contain" 
-                              onError={() => handleImageError('eraser')}
-                            />
-                          ) : (
-                            <FaEraser size={16} />
-                          )}
-                        </button>
-                      </div>
-                      <div className="flex items-center gap-1 ml-2">
-                        <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-black/5 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={16}/></button>
-                        <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-black/5 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={16}/></button>
-                        <button onClick={() => clear()} className="p-1.5 hover:bg-black/5 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={16}/></button>
+                    <div className="flex flex-col items-center gap-1 px-3 sm:border-r border-black/10 sm:min-h-[56px] justify-center">
+                      <div className="flex flex-row sm:flex-col gap-1">
+                        <div className="flex items-center justify-center gap-1">
+                          <button 
+                            onClick={() => { setIsEraser(false); setActiveTool('pencil'); }} 
+                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'pencil' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
+                            title="Pencil"
+                          >
+                            {!imageErrors.pencil ? (
+                              <Image 
+                                src="/static/images/pencil-icon.png" 
+                                alt="Pencil" 
+                                width={16} 
+                                height={16} 
+                                className="object-contain" 
+                                onError={() => handleImageError('pencil')}
+                              />
+                            ) : (
+                              <FaPencil size={14} />
+                            )}
+                          </button>
+                          <button 
+                            onClick={() => { setIsEraser(false); setActiveTool('brush'); }} 
+                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'brush' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
+                            title="Brush"
+                          >
+                            {!imageErrors.brush ? (
+                              <Image 
+                                src="/static/images/brush-icon.png" 
+                                alt="Brush" 
+                                width={16} 
+                                height={16} 
+                                className="object-contain" 
+                                onError={() => handleImageError('brush')}
+                              />
+                            ) : (
+                              <FaBrush size={14} />
+                            )}
+                          </button>
+                          <button 
+                            onClick={() => { setIsEraser(true); setActiveTool('eraser'); }} 
+                            className={`p-1 w-[26px] h-[26px] flex items-center justify-center rounded-full ${activeTool === 'eraser' ? 'bg-white/20 shadow-sm' : 'hover:bg-white/10'}`} 
+                            title="Eraser"
+                          >
+                            {!imageErrors.eraser ? (
+                              <Image 
+                                src="/static/images/eraser-icon.png" 
+                                alt="Eraser" 
+                                width={16} 
+                                height={16} 
+                                className="object-contain" 
+                                onError={() => handleImageError('eraser')}
+                              />
+                            ) : (
+                              <FaEraser size={14} />
+                            )}
+                          </button>
+                        </div>
+                        <div className="flex items-center justify-center gap-1">
+                          <button onClick={undo} disabled={undoStack.length === 0} className="p-1.5 hover:bg-white/10 rounded-full disabled:opacity-30" title="Undo"><FaRotateLeft size={14}/></button>
+                          <button onClick={redo} disabled={redoStack.length === 0} className="p-1.5 hover:bg-white/10 rounded-full disabled:opacity-30" title="Redo"><FaRotateRight size={14}/></button>
+                          <button onClick={() => clear()} className="p-1.5 hover:bg-white/10 rounded-full text-red-500 transition-all" title="Reset"><IoTrash size={14}/></button>
+                        </div>
                       </div>
                     </div>
+
+                    {/* Horizontal Separator for Mobile */}
+                    <div className="w-full h-px bg-black/10 my-1 sm:hidden" />
 
                     {/* Size Group */}
-                    <div className="flex items-center gap-2 px-3 border-r border-black/10">
-                      <input 
-                        type="range" 
-                        min="0.5" 
-                        max={isEraser ? "100" : "50"}
-                        step="0.5"
-                        disabled={activeTool === 'pencil' && !isEraser}
-                        value={isEraser ? eraserWidth : maxWidth} 
-                        onChange={(e) => {
-                          const val = parseFloat(e.target.value);
-                          if (isEraser) {
-                            setEraserWidth(val);
-                          } else {
-                            setMaxWidth(val);
-                            setMinWidth(val / 3);
-                          }
-                        }}
-                        className={`w-24 accent-black appearance-none cursor-pointer bg-black/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
-                      />
-                      <span className="text-[10px] font-bold min-w-[24px]">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
+                    <div className="flex flex-col items-center justify-center px-4 sm:border-r border-black/10 sm:min-h-[56px] py-1 sm:py-0">
+                      <div className="flex flex-row sm:flex-col items-center justify-center gap-1">
+                        <input 
+                          type="range" 
+                          min="0.5" 
+                          max={isEraser ? "100" : "50"}
+                          step="0.5"
+                          disabled={activeTool === 'pencil' && !isEraser}
+                          value={isEraser ? eraserWidth : maxWidth} 
+                          onChange={(e) => {
+                            const val = parseFloat(e.target.value);
+                            if (isEraser) {
+                              setEraserWidth(val);
+                            } else {
+                              setMaxWidth(val);
+                              setMinWidth(val / 3);
+                            }
+                          }}
+                          className={`w-20 sm:w-24 accent-black appearance-none cursor-pointer bg-black/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
+                        />
+                        <span className="text-[9px] sm:text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
+                      </div>
                     </div>
+                  </div>
 
+                  {/* Horizontal Separator for Mobile */}
+                  <div className="w-full h-px bg-black/10 my-1 sm:hidden" />
+
+                  {/* Colors & Background Container */}
+                  <div className="flex flex-col sm:flex-row items-center justify-center flex-1 sm:min-h-[56px] min-w-fit">
                     {/* Colors Group */}
-                    <div className="flex items-center gap-3 px-3 border-r border-black/10">
-                      <div className="w-8 h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
-                      <div className="grid grid-cols-10 gap-1">
-                        {colors.map(color => (
-                          <button
-                            key={color}
-                            onClick={() => setPenColor(color)}
-                            className="w-4 h-4 rounded-full border border-black/10 transition-transform hover:scale-125 shadow-sm"
-                            style={{ backgroundColor: color }}
-                          />
-                        ))}
+                    <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={{ backgroundColor: penColor }} />
+                        <div className="grid grid-cols-10 gap-0.5 sm:gap-1">
+                          {colors.map(color => (
+                            <button
+                              key={color}
+                              onClick={() => setPenColor(color)}
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-black/10 transition-transform hover:scale-125"
+                              style={{ backgroundColor: color }}
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
 
+                    {/* Horizontal Separator for Mobile, Vertical for Desktop */}
+                    <div className="w-full h-px sm:w-px sm:h-8 bg-black/10 my-1 sm:my-0 sm:mx-2" />
+
                     {/* Background Group */}
-                    <div className="flex items-center gap-2 px-3">
-                      <div className="grid grid-cols-10 gap-1">
-                        {[
-                          { label: 'T', value: 'transparent', title: 'Transparent' },
-                          { label: 'W', value: '#ffffff', title: 'White' },
-                          { label: 'B', value: '#000000', title: 'True Black' },
-                          { label: 'R', value: '#ef4444', title: 'Red' },
-                          { label: 'G', value: '#22c55e', title: 'Green' },
-                          { label: 'B', value: '#3b82f6', title: 'Blue' },
-                          { label: 'Y', value: '#eab308', title: 'Yellow' },
-                          { label: 'P', value: '#a855f7', title: 'Purple' },
-                          { label: 'O', value: '#f97316', title: 'Orange' },
-                          { label: 'P', value: '#ec4899', title: 'Pink' }
-                        ].map((option) => (
-                          <button
-                            key={option.value}
-                            onClick={() => setBgColor(option.value)}
-                            className={`w-5 h-5 rounded flex items-center justify-center text-[9px] font-bold transition-all border shadow-sm ${
-                              bgColor === option.value 
-                                ? 'ring-2 ring-black border-white' 
-                                : 'border-black/10'
-                            }`}
-                            style={{ 
-                              backgroundColor: option.value === 'transparent' ? 'white' : option.value,
-                              backgroundImage: option.value === 'transparent' 
-                                ? 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)' 
-                                : 'none',
-                              backgroundSize: '4px 4px',
-                              backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
-                              color: ['transparent', '#ffffff', '#eab308', '#fef08a'].includes(option.value) ? '#000' : '#fff'
-                            }}
-                            title={option.title}
-                          >
-                            {option.label}
-                          </button>
-                        ))}
+                    <div className="flex flex-col items-center justify-center px-4 py-1 sm:py-0">
+                      <div className="flex items-center gap-1">
+                        <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
+                          {[
+                            { label: 'T', value: 'transparent', title: 'Transparent' },
+                            { label: 'W', value: '#ffffff', title: 'White' },
+                            { label: 'B', value: '#000000', title: 'True Black' },
+                            { label: 'R', value: '#ef4444', title: 'Red' },
+                            { label: 'G', value: '#22c55e', title: 'Green' },
+                            { label: 'B', value: '#3b82f6', title: 'Blue' },
+                            { label: 'Y', value: '#eab308', title: 'Yellow' },
+                            { label: 'P', value: '#a855f7', title: 'Purple' },
+                            { label: 'O', value: '#f97316', title: 'Orange' },
+                            { label: 'P', value: '#ec4899', title: 'Pink' }
+                          ].map((option) => (
+                            <button
+                              key={option.value}
+                              onClick={() => setBgColor(option.value)}
+                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
+                                bgColor === option.value 
+                                  ? 'ring-2 ring-black border-white' 
+                                  : 'border-black/10'
+                              }`}
+                              style={{ 
+                                backgroundColor: option.value === 'transparent' ? 'white' : option.value,
+                                backgroundImage: option.value === 'transparent' 
+                                  ? 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)' 
+                                  : 'none',
+                                backgroundSize: '4px 4px',
+                                backgroundPosition: '0 0, 0 2px, 2px -2px, -2px 0px',
+                                color: ['transparent', '#ffffff', '#eab308', '#fef08a'].includes(option.value) ? '#000' : '#fff'
+                              }}
+                              title={option.title}
+                            >
+                              {option.label}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="grid grid-cols-5 gap-0.5 sm:gap-1">
+                          {[
+                            { label: 'S', value: '#f8fafc', title: 'Soft Gray' },
+                            { label: 'D', value: '#1e293b', title: 'Deep Slate' },
+                            { label: 'I', value: '#4c1d95', title: 'Indigo' },
+                            { label: 'F', value: '#064e3b', title: 'Forest' },
+                            { label: 'M', value: '#701a75', title: 'Magenta' },
+                            { label: 'T', value: '#0d9488', title: 'Teal' },
+                            { label: 'C', value: '#fff7ed', title: 'Cream' },
+                            { label: 'S', value: '#fecaca', title: 'Soft Red' },
+                            { label: 'V', value: '#f5f3ff', title: 'Soft Violet' },
+                            { label: 'K', value: '#f0f9ff', title: 'Soft Sky' }
+                          ].map((option) => (
+                            <button
+                              key={option.value}
+                              onClick={() => setBgColor(option.value)}
+                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[8px] sm:text-[9px] font-bold transition-all border shadow-sm ${
+                                bgColor === option.value 
+                                  ? 'ring-2 ring-black border-white' 
+                                  : 'border-black/10'
+                              }`}
+                              style={{ 
+                                backgroundColor: option.value,
+                                color: ['#f8fafc', '#fff7ed', '#fecaca', '#f5f3ff', '#f0f9ff'].includes(option.value) ? '#000' : '#fff'
+                              }}
+                              title={option.title}
+                            >
+                              {option.label}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
