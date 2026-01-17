@@ -242,7 +242,7 @@ export default function DrawContent() {
           
           {/* Liquid Glass Toolbar */}
           <div className="wrapper">
-            <div className="liquidGlass-wrapper dock w-full max-w-5xl mx-auto">
+            <div className="liquidGlass-wrapper dock w-full max-w-4xl mx-auto">
               <div className="liquidGlass-effect"></div>
               <div className="liquidGlass-tint"></div>
               <div className="liquidGlass-shine"></div>

@@ -101,6 +101,7 @@ input:-webkit-autofill:focus {
   overflow: hidden;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  border-radius: 0.75rem;
 }
 
 .liquidGlass-effect {
@@ -146,13 +147,13 @@ input:-webkit-autofill:focus {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 2rem;
+  border-radius: 0.75rem;
   padding: 0.6rem;
 }
 
 .dock,
 .dock > div {
-  border-radius: 2rem;
+  border-radius: 0.75rem;
 }
 
 @keyframes moveBackground {
