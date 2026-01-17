@@ -504,9 +504,9 @@ export default function DrawContent() {
           </svg>
 
           {/* Canvas Area */}
-          <div className="relative group/canvas w-full">
-            <div className="w-full h-[75vh] flex items-center justify-center py-4">
-               <div className="w-full h-full relative border-2 border-dashed border-gray-300 dark:border-white/20 rounded-lg overflow-hidden" style={{ backgroundColor: bgColor }}>
+          <div className="relative group/canvas w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+            <div className="w-full h-[75vh] flex items-center justify-center">
+               <div className="w-full h-full relative border-y-2 border-dashed border-gray-300 dark:border-white/20 overflow-hidden" style={{ backgroundColor: bgColor }}>
                   <canvas 
                     ref={canvasRef} 
                     className="w-full h-full touch-none" 
@@ -523,7 +523,7 @@ export default function DrawContent() {
           </div>
 
           {/* Footer Navigation */}
-          <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center">
+          <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center px-4">
             <div className="flex gap-4">
               <button onClick={() => save('png')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">PNG</button>
               <button onClick={() => save('jpg')} className="underline-magical bg-black dark:bg-white dark:text-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">JPG</button>
