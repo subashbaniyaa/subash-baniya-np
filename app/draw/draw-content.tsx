@@ -525,14 +525,14 @@ export default function DrawContent() {
           {/* Footer Navigation */}
           <div className="mt-8 pt-4 border-t border-primary-500 flex justify-between items-center">
             <div className="flex gap-4">
-              <button onClick={() => save('png')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">PNG</button>
-              <button onClick={() => save('jpg')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">JPG</button>
-              <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">SVG</button>
+              <button onClick={() => save('png')} className="underline-magical bg-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">PNG</button>
+              <button onClick={() => save('jpg')} className="underline-magical bg-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">JPG</button>
+              <button onClick={() => alert('SVG export coming soon!')} className="underline-magical bg-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">SVG</button>
               {!isEmpty && (
-                <button onClick={applyToBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Apply to background</button>
+                <button onClick={applyToBackground} className="underline-magical bg-black px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">Apply to background</button>
               )}
               {isBgApplied && (
-                <button onClick={resetBackground} className="underline-magical bg-black/5 dark:bg-white/5 px-1 rounded-none text-poppins text-[10px] font-bold uppercase transition-all">Reset BG</button>
+                <button onClick={resetBackground} className="underline-magical bg-red-600 px-3 py-1 rounded-full text-white text-poppins text-[10px] font-bold uppercase transition-all shadow-md">Reset BG</button>
               )}
             </div>
             <div className="flex items-center gap-4 text-[10px] text-gray-400">
