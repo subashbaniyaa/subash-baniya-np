@@ -111,8 +111,8 @@ export default function DrawContent() {
       } else if (activeTool === 'pencil') {
         signaturePadRef.current.penColor = penColor;
         signaturePadRef.current.compositeOperation = 'source-over';
-        signaturePadRef.current.minWidth = 0.5;
-        signaturePadRef.current.maxWidth = 1.5;
+        signaturePadRef.current.minWidth = (maxWidth || 1.5) / 3;
+        signaturePadRef.current.maxWidth = maxWidth || 1.5;
       } else {
         // Marker Brush (default)
         signaturePadRef.current.penColor = penColor;
@@ -288,7 +288,7 @@ export default function DrawContent() {
                           min="0.5" 
                           max={isEraser ? "100" : "50"}
                           step="0.5"
-                          disabled={activeTool === 'pencil' && !isEraser}
+                          disabled={false}
                           value={isEraser ? eraserWidth : maxWidth} 
                           onChange={(e) => {
                             const val = parseFloat(e.target.value);
@@ -299,7 +299,7 @@ export default function DrawContent() {
                               setMinWidth(val / 3);
                             }
                           }}
-                          className={`w-18 sm:w-22 accent-black appearance-none cursor-pointer bg-black/10 rounded-full h-1 ${activeTool === 'pencil' && !isEraser ? 'opacity-30 cursor-not-allowed' : ''}`}
+                          className={`w-18 sm:w-22 accent-black appearance-none cursor-pointer bg-black/10 rounded-full h-1`}
                         />
                         <span className="text-[9px] sm:text-[10px] font-bold leading-none">{Math.round(isEraser ? eraserWidth : maxWidth)}px</span>
                       </div>
