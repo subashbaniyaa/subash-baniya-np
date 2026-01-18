@@ -25,16 +25,6 @@ export default function RobotContent() {
   return (
     <div className={styles.robotContainer}>
       <div ref={containerRef} className="experience" style={{ width: '100%', height: '100vh' }}></div>
-      <div className={styles.credits}>
-        Works with PS4 and XBOX 360 controllers
-        <br />
-        <a href="https://www.youtube.com/watch?v=mIMgSVuW0y0" target="_blank" rel="noreferrer">Woodkid Volcano Live</a> inspired robot by <a href="https://bruno-simon.com" target="_blank" rel="noreferrer">Bruno Simon</a> (<a href="https://github.com/brunosimon/experiment-robot-controls" target="_blank" rel="noreferrer">Source code</a>)
-      </div>
-      <div className={styles.intro}>
-        <div className={styles.title}>Woodkid Volcano Robot</div>
-        <div className={styles.subTitle}>Inspired by the live version of the Volcano song by Woodkid</div>
-        <div className={styles.subTitle}>Works with keyboard and PS4 controller</div>
-      </div>
     </div>
   );
 }
