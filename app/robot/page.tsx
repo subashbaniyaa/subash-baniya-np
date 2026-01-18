@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import RobotContent from './robot-content';
 
 export const metadata: Metadata = {
-  title: 'Robot Experiment',
+  title: 'Robot',
   description: 'Woodkid Volcano Robot Experiment by Bruno Simon',
 };
 
