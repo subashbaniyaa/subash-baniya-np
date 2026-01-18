@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import vertexShader from './shaders/Background/vertex.glsl'
-import fragmentShader from './shaders/Background/fragment.glsl'
+const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position, 1.0); }`
+const fragmentShader = `uniform vec3 uColorA; uniform vec3 uColorB; uniform float uOffset; uniform float uMultiplier; varying vec2 vUv; void main() { float mixStrength = vUv.y * uMultiplier + uOffset; vec3 color = mix(uColorA, uColorB, mixStrength); gl_FragColor = vec4(color, 1.0); }`
 
 export default class Background
 {

@@ -3,8 +3,8 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
-import finalPassVertexShader from './shaders/FinalPass/vertex.glsl'
-import finalPassFragmentShader from './shaders/FinalPass/fragment.glsl'
+const finalPassVertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`
+const finalPassFragmentShader = `uniform sampler2D tDiffuse; varying vec2 vUv; void main() { vec4 color = texture2D(tDiffuse, vUv); gl_FragColor = color; }`
 
 export default class Renderer
 {
