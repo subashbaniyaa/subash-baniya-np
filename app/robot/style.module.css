@@ -44,8 +44,12 @@
     transition: opacity 2s ease;
 }
 
-.intro.isHidden {
-    opacity: 0;
+.isHidden {
+    opacity: 0 !important;
+}
+
+.isVisible {
+    opacity: 1 !important;
 }
 
 .title {

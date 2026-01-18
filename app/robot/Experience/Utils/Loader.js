@@ -54,7 +54,7 @@ export default class Resources extends EventEmitter
 
         // Basis images
         const basisLoader = new BasisTextureLoader()
-        basisLoader.setTranscoderPath('basis')
+        basisLoader.setTranscoderPath('/robot/basis/')
         basisLoader.detectSupport(this.renderer)
 
         this.loaders.push({

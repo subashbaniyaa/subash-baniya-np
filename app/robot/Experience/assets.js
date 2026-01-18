@@ -4,7 +4,7 @@ export default [
         data: {},
         items:
         [
-            { name: 'robotModel', source: '/assets/robot.glb' },
+            { name: 'robotModel', source: '/robot/assets/robot.glb' },
         ]
     }
 ]

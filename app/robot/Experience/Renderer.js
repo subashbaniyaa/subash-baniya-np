@@ -58,12 +58,17 @@ export default class Renderer
 
         this.instance.physicallyCorrectLights = true
         this.instance.gammaOutPut = true
-        this.instance.outputEncoding = THREE.sRGBEncoding
+        
+        if (THREE['ColorManagement'] !== undefined && THREE['SRGBColorSpace'] !== undefined) {
+            this.instance.outputColorSpace = THREE['SRGBColorSpace']
+        } else {
+            this.instance.outputEncoding = 3001 // sRGBEncoding value
+        }
+        
         this.instance.shadowMap.type = THREE.PCFSoftShadowMap
         this.instance.shadowMap.enabled = true
         this.instance.toneMapping = THREE.NoToneMapping
-        // this.instance.toneMappingExposure = 2.3
-
+        
         this.context = this.instance.getContext()
 
         // Add stats panel
@@ -221,10 +226,14 @@ export default class Renderer
                 generateMipmaps: false,
                 minFilter: THREE.LinearFilter,
                 magFilter: THREE.LinearFilter,
-                format: THREE.RGBFormat,
-                encoding: THREE.sRGBEncoding
+                format: THREE.RGBAFormat
             }
         )
+        if (THREE['ColorManagement'] !== undefined && THREE['SRGBColorSpace'] !== undefined) {
+            this.renderTarget.texture.colorSpace = THREE['SRGBColorSpace']
+        } else if (this.renderTarget.texture.encoding !== undefined) {
+            this.renderTarget.texture.encoding = 3001 // sRGBEncoding value
+        }
         this.postProcess.composer = new EffectComposer(this.instance, this.renderTarget)
         this.postProcess.composer.setSize(this.config.width, this.config.height)
         this.postProcess.composer.setPixelRatio(this.config.pixelRatio)

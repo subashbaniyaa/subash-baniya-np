@@ -13,6 +13,8 @@ import Presets from './Presets.js'
 
 import assets from './assets.js'
 
+import styles from '../style.module.css'
+
 export default class Experience
 {
     constructor(_options = {})
@@ -69,11 +71,13 @@ export default class Experience
 
     setDebug()
     {
-        this.debug = new Pane()
+        this.debug = new Pane({
+            container: document.body
+        })
         this.debug.containerElem_.style.width = '320px'
-        // this.debug.containerElem_.style.maxHeight = 'calc(100vh - 8px * 2)'
-        // this.debug.containerElem_.style.overflowY = 'scroll'
-        // this.debug.containerElem_.style.position = 'fixed'
+        this.debug.containerElem_.style.zIndex = '1000'
+        this.debug.containerElem_.style.top = '8px'
+        this.debug.containerElem_.style.right = '8px'
     }
 
     setStats()
@@ -158,17 +162,19 @@ export default class Experience
     setIntro()
     {
         this.intro = {}
-        this.intro.$element = document.querySelector('.intro')
+        this.intro.$element = document.querySelector(`.${styles.intro}`)
 
-        window.requestAnimationFrame(() =>
-        {
-            this.intro.$element.classList.add('is-visible')
-        })
+        if (this.intro.$element) {
+            window.requestAnimationFrame(() =>
+            {
+                this.intro.$element.classList.add(styles.isVisible)
+            })
 
-        window.setTimeout(() =>
-        {
-            this.intro.$element.classList.add('is-hidden')
-        }, 9000)
+            window.setTimeout(() =>
+            {
+                this.intro.$element.classList.add(styles.isHidden)
+            }, 9000)
+        }
     }
 
     setControls()

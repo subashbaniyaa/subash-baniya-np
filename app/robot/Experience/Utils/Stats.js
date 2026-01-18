@@ -21,14 +21,19 @@ export default class Stats
     {
         this.active = true
 
-        document.body.appendChild(this.instance.dom)
+        if (typeof document !== 'undefined') {
+            document.body.appendChild(this.instance.dom)
+            this.instance.dom.style.zIndex = '1001'
+        }
     }
 
     deactivate()
     {
         this.active = false
 
-        document.body.removeChild(this.instance.dom)
+        if (typeof document !== 'undefined' && this.instance.dom.parentNode === document.body) {
+            document.body.removeChild(this.instance.dom)
+        }
     }
 
     setRenderPanel(_context)
