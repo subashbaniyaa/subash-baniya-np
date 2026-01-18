@@ -97,6 +97,7 @@ export default function Hero() {
                   <Link href="/articles" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>articles</Link>
                   <Link href="/archive" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>archive</Link>
                   <Link href="/draw" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>draw</Link>
+                  <Link href="/robot" className={classNames("underline-magical bg-black/10 dark:bg-white/20 px-2 py-0.5 rounded-full whitespace-nowrap", poppins.className)}>robot</Link>
                 </div>
               </section>
               <motion.div 
