@@ -14,6 +14,7 @@ export default class Background
         this.debugFolder = this.debug.addFolder({
             title: 'background',
             expanded: false,
+            hidden: true
         })
 
         this.setGeometry()
